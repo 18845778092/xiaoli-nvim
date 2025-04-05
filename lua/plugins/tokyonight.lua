@@ -2,6 +2,7 @@ return {
   {
     'folke/tokyonight.nvim',
     priority = 1000,
+    enabled = false,
     config = function()
       local transparent = true -- set to true if you would like to enable transparency
 

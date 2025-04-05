@@ -1,3 +1,6 @@
 return {
-  'YaQia/darkplus.nvim'
+  'YaQia/darkplus.nvim',
+  config = function()
+    vim.cmd [[colorscheme darkplus]]
+  end
 }

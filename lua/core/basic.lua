@@ -33,9 +33,11 @@ opt.smartcase = true
 -- 外观
 opt.termguicolors = true
 opt.signcolumn = "yes"
+vim.api.nvim_set_hl(0, "FlashMatch", { fg = "#00FF00" })
+vim.api.nvim_set_hl(0, "FlashCurrent", { fg = "gold" })
 -- vim.cmd [[colorscheme tokyonight-moon]]
 -- vim.cmd [[colorscheme kanagawa]]
-vim.cmd [[colorscheme darkplus]]
+-- vim.cmd [[colorscheme darkplus]]
 -- local g = vim.g
 -- local o = vim.o
 -- local opt = vim.opt
