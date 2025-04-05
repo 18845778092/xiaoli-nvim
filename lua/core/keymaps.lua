@@ -36,10 +36,7 @@ end
 -- map('n', '<leader>gd', '<CMD>DiffviewOpen<CR>')
 -- map('n', '<leader>gc', '<CMD>DiffviewClose<CR>')
 
--- Auto log
--- map('n', '<leader>l', '"ayiwoconsole.log(\'<C-R>a:\', <C-R>a);<Esc>')
 
--- xiaoli
 map({ 'v', 'n' }, 'J', '5j')
 map({ 'v', 'n' }, 'K', '5k')
 map({ 'v', 'n' }, 'H', '^')
@@ -63,6 +60,8 @@ map('n', 'F', '<Nop>')
 map('n', 't', '<Nop>')
 map('n', 'T', '<Nop>')
 
+-- Auto log
+map('n', '<leader>ll', '"ayiwoconsole.log(\'<C-R>a:\', <C-R>a);<Esc>')
 -- map("n", "<leader>rn", "vim.lsp.buf.rename")
 
 -- map("n", "<leader>w", ":w<CR>")  -- 保存
