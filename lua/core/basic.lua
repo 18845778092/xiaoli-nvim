@@ -14,7 +14,17 @@ opt.autoindent = true
 opt.wrap = false
 
 -- 光标行
+-- 启用光标行高亮
 opt.cursorline = true
+--  注释颜色
+vim.api.nvim_set_hl(0, "@comment", { fg = "#0bf432", bg = 'NONE' })
+-- 设置光标行样式
+vim.api.nvim_set_hl(0, "CursorLine", {
+  bg = "#3E4452",   -- 背景色（深灰色）
+  fg = "gold",      -- 金色
+  bold = true,      -- 加粗（可选）
+  underline = false -- 下划线（可选）
+})
 
 -- 启用鼠标
 opt.mouse:append("a")
