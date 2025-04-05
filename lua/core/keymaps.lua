@@ -3,18 +3,6 @@ local function map(m, k, v)
   vim.keymap.set(m, k, v, { silent = true })
 end
 
--- Basic map
--- map('n', 'qq', '<CMD>q!<CR>')
--- map('n', '<leader>qq', '<CMD>qa!<CR>')
--- map('n', '<leader><cr>', '<CMD>noh<CR>')
--- map('n', '<leader>w', '<CMD>wa<CR>')
-
--- Tab switch map
--- map('n', '<leader>tn', '<CMD>tabnew<CR>')
--- map('n', '<leader>1', '1gt<CR>')
--- map('n', '<leader>2', '2gt<CR>')
--- map('n', '<leader>3', '3gt<CR>')
-
 
 -- Smart way to move between windows
 -- map('n', '<C-j>', '<C-W>j')
@@ -44,10 +32,8 @@ map({ 'v', 'n' }, 'L', 'g_')
 map('n', 'cH', 'c^')  -- 删除到行首
 map('n', 'cL', 'cg_') -- 删除到行尾
 map('n', '<leader>s', 'V$%')
--- map('n', '<leader>a', 'zfip')
 map('n', '<leader>a', 'za')
-
-map('v', 'ie', 'ggG')
+map('v', 'ie', '<Esc>ggVG')
 
 -- 取消高亮
 map("n", "<leader>nh", ":nohl<CR>")
