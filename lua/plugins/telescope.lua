@@ -37,7 +37,7 @@ return {
             preview_cutoff = 1,   -- 总是显示预览
             preview_height = 0.5, -- 预览窗口占50%高度
             -- mirror = true,        -- 将预览放在下方
-            prompt_position = 'top',
+            prompt_position = 'bottom',
           },
         },
         sorting_strategy = 'ascending',
