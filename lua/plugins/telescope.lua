@@ -22,9 +22,21 @@ return {
         },
       },
       defaults = {
-        layout_strategy = 'horizontal',
+        -- layout_strategy = 'horizontal',
+        layout_strategy = 'vertical',
         layout_config = {
+          -- 水平
           horizontal = {
+            width = 0.9,
+            preview_width = 0.3,
+            preview_cutoff = 1,
+            -- prompt_position = 'top',
+          },
+          vertical = {
+            width = 0.9,
+            preview_cutoff = 1,   -- 总是显示预览
+            preview_height = 0.5, -- 预览窗口占50%高度
+            -- mirror = true,        -- 将预览放在下方
             prompt_position = 'top',
           },
         },
@@ -48,7 +60,7 @@ return {
         live_grep_args = {
           auto_quoting = true, -- enable/disable auto-quoting
           -- define mappings, e.g.
-          mappings = { -- extend mappings
+          mappings = {         -- extend mappings
             i = {
               ['<C-k>'] = lga_actions.quote_prompt(),
               ['<C-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
