@@ -34,7 +34,8 @@ opt.smartcase = true
 opt.termguicolors = true
 opt.signcolumn = "yes"
 -- vim.cmd [[colorscheme tokyonight-moon]]
-vim.cmd [[colorscheme kanagawa-wave]]
+-- vim.cmd [[colorscheme kanagawa]]
+vim.cmd [[colorscheme darkplus]]
 -- local g = vim.g
 -- local o = vim.o
 -- local opt = vim.opt
