@@ -25,15 +25,11 @@ return {
             -- 确保安装的语言解析器
             ensure_installed = {
                 'bash',
-                'c',
-                'cpp',
                 'css',
-                'go',
                 'html',
                 'javascript',
                 'json',
                 'lua',
-                'python',
                 'rust',
                 'typescript',
                 'vim',
