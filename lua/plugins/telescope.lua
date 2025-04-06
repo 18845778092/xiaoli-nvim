@@ -89,5 +89,8 @@ return {
     --   live_grep_args_shortcuts.grep_word_under_cursor,
     --   { desc = 'Find string under cursor in live grep' }
     -- )
+    -- 添加符号搜索快捷键
+    vim.keymap.set('n', '<leader>fs', '<cmd>Telescope lsp_document_symbols<cr>',
+      { desc = 'Search symbols in current file' })
   end,
 }
