@@ -138,5 +138,58 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
     })
+
+    -- lspconfig.eslint.setup({
+    --   on_attach = function(client, bufnr)
+    --     vim.api.nvim_create_autocmd("BufWritePre", {
+    --       buffer = bufnr,
+    --       command = "EslintFixAll",
+    --     })
+    --   end,
+    -- })
+
+    -- ESLint 配置
+    require('lspconfig').eslint.setup({
+      on_attach = function(client, bufnr)
+        -- 保存时自动修复
+        vim.api.nvim_create_autocmd('BufWritePre', {
+          buffer = bufnr,
+          command = 'EslintFixAll',
+        })
+        -- 添加在 config 函数内的任意位置
+        vim.api.nvim_create_user_command('EslintFixAll', function()
+          vim.lsp.buf.execute_command({
+            command = 'eslint.applyAllFixes',
+            arguments = { vim.api.nvim_get_current_buf() }
+          })
+        end, {})
+      end,
+      settings = {
+        -- 使用项目本地的 ESLint
+        packageManager = 'npm',
+        codeAction = {
+          disableRuleComment = {
+            enable = true,
+            location = 'separateLine'
+          },
+          showDocumentation = {
+            enable = true
+          }
+        },
+        rulesCustomizations = {},
+        run = 'onType',
+        useESLintClass = false,
+        validate = 'on',
+        workingDirectory = {
+          mode = 'location'
+        }
+      },
+      root_dir = require('lspconfig.util').root_pattern(
+        '.eslintrc',
+        '.eslintrc.js',
+        '.eslintrc.json',
+        'package.json'
+      ),
+    })
   end,
 }
