@@ -25,6 +25,22 @@ map({ 'v', 'n' }, 'H', '^')
 map({ 'v', 'n' }, 'L', 'g_')
 map('n', 'cH', 'c^')  -- 删除到行首
 map('n', 'cL', 'cg_') -- 删除到行尾
+
+-- map({ 'v', 'n' }, 'ii', 'i{')
+
+map({ 'v', 'n' }, 'cw', 'ciw')
+map({ 'v', 'n' }, 'yw', 'yiw')
+map({ 'v', 'n' }, 'dw', 'diw')
+map({ 'v', 'n' }, 'vw', 'viw')
+
+map({ 'v', 'n' }, 'cii', 'ci{')
+map({ 'v', 'n' }, 'yii', 'yi{')
+map({ 'v', 'n' }, 'dii', 'di{')
+map({ 'v', 'n' }, 'vii', 'vi{')
+
+map({ 'n' }, 'cb', 'ci(')
+map({ 'v' }, 'b', 'i(')
+
 map('n', '<leader>s', 'V$%')
 map('n', '<leader>a', 'za')
 map('v', 'ie', '<Esc>ggVG')
