@@ -21,7 +21,7 @@ vim.api.nvim_set_hl(0, "@comment", { fg = "#0bf432", bg = 'NONE' })
 -- 设置光标行样式
 vim.api.nvim_set_hl(0, "CursorLine", {
   bg = "#3E4452",   -- 背景色（深灰色）
-  fg = "gold",      -- 金色
+  -- fg = "gold",      -- 金色
   bold = true,      -- 加粗（可选）
   underline = false -- 下划线（可选）
 })
@@ -45,6 +45,7 @@ opt.termguicolors = true
 opt.signcolumn = "yes"
 vim.api.nvim_set_hl(0, "FlashMatch", { fg = "#00FF00" })
 vim.api.nvim_set_hl(0, "FlashCurrent", { fg = "gold" })
+
 -- vim.cmd [[colorscheme tokyonight-moon]]
 -- vim.cmd [[colorscheme kanagawa]]
 -- vim.cmd [[colorscheme darkplus]]
