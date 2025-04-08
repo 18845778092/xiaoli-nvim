@@ -136,3 +136,14 @@ vim.api.nvim_set_hl(0, "FlashCurrent", { fg = "gold" })
 -- g.maplocalleader = ' '
 
 -- o.modifiable = true
+
+-- 完全禁用窗口自动跳转
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+    vim.cmd([[
+      nnoremap <silent> <Esc> <Esc>
+      vnoremap <silent> <Esc> <Esc>
+      inoremap <silent> <Esc> <Esc>
+    ]])
+  end
+})
