@@ -26,9 +26,12 @@ return {
         'rust_analyzer',
         'ts_ls',
         'cssmodules_ls',
-        -- 'emmet_language_server',
+        'emmet_language_server',
         'jdtls',
         'volar', -- 添加Vue的LSP服务器
+        'vtsls',
+        'eslint',
+        'cssls'
       },
     })
 
@@ -74,28 +77,22 @@ return {
       -- end, bufopts)
     end
 
-    -- Configure each language
-    -- How to add LSP for a specific language?
-    -- 1. use `:Mason` to install corresponding LSP
-    -- 2. add configuration below
 
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-    -- lspconfig.pylsp.setup({
-    --   capabilities = capabilities,
-    --   on_attach = on_attach,
-    -- })
+    local util = require 'lspconfig.util'
 
-
-    -- 添加Vue LSP配置
-    -- lspconfig.volar.setup({
-    --   -- on_attach = on_attach,
-    -- })
-    -- lspconfig.volar.setup({
-    --   capabilities = capabilities,
-    --   filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
-    --   on_attach = on_attach,
-    -- })
+    lspconfig.volar.setup {
+      -- add filetypes for typescript, javascript and vue
+      -- filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+      -- on_attach = on_attach,
+      init_options = {
+        vue = {
+          -- disable hybrid mode
+          hybridMode = false,
+        },
+      },
+    }
 
     lspconfig.ts_ls.setup({
       capabilities = capabilities,
@@ -104,9 +101,9 @@ return {
         'javascriptreact',
         'typescript',
         'typescriptreact',
-        'vue' -- 添加 vue 文件类型
+        -- 'vue' -- 添加 vue 文件类型
       },
-      on_attach = on_attach,
+      -- on_attach = on_attach,
       init_options = {
         plugins = {
           {
@@ -118,11 +115,32 @@ return {
       }
     })
 
+    lspconfig.vtsls.setup {
+      cmd = { 'vtsls', '--stdio' },
+      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+      root_dir = util.root_pattern('tsconfig.json', 'package.json', 'jsconfig.json', '.git'),
+      on_attach = on_attach,
+      settings = {
+        typescript = {
+          --   selectTypeScriptVersion = true
+          tsserver = {
+            maxTsServerMemory = 8192,
+          }
+        }
+      }
+    }
+
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
       filetypes = { 'lua' },
       on_attach = on_attach,
     })
+
+    lspconfig.cssls.setup {
+      filetypes = { "css", "scss", "less", "vue" },
+    }
+
+    lspconfig.ts_query_ls.setup {}
 
     lspconfig.cssmodules_ls.setup({
       capabilities = capabilities,
@@ -139,17 +157,9 @@ return {
       on_attach = on_attach,
     })
 
-    -- lspconfig.eslint.setup({
-    --   on_attach = function(client, bufnr)
-    --     vim.api.nvim_create_autocmd("BufWritePre", {
-    --       buffer = bufnr,
-    --       command = "EslintFixAll",
-    --     })
-    --   end,
-    -- })
 
     -- ESLint 配置
-    require('lspconfig').eslint.setup({
+    lspconfig.eslint.setup({
       on_attach = function(client, bufnr)
         -- 保存时自动修复
         vim.api.nvim_create_autocmd('BufWritePre', {
