@@ -61,7 +61,7 @@ return {
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
       vim.keymap.set('n', 'gh', '<cmd>Lspsaga hover_doc<CR>', bufopts)
-      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+      -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
       -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
       -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
       -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
@@ -71,7 +71,7 @@ return {
       -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
       vim.keymap.set('n', '<space>rn', '<cmd>Lspsaga rename<CR>', bufopts)
       vim.keymap.set('n', '<space>ca', '<cmd>Lspsaga code_action<CR>', bufopts)
-      vim.keymap.set('n', 'gr', '<cmd>Lspsaga finder<CR>', bufopts)
+      -- vim.keymap.set('n', 'gr', '<cmd>Lspsaga finder<CR>', bufopts)
       -- vim.keymap.set("n", "<space>f", function()
       -- vim.lsp.buf.format({ async = true })
       -- end, bufopts)
@@ -94,26 +94,26 @@ return {
       },
     }
 
-    lspconfig.ts_ls.setup({
-      capabilities = capabilities,
-      filetypes = {
-        'javascript',
-        'javascriptreact',
-        'typescript',
-        'typescriptreact',
-        -- 'vue' -- 添加 vue 文件类型
-      },
-      -- on_attach = on_attach,
-      init_options = {
-        plugins = {
-          {
-            name = "@vue/typescript-plugin",
-            location = "/Users/chezemin/.nvm/versions/node/v20.11.0/lib/node_modules/@vue/typescript-plugin",
-            languages = { "javascript", "typescript", "vue" },
-          },
-        },
-      }
-    })
+    -- lspconfig.ts_ls.setup({
+    --   capabilities = capabilities,
+    --   filetypes = {
+    --     'javascript',
+    --     'javascriptreact',
+    --     'typescript',
+    --     'typescriptreact',
+    --     -- 'vue' -- 添加 vue 文件类型
+    --   },
+    --   -- on_attach = on_attach,
+    --   init_options = {
+    --     plugins = {
+    --       {
+    --         name = "@vue/typescript-plugin",
+    --         location = "/Users/chezemin/.nvm/versions/node/v18.18.2/lib/node_modules/@vue/typescript-plugin",
+    --         languages = { "javascript", "typescript", "vue" },
+    --       },
+    --     },
+    --   }
+    -- })
 
     lspconfig.vtsls.setup {
       cmd = { 'vtsls', '--stdio' },
