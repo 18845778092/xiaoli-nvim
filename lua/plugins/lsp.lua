@@ -137,7 +137,7 @@ return {
     })
 
     lspconfig.cssls.setup {
-      filetypes = { "css", "scss", "less", "vue" },
+      filetypes = { "css", "scss", "less" },
     }
 
     lspconfig.ts_query_ls.setup {}
