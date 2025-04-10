@@ -2,20 +2,22 @@ return {
   {
     'folke/tokyonight.nvim',
     priority = 1000,
-    enabled = false,
+    enabled = true,
     config = function()
       local transparent = true -- set to true if you would like to enable transparency
 
       local bg = '#011628'
       local bg_dark = '#011423'
       local bg_highlight = '#143652'
-      local bg_visual = "#65a14c"
+      local bg_visual = "#0A64AC"
       local bg_search = '#0A64AC'
       local fg = '#CBE0F0'
       local fg_dark = '#B4D0E9'
       local fg_gutter = '#627E97'
+      -- local fg_gutter = '#a8fcfe'
       local border = '#547998'
       local comment = "#0bf432"
+      local active_line_num = '#a8fcfe'
 
       require('tokyonight').setup({
         style = 'moon',
@@ -48,6 +50,10 @@ return {
 
       vim.api.nvim_set_hl(0, 'CursorWord', { bg = '#454b59', underline = false })
       vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#373D4B' })
+      vim.api.nvim_set_hl(0, 'CursorLineNr', {
+        fg = active_line_num,
+        bold = true,
+      })
     end,
   },
   {
