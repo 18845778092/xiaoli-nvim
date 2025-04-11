@@ -21,10 +21,16 @@ end
 
 map({ 'v', 'n' }, 'J', '5j')
 map({ 'v', 'n' }, 'K', '5k')
-map({ 'v', 'n' }, 'H', '^')
-map({ 'v', 'n' }, 'L', 'g_')
-map('n', 'cH', 'c^')  -- 删除到行首
-map('n', 'cL', 'cg_') -- 删除到行尾
+
+
+
+-- 快捷操作
+map({ 'v', 'o' }, 'w', 'iw')
+map({ 'v', 'o' }, 'ii', 'i{')
+map({ 'v', 'o' }, 'b', 'i(')
+map({ 'v', 'o', 'n' }, 'H', '^')
+map({ 'v', 'o', 'n' }, 'L', 'g_')
+
 map('n', '<leader>s', 'V$%')
 map('n', '<leader>a', 'za')
 map('v', 'ie', '<Esc>ggVG')
@@ -34,10 +40,12 @@ map("n", "<leader>nh", ":nohl<CR>")
 
 map("n", "<leader>vv", "<C-w>v") -- 水平新增窗口
 map("n", "<leader>hv", "<C-w>s") -- 垂直新增窗口
+--
 -- 窗口光标移动 左右
 map('n', '<C-[>', '<C-W>h')
 map('n', '<C-]>', '<C-W>l')
 
+-- 禁用默认高亮
 map('n', 'f', '<Nop>')
 map('n', 'F', '<Nop>')
 map('n', 't', '<Nop>')
@@ -45,6 +53,6 @@ map('n', 'T', '<Nop>')
 
 -- Auto log
 map('n', '<leader>ll', '"ayiwoconsole.log(\'<C-R>a:\', <C-R>a);<Esc>')
--- map("n", "<leader>rn", "vim.lsp.buf.rename")
+map('i', 'jk', '<Esc>')
 
--- map("n", "<leader>w", ":w<CR>")  -- 保存
+-- map("n", "<leader>w", ":w<CR>") -- 保存

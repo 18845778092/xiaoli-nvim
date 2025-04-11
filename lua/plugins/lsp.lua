@@ -26,9 +26,12 @@ return {
         'rust_analyzer',
         'ts_ls',
         'cssmodules_ls',
-        -- 'emmet_language_server',
+        'emmet_language_server',
         'jdtls',
         'volar', -- 添加Vue的LSP服务器
+        'vtsls',
+        'eslint',
+        'cssls'
       },
     })
 
@@ -58,7 +61,7 @@ return {
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
       vim.keymap.set('n', 'gh', '<cmd>Lspsaga hover_doc<CR>', bufopts)
-      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+      -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
       -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
       -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
       -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
@@ -68,61 +71,76 @@ return {
       -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
       vim.keymap.set('n', '<space>rn', '<cmd>Lspsaga rename<CR>', bufopts)
       vim.keymap.set('n', '<space>ca', '<cmd>Lspsaga code_action<CR>', bufopts)
-      vim.keymap.set('n', 'gr', '<cmd>Lspsaga finder<CR>', bufopts)
+      -- vim.keymap.set('n', 'gr', '<cmd>Lspsaga finder<CR>', bufopts)
       -- vim.keymap.set("n", "<space>f", function()
       -- vim.lsp.buf.format({ async = true })
       -- end, bufopts)
     end
 
-    -- Configure each language
-    -- How to add LSP for a specific language?
-    -- 1. use `:Mason` to install corresponding LSP
-    -- 2. add configuration below
 
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-    -- lspconfig.pylsp.setup({
-    --   capabilities = capabilities,
-    --   on_attach = on_attach,
-    -- })
+    local util = require 'lspconfig.util'
 
-
-    -- 添加Vue LSP配置
-    -- lspconfig.volar.setup({
-    --   -- on_attach = on_attach,
-    -- })
-    -- lspconfig.volar.setup({
-    --   capabilities = capabilities,
-    --   filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
-    --   on_attach = on_attach,
-    -- })
-
-    lspconfig.ts_ls.setup({
-      capabilities = capabilities,
-      filetypes = {
-        'javascript',
-        'javascriptreact',
-        'typescript',
-        'typescriptreact',
-        'vue' -- 添加 vue 文件类型
-      },
-      on_attach = on_attach,
+    lspconfig.volar.setup {
+      -- add filetypes for typescript, javascript and vue
+      -- filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+      -- on_attach = on_attach,
       init_options = {
-        plugins = {
-          {
-            name = "@vue/typescript-plugin",
-            location = "/Users/chezemin/.nvm/versions/node/v20.11.0/lib/node_modules/@vue/typescript-plugin",
-            languages = { "javascript", "typescript", "vue" },
-          },
+        vue = {
+          -- disable hybrid mode
+          hybridMode = false,
         },
+      },
+    }
+
+    -- lspconfig.ts_ls.setup({
+    --   capabilities = capabilities,
+    --   filetypes = {
+    --     'javascript',
+    --     'javascriptreact',
+    --     'typescript',
+    --     'typescriptreact',
+    --     -- 'vue' -- 添加 vue 文件类型
+    --   },
+    --   -- on_attach = on_attach,
+    --   init_options = {
+    --     plugins = {
+    --       {
+    --         name = "@vue/typescript-plugin",
+    --         location = "/Users/chezemin/.nvm/versions/node/v18.18.2/lib/node_modules/@vue/typescript-plugin",
+    --         languages = { "javascript", "typescript", "vue" },
+    --       },
+    --     },
+    --   }
+    -- })
+
+    lspconfig.vtsls.setup {
+      cmd = { 'vtsls', '--stdio' },
+      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+      root_dir = util.root_pattern('tsconfig.json', 'package.json', 'jsconfig.json', '.git'),
+      on_attach = on_attach,
+      settings = {
+        typescript = {
+          --   selectTypeScriptVersion = true
+          tsserver = {
+            maxTsServerMemory = 8192,
+          }
+        }
       }
-    })
+    }
 
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
       filetypes = { 'lua' },
       on_attach = on_attach,
     })
+
+    lspconfig.cssls.setup {
+      filetypes = { "css", "scss", "less" },
+    }
+
+    lspconfig.ts_query_ls.setup {}
 
     lspconfig.cssmodules_ls.setup({
       capabilities = capabilities,
@@ -137,6 +155,51 @@ return {
     lspconfig.jdtls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
+    })
+
+
+    -- ESLint 配置
+    lspconfig.eslint.setup({
+      on_attach = function(client, bufnr)
+        -- 保存时自动修复
+        vim.api.nvim_create_autocmd('BufWritePre', {
+          buffer = bufnr,
+          command = 'EslintFixAll',
+        })
+        -- 添加在 config 函数内的任意位置
+        vim.api.nvim_create_user_command('EslintFixAll', function()
+          vim.lsp.buf.execute_command({
+            command = 'eslint.applyAllFixes',
+            arguments = { vim.api.nvim_get_current_buf() }
+          })
+        end, {})
+      end,
+      settings = {
+        -- 使用项目本地的 ESLint
+        packageManager = 'npm',
+        codeAction = {
+          disableRuleComment = {
+            enable = true,
+            location = 'separateLine'
+          },
+          showDocumentation = {
+            enable = true
+          }
+        },
+        rulesCustomizations = {},
+        run = 'onType',
+        useESLintClass = false,
+        validate = 'on',
+        workingDirectory = {
+          mode = 'location'
+        }
+      },
+      root_dir = require('lspconfig.util').root_pattern(
+        '.eslintrc',
+        '.eslintrc.js',
+        '.eslintrc.json',
+        'package.json'
+      ),
     })
   end,
 }

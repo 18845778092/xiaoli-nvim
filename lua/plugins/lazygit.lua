@@ -9,6 +9,9 @@ return {
     -- set keymaps
     local keymap = vim.keymap
 
-    keymap.set('n', '<leader>g', '<CMD>LazyGit<CR>', { desc = 'Open LazyGit' })
+    vim.g.lazygit_use_custom_config_file_path = 1
+    vim.g.lazygit_config_file_path = '/Users/chezemin/.config/lazygit/config.yml' -- custom config file path
+
+    keymap.set('n', '<leader>gg', '<CMD>LazyGit<CR>', { desc = 'Open LazyGit' })
   end,
 }

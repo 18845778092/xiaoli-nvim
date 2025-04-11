@@ -1,7 +1,7 @@
 local opt = vim.opt
 
 -- 行号
-opt.relativenumber = false
+opt.relativenumber = true
 opt.number = true
 
 -- 缩进
@@ -9,7 +9,19 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
-
+-- - "t"  -- 不根据 textwidth 自动换行
+-- - "c"  -- 不自动换行注释
+-- - "r"  -- 不自动插入注释
+-- - "o"  -- 不自动插入注释（使用o/O时）
+-- - "q"  -- 允许使用gq格式化注释
+-- - "l"  -- 不自动换行长行
+-- - "a"  -- 不自动格式化段落
+vim.api.nvim_create_autocmd(
+  { "FileType" },
+  {
+    command = "set formatoptions-=ro"
+  }
+)
 -- 防止包裹
 opt.wrap = false
 
@@ -21,7 +33,7 @@ vim.api.nvim_set_hl(0, "@comment", { fg = "#0bf432", bg = 'NONE' })
 -- 设置光标行样式
 vim.api.nvim_set_hl(0, "CursorLine", {
   bg = "#3E4452",   -- 背景色（深灰色）
-  fg = "gold",      -- 金色
+  -- fg = "gold",      -- 金色
   bold = true,      -- 加粗（可选）
   underline = false -- 下划线（可选）
 })
@@ -45,6 +57,7 @@ opt.termguicolors = true
 opt.signcolumn = "yes"
 vim.api.nvim_set_hl(0, "FlashMatch", { fg = "#00FF00" })
 vim.api.nvim_set_hl(0, "FlashCurrent", { fg = "gold" })
+
 -- vim.cmd [[colorscheme tokyonight-moon]]
 -- vim.cmd [[colorscheme kanagawa]]
 -- vim.cmd [[colorscheme darkplus]]
@@ -135,3 +148,14 @@ vim.api.nvim_set_hl(0, "FlashCurrent", { fg = "gold" })
 -- g.maplocalleader = ' '
 
 -- o.modifiable = true
+
+-- 完全禁用窗口自动跳转
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+    vim.cmd([[
+      nnoremap <silent> <Esc> <Esc>
+      vnoremap <silent> <Esc> <Esc>
+      inoremap <silent> <Esc> <Esc>
+    ]])
+  end
+})
