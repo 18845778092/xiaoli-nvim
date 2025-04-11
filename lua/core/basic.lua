@@ -9,7 +9,19 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
-
+-- - "t"  -- 不根据 textwidth 自动换行
+-- - "c"  -- 不自动换行注释
+-- - "r"  -- 不自动插入注释
+-- - "o"  -- 不自动插入注释（使用o/O时）
+-- - "q"  -- 允许使用gq格式化注释
+-- - "l"  -- 不自动换行长行
+-- - "a"  -- 不自动格式化段落
+vim.api.nvim_create_autocmd(
+  { "FileType" },
+  {
+    command = "set formatoptions-=ro"
+  }
+)
 -- 防止包裹
 opt.wrap = false
 
