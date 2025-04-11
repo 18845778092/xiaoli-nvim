@@ -53,5 +53,6 @@ map('n', 'T', '<Nop>')
 
 -- Auto log
 map('n', '<leader>ll', '"ayiwoconsole.log(\'<C-R>a:\', <C-R>a);<Esc>')
+map('i', 'jk', '<Esc>')
 
 -- map("n", "<leader>w", ":w<CR>") -- 保存
