@@ -1,8 +1,7 @@
-vim.g.mapleader = " "
+vim.g.mapleader = ' '
 local function map(m, k, v)
   vim.keymap.set(m, k, v, { silent = true })
 end
-
 
 -- Ack
 --vim.keymap.set("n", "<leader>g", ":Ack!<Space>", { silent = false })
@@ -18,11 +17,8 @@ end
 -- map('n', '<leader>gd', '<CMD>DiffviewOpen<CR>')
 -- map('n', '<leader>gc', '<CMD>DiffviewClose<CR>')
 
-
 map({ 'v', 'n' }, 'J', '5j')
 map({ 'v', 'n' }, 'K', '5k')
-
-
 
 -- 快捷操作
 map({ 'v', 'o' }, 'w', 'iw')
@@ -33,13 +29,16 @@ map({ 'v', 'o', 'n' }, 'L', 'g_')
 
 map('n', '<leader>s', 'V$%')
 map('n', '<leader>a', 'za')
-map('v', 'ie', '<Esc>ggVG')
+
+map('v', 'ie', '<Esc>ggVG') -- 全选整个文件内容
+map('n', 'die', 'ggdG') -- 删除整个文件内容
+map('n', 'yie', 'ggyG') -- 复制整个文件内容
 
 -- 取消高亮
-map("n", "<leader>nh", ":nohl<CR>")
+map('n', '<leader>nh', ':nohl<CR>')
 
-map("n", "<leader>vv", "<C-w>v") -- 水平新增窗口
-map("n", "<leader>hv", "<C-w>s") -- 垂直新增窗口
+map('n', '<leader>vv', '<C-w>v') -- 水平新增窗口
+map('n', '<leader>hv', '<C-w>s') -- 垂直新增窗口
 --
 -- 窗口光标移动 左右
 map('n', '<C-[>', '<C-W>h')
