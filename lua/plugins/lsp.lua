@@ -142,6 +142,10 @@ return {
       capabilities = capabilities2,
     })
 
+    lspconfig.html.setup({
+      capabilities = capabilities,
+    })
+
     lspconfig.ts_query_ls.setup({})
 
     lspconfig.cssmodules_ls.setup({
