@@ -1,7 +1,7 @@
 return {
   {
     'akinsho/toggleterm.nvim',
-    version = "*",
+    version = '*',
     opts = {
       -- 基础配置
       size = 20,
@@ -15,11 +15,11 @@ return {
       require('toggleterm').setup(opts)
 
       -- 添加自定义快捷键 <leader>tt 打开/关闭终端
-      vim.keymap.set('n', '<C-t>', '<CMD>ToggleTerm<CR>', {
+      vim.keymap.set({ 'n', 't' }, '<C-t>', '<CMD>ToggleTerm<CR>', {
         noremap = true,
         silent = true,
-        desc = 'Toggle terminal'
+        desc = 'Toggle terminal',
       })
-    end
-  }
+    end,
+  },
 }
