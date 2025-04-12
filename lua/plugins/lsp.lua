@@ -31,7 +31,7 @@ return {
         'volar', -- 添加Vue的LSP服务器
         'vtsls',
         'eslint',
-        'cssls'
+        'cssls',
       },
     })
 
@@ -77,12 +77,11 @@ return {
       -- end, bufopts)
     end
 
-
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-    local util = require 'lspconfig.util'
+    local util = require('lspconfig.util')
 
-    lspconfig.volar.setup {
+    lspconfig.volar.setup({
       -- add filetypes for typescript, javascript and vue
       -- filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
       -- on_attach = on_attach,
@@ -92,7 +91,7 @@ return {
           hybridMode = false,
         },
       },
-    }
+    })
 
     -- lspconfig.ts_ls.setup({
     --   capabilities = capabilities,
@@ -115,7 +114,7 @@ return {
     --   }
     -- })
 
-    lspconfig.vtsls.setup {
+    lspconfig.vtsls.setup({
       cmd = { 'vtsls', '--stdio' },
       filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
       root_dir = util.root_pattern('tsconfig.json', 'package.json', 'jsconfig.json', '.git'),
@@ -125,10 +124,10 @@ return {
           --   selectTypeScriptVersion = true
           tsserver = {
             maxTsServerMemory = 8192,
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    })
 
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
@@ -136,11 +135,14 @@ return {
       on_attach = on_attach,
     })
 
-    lspconfig.cssls.setup {
-      filetypes = { "css", "scss", "less" },
-    }
+    local capabilities2 = vim.lsp.protocol.make_client_capabilities()
+    capabilities2.textDocument.completion.completionItem.snippetSupport = true
+    lspconfig.cssls.setup({
+      filetypes = { 'css', 'scss', 'less' },
+      capabilities = capabilities2,
+    })
 
-    lspconfig.ts_query_ls.setup {}
+    lspconfig.ts_query_ls.setup({})
 
     lspconfig.cssmodules_ls.setup({
       capabilities = capabilities,
@@ -157,7 +159,6 @@ return {
       on_attach = on_attach,
     })
 
-
     -- ESLint 配置
     lspconfig.eslint.setup({
       on_attach = function(client, bufnr)
@@ -170,7 +171,7 @@ return {
         vim.api.nvim_create_user_command('EslintFixAll', function()
           vim.lsp.buf.execute_command({
             command = 'eslint.applyAllFixes',
-            arguments = { vim.api.nvim_get_current_buf() }
+            arguments = { vim.api.nvim_get_current_buf() },
           })
         end, {})
       end,
@@ -180,26 +181,21 @@ return {
         codeAction = {
           disableRuleComment = {
             enable = true,
-            location = 'separateLine'
+            location = 'separateLine',
           },
           showDocumentation = {
-            enable = true
-          }
+            enable = true,
+          },
         },
         rulesCustomizations = {},
         run = 'onType',
         useESLintClass = false,
         validate = 'on',
         workingDirectory = {
-          mode = 'location'
-        }
+          mode = 'location',
+        },
       },
-      root_dir = require('lspconfig.util').root_pattern(
-        '.eslintrc',
-        '.eslintrc.js',
-        '.eslintrc.json',
-        'package.json'
-      ),
+      root_dir = require('lspconfig.util').root_pattern('.eslintrc', '.eslintrc.js', '.eslintrc.json', 'package.json'),
     })
   end,
 }
