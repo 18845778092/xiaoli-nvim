@@ -78,7 +78,7 @@ return {
         ['<C-Space>'] = cmp.mapping.complete(), -- show completion suggestions
         ['<C-e>'] = cmp.mapping.abort(),        -- close completion window
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<TAB>'] = cmp.mapping.confirm({ select = true }),
+        ['<TAB>'] = cmp.mapping.confirm({ select = false }),
         -- A super tab
         -- sourc: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
         ['<C-n>'] = cmp.mapping(function(fallback)
