@@ -1,7 +1,7 @@
 return {
-  "hedyhli/outline.nvim",
+  'hedyhli/outline.nvim',
   config = function()
-    require("outline").setup({
+    require('outline').setup({
       outline_window = {
         width = 20,
         position = 'right',
@@ -57,10 +57,10 @@ return {
           StaticMethod = { icon = 'Static ', hl = 'Function' },
           -- Macro = { icon = ' ', hl = 'Function' },
         },
-      }
+      },
     })
 
     -- 添加自定义快捷键
-    vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "切换大纲视图" })
+    vim.keymap.set('n', '<leader>o', '<cmd>Outline<CR>', { desc = '切换大纲视图' })
   end,
 }
