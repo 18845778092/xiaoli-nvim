@@ -41,7 +41,7 @@ return {
           },
         },
         sorting_strategy = 'ascending',
-        file_ignore_patterns = { 'node_modules', 'public/' },
+        file_ignore_patterns = { 'node_modules', 'public/', 'dist' },
       },
       extensions = {
         file_browser = {
