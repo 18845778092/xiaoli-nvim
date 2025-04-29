@@ -88,8 +88,8 @@ return {
     -- keymap.set('n', '<leader>fw', '<cmd>Telescope live_grep<cr>', { desc = 'Find string in cwd' })
     keymap.set("n", "<leader>fw", function()
       require('telescope').extensions.live_grep_args.live_grep_args({
-        default_text = "",                                      -- 默认搜索词
-        additional_args = { "--fixed-strings", "--no-ignore" }, -- 附加参数
+        default_text = "",                                        -- 默认搜索词
+        additional_args = { "--fixed-strings", "--ignore-case" }, -- 附加参数
       })
     end, { desc = 'Find string in cwd with args' })
     keymap.set('n', '<leader>fc', '<cmd>Telescope grep_string<cr>', { desc = 'Find string under cursor in cwd' })
