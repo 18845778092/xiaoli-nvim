@@ -1,6 +1,8 @@
+-- 结合lsp使用的配置
 return {
   'hrsh7th/nvim-cmp',
   event = { 'BufReadPre', 'BufNewFile' },
+  enabled = false,
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',     -- lsp auto-completion
     'hrsh7th/cmp-buffer',       -- source for text in buffer

@@ -31,8 +31,8 @@ map('n', '<leader>s', 'V$%')
 map('n', '<leader>a', 'za')
 
 map('v', 'ie', '<Esc>ggVG') -- 全选整个文件内容
-map('n', 'die', 'ggdG') -- 删除整个文件内容
-map('n', 'yie', 'ggyG') -- 复制整个文件内容
+map('n', 'die', 'ggdG')     -- 删除整个文件内容
+map('n', 'yie', 'ggyG')     -- 复制整个文件内容
 
 -- 取消高亮
 map('n', '<leader>nh', ':nohl<CR>')
@@ -55,3 +55,27 @@ map('n', '<leader>ll', '"ayiwoconsole.log(\'<C-R>a:\', <C-R>a);<Esc>')
 map('i', 'jk', '<Esc>')
 
 -- map("n", "<leader>w", ":w<CR>") -- 保存
+
+------------------------------coc配置
+function _G.show_docs()
+  local cw = vim.fn.expand('<cword>')
+  if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
+    vim.api.nvim_command('h ' .. cw)
+  elseif vim.api.nvim_eval('coc#rpc#ready()') then
+    vim.fn.CocActionAsync('doHover')
+  else
+    vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+  end
+end
+
+local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
+local keyset = vim.keymap.set
+keyset('i', '<cr>', [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
+keyset('n', 'gh', '<CMD>lua _G.show_docs()<CR>', { silent = true })
+keyset('i', '<c-i>', 'coc#refresh()', { silent = true, expr = true })           -- ctrl+i触发补全 类似vscode cmd+i
+keyset('n', '<space>y', '<CMD>CocList -A --normal yank<CR>', { silent = true }) -- 粘贴列表
+map('n', '<space>e', vim.diagnostic.open_float)
+map('n', 'gd', '<Plug>(coc-definition)')
+map('n', '<leader>ca', '<Plug>(coc-codeaction-line)')
+map('n', 'rn', '<Plug>(coc-rename)')
+------------------------------coc配置

@@ -1,0 +1,4 @@
+{
+  "diagnostic.errorSign": ">>",
+  "diagnostic.displayByVimDiagnostic": true
+}
