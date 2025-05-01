@@ -26,7 +26,7 @@ return {
       -- 确保安装的语言解析器
       ensure_installed = {
         'bash',
-        -- 'css',
+        'css',
         'html',
         'javascript',
         'json',
@@ -34,7 +34,7 @@ return {
         'rust',
         'typescript',
         'vim',
-        -- 'vue',
+        'vue',
       },
     })
   end,

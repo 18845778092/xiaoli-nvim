@@ -20,7 +20,7 @@ return {
       'coc-yank',
       'coc-webview',
       'coc-markdown-preview-enhanced',
-      'coc-symbol-line'
+      'coc-fzf-preview'
       -- 'coc-prettier',
       -- 'coc-rust-analyzer'
     }
@@ -48,6 +48,12 @@ return {
       },
       severity_sort = true, -- 按严重程度排序诊断信息
     })
+
+    local signs = { Error = '󰅙', Info = '󰋼', Hint = '󰌵', Warn = '' }
+    for type, icon in pairs(signs) do
+      local hl = 'DiagnosticSign' .. type
+      vim.fn.sign_define(hl, { --[[ text = icon, ]] texthl = hl, numhl = hl })
+    end
 
     -- 使用`[g`和`]g`来导航诊断信息
     -- vim.keymap.set('n', '[g', '<Plug>(coc-diagnostic-prev)', { silent = true })

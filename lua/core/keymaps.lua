@@ -78,4 +78,9 @@ map('n', '<space>e', vim.diagnostic.open_float)
 map('n', 'gd', '<Plug>(coc-definition)')
 map('n', '<leader>ca', '<Plug>(coc-codeaction-line)')
 map('n', 'rn', '<Plug>(coc-rename)')
+map('n', '<c-f>', ':CocCommand fzf-preview.ProjectFiles<CR>')       -- 文件名搜索
+map('n', '<leader>fs', ':CocCommand fzf-preview.Lines<CR>')         -- 当前文件中根据符号搜索内容
+map('n', '<leader>fm', ':CocCommand fzf-preview.Marks<CR>')         -- 当前mark
+map('n', '<leader>fr', ':CocCommand fzf-preview.CocReferences<CR>') -- 查找全部引用
+map('n', '<leader>fc', ':CocCommand fzf-preview.Changes<CR>')       -- 查看当前文件变更内容
 ------------------------------coc配置
