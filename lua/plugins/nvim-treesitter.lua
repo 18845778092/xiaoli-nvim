@@ -35,6 +35,7 @@ return {
         'typescript',
         'vim',
         'vue',
+        'scss',
       },
     })
   end,
