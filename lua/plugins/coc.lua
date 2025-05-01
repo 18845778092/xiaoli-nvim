@@ -19,7 +19,8 @@ return {
       'coc-markmap',
       'coc-yank',
       'coc-webview',
-      'coc-markdown-preview-enhanced'
+      'coc-markdown-preview-enhanced',
+      'coc-symbol-line'
       -- 'coc-prettier',
       -- 'coc-rust-analyzer'
     }
