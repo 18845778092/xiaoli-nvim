@@ -1,7 +1,8 @@
 return {
   'echasnovski/mini.files',
   config = function()
-    require('mini.files').setup({
+    local files = require('mini.files')
+    files.setup({
       -- Customization of shown content
       content = {
         -- Predicate for which file system entries to show
@@ -17,7 +18,7 @@ return {
       mappings = {
         close = 'q',
         go_in = 'l',
-        go_in_plus = '<CR>', -- L
+        go_in_plus = 'L', -- L
         go_out = 'h',
         go_out_plus = 'H',
         mark_goto = '\'',
@@ -25,7 +26,7 @@ return {
         reset = '<BS>',
         reveal_cwd = '@', -- 展示完整路径
         show_help = 'g?',
-        synchronize = '=',
+        synchronize = '<CR>',
         trim_left = '<',
         trim_right = '>',
       },
@@ -52,5 +53,13 @@ return {
         width_preview = 60,
       },
     })
+    -- vim.api.nvim_create_autocmd('User', {
+    --   pattern = 'MiniFilesBufferCreate',
+    --   callback = function()
+    --     vim.keymap.set('n', '<C-w>', function()
+    --       files.synchronize()
+    --     end)
+    --   end,
+    -- })
   end,
 }
