@@ -17,13 +17,13 @@ return {
       mappings = {
         close = 'q',
         go_in = 'l',
-        go_in_plus = 'L',
+        go_in_plus = '<CR>', -- L
         go_out = 'h',
         go_out_plus = 'H',
         mark_goto = '\'',
         mark_set = 'm',
         reset = '<BS>',
-        reveal_cwd = '@',
+        reveal_cwd = '@', -- 展示完整路径
         show_help = 'g?',
         synchronize = '=',
         trim_left = '<',

@@ -85,4 +85,4 @@ map('n', '<leader>fr', ':CocCommand fzf-preview.CocReferences<CR>') -- 查找全
 map('n', '<leader>fc', ':CocCommand fzf-preview.Changes<CR>')       -- 查看当前文件变更内容
 ------------------------------coc配置
 
-map('n', '<leader>nm', '<CMD>lua MiniFiles.open()<CR>')
+map('n', '<leader>nm', '<CMD>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>')
