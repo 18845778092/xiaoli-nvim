@@ -19,8 +19,8 @@ return {
       mappings = {
         object_scope = 'ii',
         object_scope_with_border = 'ai',
-        goto_top = '[i',
-        goto_bottom = ']i',
+        goto_top = 'tt',
+        goto_bottom = 'tb',
       },
 
       options = {
