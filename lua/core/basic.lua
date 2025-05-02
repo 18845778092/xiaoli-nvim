@@ -159,3 +159,5 @@ vim.api.nvim_create_autocmd('VimEnter', {
     ]])
   end
 })
+
+vim.opt.jumpoptions = "stack" -- gd ctrl+o 跳转模型
