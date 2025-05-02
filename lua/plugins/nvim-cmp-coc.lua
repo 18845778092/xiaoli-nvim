@@ -1,7 +1,7 @@
 -- 结合coc使用的配置
 return {
   'hrsh7th/nvim-cmp',
-  event = { 'BufReadPre', 'BufNewFile' },
+  event = { 'BufReadPre', 'BufNewFile', 'VimEnter' },
   enabled = true,
   dependencies = {
     'hrsh7th/cmp-path',    -- source for file system paths
