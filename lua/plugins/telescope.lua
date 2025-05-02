@@ -77,7 +77,7 @@ return {
       },
     })
 
-    telescope.load_extension("live_grep_args")
+    telescope.load_extension('live_grep_args')
     telescope.load_extension('ui-select')
 
     -- set keymaps
@@ -85,11 +85,12 @@ return {
 
     -- local live_grep_args_shortcuts = require('telescope-live-grep-args.shortcuts')
     keymap.set('n', '<leader>fo', '<cmd>Telescope oldfiles<cr>', { desc = 'Fuzzy find recent files' })
+    keymap.set('n', '<leader>fm', require('telescope.builtin').marks, { desc = 'show all marks' })
     -- keymap.set('n', '<leader>fw', '<cmd>Telescope live_grep<cr>', { desc = 'Find string in cwd' })
-    keymap.set("n", "<leader>fw", function()
+    keymap.set('n', '<leader>fw', function()
       require('telescope').extensions.live_grep_args.live_grep_args({
-        default_text = "",                                      -- 默认搜索词
-        additional_args = { "--fixed-strings", "--no-ignore" }, -- 附加参数
+        default_text = '',                                      -- 默认搜索词
+        additional_args = { '--fixed-strings', '--no-ignore' }, -- 附加参数
       })
     end, { desc = 'Find string in cwd with args' })
     -- 添加符号搜索快捷键 使用coc的时候关闭
