@@ -1,7 +1,6 @@
 return {
   'neoclide/coc.nvim',
-  branch = 'master',
-  run = 'npm ci',
+  branch = 'release',
   config = function()
     vim.g.coc_global_extensions = {
       'coc-tsserver',
