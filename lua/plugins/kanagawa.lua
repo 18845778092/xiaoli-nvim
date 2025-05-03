@@ -2,7 +2,7 @@ return {
   {
     'rebelot/kanagawa.nvim',
     priority = 1000,
-    enabled = true,
+    enabled = false,
     opts = {
       compile = false,
       undercurl = true,
@@ -22,21 +22,21 @@ return {
           dragon = {},
           all = {
             ui = {
-              bg_gutter = "none"
-            }
-          }
+              bg_gutter = 'none',
+            },
+          },
         },
       },
       overrides = function(colors)
-        local visual = '#0A64AC';
+        local visual = '#0A64AC'
         return {
-          Normal = { bg = '#1f1f1f' },          -- 主背景色
-          Visual = { bg = visual },             -- 可视化选择模式背景色
+          Normal = { bg = '#1f1f1f' }, -- 主背景色
+          Visual = { bg = visual }, -- 可视化选择模式背景色
           TelescopeSelection = { bg = visual }, -- Telescope 选中项背
-          PmenuSel = { bg = visual },           -- 弹出菜单选中项背景色
+          PmenuSel = { bg = visual }, -- 弹出菜单选中项背景色
         }
       end,
-      theme = "wave",
+      theme = 'wave',
       -- background = {
       --   dark = "dragon",
       --   light = "lotus"
@@ -53,5 +53,5 @@ return {
         bold = true,
       })
     end,
-  }
+  },
 }
