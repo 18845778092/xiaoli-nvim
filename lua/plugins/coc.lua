@@ -35,7 +35,6 @@ return {
           return string.format('%s', diagnostic.message)
         end,
       },
-      signs = true, -- 在左侧显示错误标记
       underline = true, -- 在错误代码下方显示下划线
       update_in_insert = false, -- 在插入模式下不更新diagnostic
       float = {
@@ -47,16 +46,27 @@ return {
         end,
       },
       severity_sort = true, -- 按严重程度排序诊断信息
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = '',
+          [vim.diagnostic.severity.WARN] = '',
+          [vim.diagnostic.severity.INFO] = '',
+          [vim.diagnostic.severity.HINT] = '',
+        },
+        texthl = {
+          [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+          [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+          [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+          [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
+        },
+        numhl = {
+          [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+          [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+          [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+          [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
+        },
+      },
     })
-
-    local signs = { Error = '󰅙', Info = '󰋼', Hint = '󰌵', Warn = '' }
-    for type, icon in pairs(signs) do
-      local hl = 'DiagnosticSign' .. type
-      vim.fn.sign_define(hl, { --[[ text = icon, ]]
-        texthl = hl,
-        numhl = hl,
-      })
-    end
 
     -- 使用`[g`和`]g`来导航诊断信息
     -- vim.keymap.set('n', '[g', '<Plug>(coc-diagnostic-prev)', { silent = true })
