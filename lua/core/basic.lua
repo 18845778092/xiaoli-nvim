@@ -9,6 +9,9 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
+opt.jumpoptions = 'stack' -- gd ctrl+o 跳转模型
+opt.swapfile = false
+
 -- - "t"  -- 不根据 textwidth 自动换行
 -- - "c"  -- 不自动换行注释
 -- - "r"  -- 不自动插入注释
@@ -16,12 +19,9 @@ opt.autoindent = true
 -- - "q"  -- 允许使用gq格式化注释
 -- - "l"  -- 不自动换行长行
 -- - "a"  -- 不自动格式化段落
-vim.api.nvim_create_autocmd(
-  { "FileType" },
-  {
-    command = "set formatoptions-=ro"
-  }
-)
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  command = 'set formatoptions-=ro',
+})
 -- 防止包裹
 opt.wrap = false
 
@@ -29,20 +29,20 @@ opt.wrap = false
 -- 启用光标行高亮
 opt.cursorline = true
 --  注释颜色
-vim.api.nvim_set_hl(0, "@comment", { fg = "#0bf432", bg = 'NONE' })
+vim.api.nvim_set_hl(0, '@comment', { fg = '#0bf432', bg = 'NONE' })
 -- 设置光标行样式
-vim.api.nvim_set_hl(0, "CursorLine", {
-  bg = "#3E4452",   -- 背景色（深灰色）
+vim.api.nvim_set_hl(0, 'CursorLine', {
+  bg = '#3E4452', -- 背景色（深灰色）
   -- fg = "gold",      -- 金色
-  bold = true,      -- 加粗（可选）
-  underline = false -- 下划线（可选）
+  bold = true, -- 加粗（可选）
+  underline = false, -- 下划线（可选）
 })
 
 -- 启用鼠标
-opt.mouse:append("a")
+opt.mouse:append('a')
 
 -- 系统剪贴板
-opt.clipboard:append("unnamedplus")
+opt.clipboard:append('unnamedplus')
 
 -- 默认新窗口右和下
 opt.splitright = true
@@ -54,16 +54,9 @@ opt.smartcase = true
 
 -- 外观
 opt.termguicolors = true
-opt.signcolumn = "yes"
-vim.api.nvim_set_hl(0, "FlashMatch", { fg = "#00FF00" })
-vim.api.nvim_set_hl(0, "FlashCurrent", { fg = "gold" })
-
--- vim.cmd [[colorscheme tokyonight-moon]]
--- vim.cmd [[colorscheme kanagawa]]
--- vim.cmd [[colorscheme darkplus]]
--- local g = vim.g
--- local o = vim.o
--- local opt = vim.opt
+opt.signcolumn = 'yes'
+vim.api.nvim_set_hl(0, 'FlashMatch', { fg = '#00FF00' })
+vim.api.nvim_set_hl(0, 'FlashCurrent', { fg = 'gold' })
 
 -- -- cmd('syntax on')
 -- vim.api.nvim_command('filetype plugin indent on')
@@ -127,14 +120,6 @@ vim.api.nvim_set_hl(0, "FlashCurrent", { fg = "gold" })
 -- o.splitright = true
 -- o.splitbelow = true
 
--- -- Preserve view while jumping
--- -- BUG This option causes an error!
--- -- o.jumpoptions = 'view'
-
--- -- BUG: this won't update the search count after pressing `n` or `N`
--- -- When running macros and regexes on a large file, lazy redraw tells neovim/vim not to draw the screen
--- -- o.lazyredraw = true
-
 -- -- Better folds (don't fold by default)
 -- -- o.foldmethod = 'indent'
 -- -- o.foldlevelstart = 99
@@ -157,7 +142,5 @@ vim.api.nvim_create_autocmd('VimEnter', {
       vnoremap <silent> <Esc> <Esc>
       inoremap <silent> <Esc> <Esc>
     ]])
-  end
+  end,
 })
-
-vim.opt.jumpoptions = "stack" -- gd ctrl+o 跳转模型
