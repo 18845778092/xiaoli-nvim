@@ -29,6 +29,7 @@
   "marks.nvim": { "branch": "master", "commit": "bb25ae3f65f504379e3d08c8a02560b76eaf91e8" },
   "mini.files": { "branch": "main", "commit": "432142ada983ec5863ba480f0e4891b7d64ce3f6" },
   "mini.nvim": { "branch": "main", "commit": "ee23e1abc206efc6d6cce19ec8c0a3da7a897035" },
+  "neovim-session-manager": { "branch": "master", "commit": "3409dc920d40bec4c901c0a122a80bee03d6d1e1" },
   "noice.nvim": { "branch": "main", "commit": "0427460c2d7f673ad60eb02b35f5e9926cf67c59" },
   "nui.nvim": { "branch": "main", "commit": "f535005e6ad1016383f24e39559833759453564e" },
   "nvim-autopairs": { "branch": "master", "commit": "4d74e75913832866aa7de35e4202463ddf6efd1b" },
