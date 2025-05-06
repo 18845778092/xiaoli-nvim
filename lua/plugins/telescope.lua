@@ -35,14 +35,14 @@ return {
           },
           vertical = {
             width = 0.9,
-            preview_cutoff = 1, -- 总是显示预览
+            preview_cutoff = 1,   -- 总是显示预览
             preview_height = 0.5, -- 预览窗口占50%高度
             -- mirror = true,        -- 将预览放在下方
             prompt_position = 'bottom',
           },
         },
         sorting_strategy = 'ascending',
-        file_ignore_patterns = { 'node_modules', 'public/' },
+        file_ignore_patterns = { 'node_modules', 'public/', 'dist' },
       },
       extensions = {
         file_browser = {
@@ -61,7 +61,7 @@ return {
         live_grep_args = {
           auto_quoting = false, -- enable/disable auto-quoting
           -- define mappings, e.g.
-          mappings = { -- extend mappings
+          mappings = {          -- extend mappings
             i = {
               ['<C-k>'] = lga_actions.quote_prompt(),
               -- ['<C-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
@@ -89,7 +89,7 @@ return {
     -- keymap.set('n', '<leader>fw', '<cmd>Telescope live_grep<cr>', { desc = 'Find string in cwd' })
     keymap.set('n', '<leader>fw', function()
       require('telescope').extensions.live_grep_args.live_grep_args({
-        default_text = '', -- 默认搜索词
+        default_text = '',                                        -- 默认搜索词
         additional_args = { '--fixed-strings', '--ignore-case' }, -- 附加参数
       })
     end, { desc = 'Find string in cwd with args' })

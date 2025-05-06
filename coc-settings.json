@@ -1,4 +1,7 @@
 {
   "diagnostic.errorSign": ">>",
-  "diagnostic.displayByVimDiagnostic": true
+  "diagnostic.displayByVimDiagnostic": true,
+  "cSpell.userWords": [
+    "Potree"
+  ]
 }
