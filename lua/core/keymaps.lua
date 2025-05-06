@@ -79,7 +79,7 @@ map('n', '<space>e', vim.diagnostic.open_float)
 map('n', 'gd', '<Plug>(coc-definition)')
 map('n', '<leader>ca', '<Plug>(coc-codeaction-line)')
 map('n', 'rn', '<Plug>(coc-rename)')
-map('n', '<c-f>', ':CocCommand fzf-preview.ProjectFiles<CR>') -- 文件名搜索
+map('n', '<c-f>', ':CocCommand fzf-preview.ProjectFiles --add-fzf-arg=--ignore-case<CR>') -- 文件名搜索 忽略大小写
 map('n', '<leader>fs', ':CocCommand fzf-preview.Lines<CR>') -- 当前文件中根据符号搜索内容
 -- map('n', '<leader>fm', ':CocCommand fzf-preview.Marks<CR>')         -- 当前mark  暂用telescope的
 map('n', '<leader>fr', ':CocCommand fzf-preview.CocReferences<CR>') -- 查找全部引用
