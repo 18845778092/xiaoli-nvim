@@ -1,9 +1,10 @@
 return {
-  "rcarriga/nvim-notify",
+  'rcarriga/nvim-notify',
+  enabled = true,
   event = 'VimEnter',
-  config = function ()
-    require("notify").setup({
-      stages = "fade_in_slide_out",
+  config = function()
+    require('notify').setup({
+      stages = 'fade_in_slide_out',
       timeout = 1000,
       max_height = function()
         return math.floor(vim.o.lines * 0.75)
@@ -14,7 +15,7 @@ return {
       on_open = function(win)
         vim.api.nvim_win_set_config(win, { zindex = 100 })
       end,
+      top_down = false
     })
-  end
+  end,
 }
-

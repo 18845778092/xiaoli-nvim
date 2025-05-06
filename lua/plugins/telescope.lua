@@ -1,5 +1,6 @@
 return {
   'nvim-telescope/telescope.nvim',
+  enabled = true,
   tag = '0.1.8',
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -64,39 +65,37 @@ return {
             i = {
               ['<C-k>'] = lga_actions.quote_prompt(),
               -- ['<C-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
-              ['<C-p>'] = lga_actions.quote_prompt({ postfix = ' --fixed-strings --no-ignore' }), -- 添加固定字符串搜索
+              ['<C-p>'] = lga_actions.quote_prompt({ postfix = ' --fixed-strings --ignore-case' }), -- 添加固定字符串搜索
             },
             n = {
               ['<C-k>'] = lga_actions.quote_prompt(),
               -- ['<C-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
-              ['<C-p>'] = lga_actions.quote_prompt({ postfix = ' -F --no-ignore' }), -- 添加固定字符串搜索
+              ['<C-p>'] = lga_actions.quote_prompt({ postfix = ' -F --ignore-case' }), -- 添加固定字符串搜索
             },
           },
         },
       },
     })
 
-    telescope.load_extension("live_grep_args")
+    telescope.load_extension('live_grep_args')
     telescope.load_extension('ui-select')
 
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
 
     -- local live_grep_args_shortcuts = require('telescope-live-grep-args.shortcuts')
-    keymap.set('n', '<C-f>', '<cmd>Telescope find_files<cr>', { desc = 'Fuzzy find files in cwd' })
-    keymap.set('n', '<leader>fr', '<cmd>Telescope oldfiles<cr>', { desc = 'Fuzzy find recent files' })
+    keymap.set('n', '<leader>fo', '<cmd>Telescope oldfiles<cr>', { desc = 'Fuzzy find recent files' })
+    keymap.set('n', '<leader>fm', require('telescope.builtin').marks, { desc = 'show all marks' })
     -- keymap.set('n', '<leader>fw', '<cmd>Telescope live_grep<cr>', { desc = 'Find string in cwd' })
-    keymap.set("n", "<leader>fw", function()
+    keymap.set('n', '<leader>fw', function()
       require('telescope').extensions.live_grep_args.live_grep_args({
-        default_text = "",                                        -- 默认搜索词
-        additional_args = { "--fixed-strings", "--ignore-case" }, -- 附加参数
+        default_text = '',                                        -- 默认搜索词
+        additional_args = { '--fixed-strings', '--ignore-case' }, -- 附加参数
       })
     end, { desc = 'Find string in cwd with args' })
-    keymap.set('n', '<leader>fc', '<cmd>Telescope grep_string<cr>', { desc = 'Find string under cursor in cwd' })
-    keymap.set('n', '<leader>ft', '<cmd>Telescope colorscheme<cr>', { desc = 'Fuzzy find colorschemes' })
-
-    -- 添加符号搜索快捷键
-    vim.keymap.set('n', '<leader>fs', '<cmd>Telescope lsp_document_symbols<cr>',
-      { desc = 'Search symbols in current file' })
+    -- 添加符号搜索快捷键 使用coc的时候关闭
+    -- keymap.set('n', '<C-f>', '<cmd>Telescope find_files<cr>', { desc = 'Fuzzy find files in cwd' })
+    -- vim.keymap.set('n', '<leader>fs', '<cmd>Telescope lsp_document_symbols<cr>',
+    --   { desc = 'Search symbols in current file' })
   end,
 }
