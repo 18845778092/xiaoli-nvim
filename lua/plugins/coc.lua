@@ -3,6 +3,7 @@ return {
   branch = 'release',
   config = function()
     vim.g.coc_global_extensions = {
+      '@yaegassy/coc-volar',
       'coc-tsserver',
       'coc-json',
       'coc-eslint',

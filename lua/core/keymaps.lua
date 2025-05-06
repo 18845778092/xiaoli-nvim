@@ -31,8 +31,8 @@ map('n', '<leader>s', 'V$%')
 map('n', '<leader>a', 'za')
 
 map('v', 'ie', '<Esc>ggVG') -- 全选整个文件内容
-map('n', 'die', 'ggdG')     -- 删除整个文件内容
-map('n', 'yie', 'ggyG')     -- 复制整个文件内容
+map('n', 'die', 'ggdG') -- 删除整个文件内容
+map('n', 'yie', 'ggyG') -- 复制整个文件内容
 
 -- 取消高亮
 map('n', '<leader>nh', ':nohl<CR>')
@@ -73,17 +73,17 @@ local keyset = vim.keymap.set
 keyset('i', '<TAB>', [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 keyset('i', '<cr>', [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 keyset('n', 'gh', '<CMD>lua _G.show_docs()<CR>', { silent = true })
-keyset('i', '<c-i>', 'coc#refresh()', { silent = true, expr = true })           -- ctrl+i触发补全 类似vscode cmd+i
+keyset('i', '<c-i>', 'coc#refresh()', { silent = true, expr = true }) -- ctrl+i触发补全 类似vscode cmd+i
 keyset('n', '<space>y', '<CMD>CocList -A --normal yank<CR>', { silent = true }) -- 粘贴列表
 map('n', '<space>e', vim.diagnostic.open_float)
 map('n', 'gd', '<Plug>(coc-definition)')
 map('n', '<leader>ca', '<Plug>(coc-codeaction-line)')
 map('n', 'rn', '<Plug>(coc-rename)')
-map('n', '<c-f>', ':CocCommand fzf-preview.DirectoryFiles<CR>')     -- 文件名搜索
-map('n', '<leader>fs', ':CocCommand fzf-preview.Lines<CR>')         -- 当前文件中根据符号搜索内容
+map('n', '<c-f>', ':CocCommand fzf-preview.ProjectFiles<CR>') -- 文件名搜索
+map('n', '<leader>fs', ':CocCommand fzf-preview.Lines<CR>') -- 当前文件中根据符号搜索内容
 -- map('n', '<leader>fm', ':CocCommand fzf-preview.Marks<CR>')         -- 当前mark  暂用telescope的
 map('n', '<leader>fr', ':CocCommand fzf-preview.CocReferences<CR>') -- 查找全部引用
-map('n', '<leader>fc', ':CocCommand fzf-preview.Changes<CR>')       -- 查看当前文件变更内容
+map('n', '<leader>fc', ':CocCommand fzf-preview.Changes<CR>') -- 查看当前文件变更内容
 ------------------------------coc配置
 
 map('n', '<leader>nm', '<CMD>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>')
