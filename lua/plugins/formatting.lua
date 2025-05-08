@@ -19,11 +19,18 @@ return {
         markdown = { 'prettier' },
         graphql = { 'prettier' },
         lua = { 'stylua' }, -- cargo install stylua
+        glsl = { 'clang_format' },
       },
       format_on_save = {
         lsp_fallback = true,
         async = false,
         timeout_ms = 5000,
+      },
+      formatters = {
+        clang_format = {
+          command = 'clang-format',
+          args = { '-assume-filename=.glsl', '-style=file' },
+        },
       },
     })
 
@@ -32,6 +39,12 @@ return {
         lsp_fallback = true,
         async = false,
         timeout_ms = 500,
+      })
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        pattern = { '*.vs', '*.fs' },
+        callback = function(args)
+          require('conform').format({ bufnr = args.buf })
+        end,
       })
     end, { desc = 'Format file or range (in visual mode)' })
   end,

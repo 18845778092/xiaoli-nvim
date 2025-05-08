@@ -35,7 +35,7 @@ return {
           },
           vertical = {
             width = 0.9,
-            preview_cutoff = 1,   -- 总是显示预览
+            preview_cutoff = 1, -- 总是显示预览
             preview_height = 0.5, -- 预览窗口占50%高度
             -- mirror = true,        -- 将预览放在下方
             prompt_position = 'bottom',
@@ -59,20 +59,20 @@ return {
           },
         },
         live_grep_args = {
-          auto_quoting = false, -- enable/disable auto-quoting
+          -- auto_quoting = true, -- enable/disable auto-quoting
           -- define mappings, e.g.
-          mappings = {          -- extend mappings
-            i = {
-              ['<C-k>'] = lga_actions.quote_prompt(),
-              -- ['<C-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
-              ['<C-p>'] = lga_actions.quote_prompt({ postfix = ' --fixed-strings --ignore-case' }), -- 添加固定字符串搜索
-            },
-            n = {
-              ['<C-k>'] = lga_actions.quote_prompt(),
-              -- ['<C-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
-              ['<C-p>'] = lga_actions.quote_prompt({ postfix = ' -F --ignore-case' }), -- 添加固定字符串搜索
-            },
-          },
+          -- mappings = {          -- extend mappings
+          --   i = {
+          --     ['<C-k>'] = lga_actions.quote_prompt(),
+          --     -- ['<C-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
+          --     ['<C-p>'] = lga_actions.quote_prompt({ postfix = ' --fixed-strings --ignore-case' }), -- 添加固定字符串搜索
+          --   },
+          --   n = {
+          --     ['<C-k>'] = lga_actions.quote_prompt(),
+          --     -- ['<C-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
+          --     ['<C-p>'] = lga_actions.quote_prompt({ postfix = ' -F --ignore-case' }), -- 添加固定字符串搜索
+          --   },
+          -- },
         },
       },
     })
@@ -89,7 +89,8 @@ return {
     -- keymap.set('n', '<leader>fw', '<cmd>Telescope live_grep<cr>', { desc = 'Find string in cwd' })
     keymap.set('n', '<leader>fw', function()
       require('telescope').extensions.live_grep_args.live_grep_args({
-        default_text = '',                                        -- 默认搜索词
+        auto_quoting = true,
+        default_text = '', -- 默认搜索词
         additional_args = { '--fixed-strings', '--ignore-case' }, -- 附加参数
       })
     end, { desc = 'Find string in cwd with args' })

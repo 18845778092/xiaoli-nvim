@@ -74,7 +74,7 @@ keyset('i', '<TAB>', [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-
 keyset('i', '<cr>', [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 keyset('n', 'gh', '<CMD>lua _G.show_docs()<CR>', { silent = true })
 keyset('i', '<c-i>', 'coc#refresh()', { silent = true, expr = true }) -- ctrl+i触发补全 类似vscode cmd+i
-keyset('n', '<space>y', '<CMD>CocList -A --normal yank<CR>', { silent = true }) -- 粘贴列表
+-- keyset('n', '<space>y', '<CMD>CocList -A --normal yank<CR>', { silent = true }) -- coc粘贴列表 暂时用neoclip代替
 map('n', '<space>e', vim.diagnostic.open_float)
 map('n', 'gd', '<Plug>(coc-definition)')
 map('n', '<leader>ca', '<Plug>(coc-codeaction-line)')
