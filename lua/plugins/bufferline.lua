@@ -17,10 +17,9 @@ return {
             text_align = 'left',
           },
         },
+        sort_by = 'id',
+        show_buffer_close_icons = false,
       },
     })
-    -- 添加跳转快捷键
-    vim.keymap.set('n', '<leader>pp', '<Cmd>BufferLineCyclePrev<CR>', { desc = '上一个buffer' })
-    -- vim.keymap.set('n', '<leader>bn', '<Cmd>BufferLineCycleNext<CR>', { desc = '下一个buffer' })
   end,
 }

@@ -88,3 +88,6 @@ map('n', '<leader>fc', ':CocCommand fzf-preview.Changes<CR>') -- 查看当前文
 
 map('n', '<leader>nm', '<CMD>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>')
 vim.keymap.set('n', '<leader>ls', ':SessionManager load_session<CR>', { desc = '加载会话', silent = true })
+
+-- 添加跳转快捷键
+vim.keymap.set('n', '<leader>q', '<Cmd>BufferLinePickClose<CR>', { noremap = true })
