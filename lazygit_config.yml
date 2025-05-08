@@ -1,6 +1,7 @@
 # ln -s  ~/.config/nvim/lazygit_config.yml ~/.config/lazygit/config.yml
 os:
   editPreset: "nvim"
+  editAtLine: "nvim +{{line}} {{filename}}"
 gui:
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-author-color
   authorColors: {}
@@ -225,9 +226,9 @@ gui:
   spinner:
     # The frames of the spinner animation.
     frames:
-      - '|'
+      - "|"
       - /
-      - '-'
+      - "-"
       - \
 
     # The "speed" of the spinner in milliseconds.
@@ -323,7 +324,6 @@ git:
   # If true, do not allow force pushes
   disableForcePushing: false
 
-
   # Config for showing the log in the commits view
   log:
     # displays the whole git graph by default in the commits view (equivalent to passing the `--all` argument to `git log`)
@@ -332,4 +332,3 @@ git:
   # When copying commit hashes to the clipboard, truncate them to this
   # length. Set to 40 to disable truncation.
   truncateCopiedCommitHashesTo: 12
-
