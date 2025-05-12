@@ -19,6 +19,19 @@ return {
         markdown = { 'prettier' },
         graphql = { 'prettier' },
         lua = { 'stylua' }, -- cargo install stylua
+        -- javascript = { 'biome' },
+        -- typescript = { 'biome' },
+        -- javascriptreact = { 'biome' },
+        -- typescriptreact = { 'biome' },
+        -- css = { 'biome' },
+        -- html = { 'biome' },
+        -- vue = { 'biome' },
+        -- json = { 'biome' },
+        -- yaml = { 'biome' },
+        -- yml = { 'biome' },
+        -- markdown = { 'biome' },
+        -- graphql = { 'biome' },
+        -- lua = { 'stylua' },
         glsl = { 'clang_format' },
       },
       format_on_save = {
@@ -27,6 +40,11 @@ return {
         timeout_ms = 5000,
       },
       formatters = {
+        biome = {
+          command = 'biome',
+          args = { 'check', '--fix', '--stdin-file-path', '$FILENAME' },
+          stdin = true,
+        },
         clang_format = {
           command = 'clang-format',
           args = { '-assume-filename=.glsl', '-style=file' },
