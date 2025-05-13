@@ -235,7 +235,7 @@
       "semicolons": "always",
       "arrowParentheses": "asNeeded",
       "bracketSpacing": true,
-      "bracketSameLine": false,
+      "bracketSameLine": true,
       "quoteStyle": "single",
       "attributePosition": "auto"
     },
@@ -386,7 +386,7 @@
         }
       }
     },
-    {
+    { 
       "include": ["*.ts", "*.tsx", "*.mts", "*.cts"],
       "linter": {
         "rules": {
