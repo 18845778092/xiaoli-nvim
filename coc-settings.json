@@ -3,5 +3,9 @@
   "diagnostic.displayByVimDiagnostic": true,
   "cSpell.userWords": [
     "Potree"
-  ]
+  ],
+  "eslint.enable": true,
+  "biome.requireConfiguration": true,
+  "biome.enable": true,
+  "biome.bin": "/Users/chezemin/.nvm/versions/node/v18.18.2/bin/biome"
 }
