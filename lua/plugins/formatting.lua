@@ -42,8 +42,8 @@ return {
       formatters = {
         biome = {
           command = 'biome',
-          -- args = { 'check', '--fix', '--stdin-file-path', '$FILENAME' },
-          args = { 'format', '--stdin-file-path', '$FILENAME' },
+          args = { 'check', '--fix', '--organize-imports-enabled', 'false', '--stdin-file-path', '$FILENAME' },
+          -- args = { 'format', '--stdin-file-path', '$FILENAME' },
           stdin = true,
         },
         clang_format = {
