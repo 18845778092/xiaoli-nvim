@@ -30,7 +30,7 @@
       "**/temp"
     ]
   },
-  "organizeImports": { "enabled": true },
+  "organizeImports": { "enabled": false },
   "linter": {
     "enabled": true,
     "rules": {
