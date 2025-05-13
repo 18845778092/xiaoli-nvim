@@ -42,7 +42,14 @@ return {
       formatters = {
         biome = {
           command = 'biome',
-          args = { 'check', '--fix', '--organize-imports-enabled', 'false', '--stdin-file-path', '$FILENAME' },
+          args = {
+            'check',
+            '--fix',
+            '--config-path',
+            vim.fn.stdpath('config') .. '/biome.json',
+            '--stdin-file-path',
+            '$FILENAME',
+          },
           -- args = { 'format', '--stdin-file-path', '$FILENAME' },
           stdin = true,
         },
