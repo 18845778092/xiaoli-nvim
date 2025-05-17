@@ -7,7 +7,7 @@ return {
     conform.setup({
       formatters_by_ft = {
         javascript = { 'prettier' },
-        typescript = { 'prettier' },
+        typescript = { 'biome' },
         javascriptreact = { 'prettier' },
         typescriptreact = { 'prettier' },
         css = { 'prettier' },
@@ -42,7 +42,15 @@ return {
       formatters = {
         biome = {
           command = 'biome',
-          args = { 'check', '--fix', '--stdin-file-path', '$FILENAME' },
+          args = {
+            'check',
+            '--fix',
+            '--config-path',
+            vim.fn.stdpath('config') .. '/biome.json',
+            '--stdin-file-path',
+            '$FILENAME',
+          },
+          -- args = { 'format', '--stdin-file-path', '$FILENAME' },
           stdin = true,
         },
         clang_format = {
