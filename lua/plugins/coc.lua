@@ -23,6 +23,7 @@ return {
       'coc-fzf-preview',
       'coc-spell-checker',
       'coc-biome',
+      'coc-sh',
       -- 'coc-prettier',
       -- 'coc-rust-analyzer'
     }

@@ -33,6 +33,9 @@ return {
         -- graphql = { 'biome' },
         -- lua = { 'stylua' },
         glsl = { 'clang_format' },
+        sh = { 'shfmt' }, -- brew install shfmt  brew install shellcheck
+        bash = { 'shfmt' },
+        zsh = { 'shfmt' },
       },
       format_on_save = {
         lsp_fallback = true,
@@ -56,6 +59,10 @@ return {
         clang_format = {
           command = 'clang-format',
           args = { '-assume-filename=.glsl', '-style=file' },
+        },
+        shfmt = {
+          command = 'shfmt',
+          stdin = true,
         },
       },
     })
