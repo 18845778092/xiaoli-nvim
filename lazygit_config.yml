@@ -6,6 +6,7 @@ gui:
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-author-color
   authorColors: {}
 
+  # "*": "red", # use red for John Smith
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-branch-color
   branchColorPatterns: {}
 
@@ -52,7 +53,7 @@ gui:
 
   # Fraction of the total screen width to use for the left side section. You may want to pick a small number (e.g. 0.2) if you're using a narrow screen, so that you can see more of the main section.
   # Number from 0 to 1.0.
-  sidePanelWidth: 0.38 #左侧面板宽度 (0.1-0.9)
+  sidePanelWidth: 0.3 #左侧面板宽度 (0.1-0.9)
 
   # If true, increase the height of the focused side window; creating an accordion effect.
   expandFocusedSidePanel: false
@@ -258,7 +259,7 @@ git:
     # diff-so-fancy
     # delta --dark --paging=never
     # ydiff -p cat -s --wrap --width={{columnWidth}}
-    pager: ""
+    pager: "delta --dark --paging=never"
 
     # If true, Lazygit will use whatever pager is specified in `$GIT_PAGER`, `$PAGER`, or your *git config*. If the pager ends with something like ` | less` we will strip that part out, because less doesn't play nice with our rendering approach. If the custom pager uses less under the hood, that will also break rendering (hence the `--paging=never` flag for the `delta` pager).
     useConfig: false
@@ -313,10 +314,11 @@ git:
   autoStageResolvedConflicts: true
 
   # Command used when displaying the current branch git log in the main window
-  branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
+  branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=format:'%Y-%m-%d %H:%M:%S' --pretty=medium {{branchName}} --
 
   # Commands used to display git log of all branches in the main window, they will be cycled in order of appearance (array of strings)
-  allBranchesLogCmds: []
+  allBranchesLogCmds: 
+   - git log --graph --all --color=always --abbrev-commit --decorate --date=format:'%Y-%m-%d %H:%M:%S' --pretty=medium
 
   # If true, do not spawn a separate process when using GPG
   overrideGpg: false
