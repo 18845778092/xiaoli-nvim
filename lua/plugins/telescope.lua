@@ -23,15 +23,14 @@ return {
         },
       },
       defaults = {
-        -- layout_strategy = 'horizontal',
-        layout_strategy = 'vertical',
+        layout_strategy = 'horizontal',
+        -- layout_strategy = 'vertical',
         layout_config = {
           -- 水平
           horizontal = {
             width = 0.9,
-            preview_width = 0.3,
+            preview_width = 0.4,
             preview_cutoff = 1,
-            -- prompt_position = 'top',
           },
           vertical = {
             width = 0.9,
