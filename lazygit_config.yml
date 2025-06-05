@@ -2,9 +2,13 @@
 os:
   editPreset: "nvim"
   editAtLine: "nvim +{{line}} {{filename}}"
+
 gui:
   sidePanelWidth: 0.3 #左侧面板宽度 (0 - 1.0)
-  # Config relating to git
+  showFileTree: false
+  nerdFontsVersion: "3"
+
+# Config relating to git
 git:
   paging:
     colorArg: always
