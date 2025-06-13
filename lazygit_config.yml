@@ -8,8 +8,7 @@ gui:
   showFileTree: false
   nerdFontsVersion: "3"
 
-# Config relating to git
-git:
+git: # Config relating to git
   paging:
     colorArg: always
     pager: "delta --dark --paging=never"
