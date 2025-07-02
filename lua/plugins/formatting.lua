@@ -19,7 +19,7 @@ return {
         markdown = { 'prettier' },
         graphql = { 'prettier' },
         lua = { 'stylua' }, -- cargo install stylua
-        glsl = { 'clang_format' },
+        -- glsl = { 'clang_format' },
         sh = { 'shfmt' }, -- brew install shfmt  brew install shellcheck
         bash = { 'shfmt' },
         zsh = { 'shfmt' },
