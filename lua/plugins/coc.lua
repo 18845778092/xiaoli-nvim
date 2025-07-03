@@ -11,6 +11,7 @@ return {
       'coc-dash-complete',
       'coc-emmet',
       'coc-html-css-support',
+      'coc-html',
       'coc-highlight', -- coc已内置
       -- 'coc-class-css', --watchman
       'coc-css',

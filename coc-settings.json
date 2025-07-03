@@ -7,5 +7,5 @@
   "eslint.enable": true,
   "biome.requireConfiguration": true,
   "biome.enable": true,
-  "biome.bin": "/Users/chezemin/.nvm/versions/node/v18.18.2/bin/biome"
+  "biome.bin": "/Users/chezemin/.nvm/versions/node/v23.11.1/bin/biome"
 }
