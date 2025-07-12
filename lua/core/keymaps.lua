@@ -33,6 +33,7 @@ map('n', '<leader>a', 'za')
 map('v', 'ie', '<Esc>ggVG') -- 全选整个文件内容
 map('n', 'die', 'ggdG') -- 删除整个文件内容
 map('n', 'yie', 'ggyG') -- 复制整个文件内容
+map('n', 'cie', 'ggcG') --
 
 -- 取消高亮
 map('n', '<leader>nh', ':nohl<CR>')
