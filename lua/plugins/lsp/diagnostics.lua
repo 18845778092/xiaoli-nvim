@@ -1,3 +1,5 @@
+-- diagnostic display setting
+
 return function()
   vim.diagnostic.config({
     virtual_text = {
@@ -41,4 +43,3 @@ return function()
     },
   })
 end
-

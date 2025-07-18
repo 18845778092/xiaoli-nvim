@@ -1,3 +1,5 @@
+-- buffer tab
+
 return {
   'akinsho/bufferline.nvim',
   version = '*',

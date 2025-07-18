@@ -1,3 +1,5 @@
+-- generate jsdoc
+
 return {
   'heavenshell/vim-jsdoc',
   config = function()

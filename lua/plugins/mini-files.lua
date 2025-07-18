@@ -1,3 +1,5 @@
+-- mini.files
+
 return {
   'echasnovski/mini.files',
   config = function()
@@ -53,13 +55,5 @@ return {
         width_preview = 60,
       },
     })
-    -- vim.api.nvim_create_autocmd('User', {
-    --   pattern = 'MiniFilesBufferCreate',
-    --   callback = function()
-    --     vim.keymap.set('n', '<C-w>', function()
-    --       files.synchronize()
-    --     end)
-    --   end,
-    -- })
   end,
 }

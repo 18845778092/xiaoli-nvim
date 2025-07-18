@@ -1,3 +1,5 @@
+-- indent line
+
 return {
   'lukas-reineke/indent-blankline.nvim',
   main = 'ibl',
@@ -10,7 +12,7 @@ return {
       require('ibl').setup({
         scope = {
           enabled = false,
-        }
+        },
       })
       return
     else

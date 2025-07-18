@@ -1,3 +1,5 @@
+-- auto close tag
+
 return {
   'windwp/nvim-ts-autotag',
   ft = { 'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'vue' },

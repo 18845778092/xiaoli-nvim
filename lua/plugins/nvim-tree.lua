@@ -1,3 +1,5 @@
+-- file explorer
+
 return {
   'nvim-tree/nvim-tree.lua',
   config = function()
@@ -49,9 +51,9 @@ return {
       sort_by = 'case_sensitive',
       update_cwd = true,
       update_focused_file = {
-        enable = true,     -- 改为 true 启用自动聚焦
+        enable = true, -- 改为 true 启用自动聚焦
         update_cwd = true, -- 同时更新工作目录
-        ignore_list = {},  -- 不想自动聚焦的文件类型可以加在这里
+        ignore_list = {}, -- 不想自动聚焦的文件类型可以加在这里
       },
       view = {
         width = 45,

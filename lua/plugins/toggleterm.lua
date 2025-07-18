@@ -1,3 +1,5 @@
+-- terminal
+
 return {
   {
     'akinsho/toggleterm.nvim',
@@ -8,7 +10,7 @@ return {
       open_mapping = [[<c-\>]], -- 默认快捷键 Ctrl+\
       direction = 'horizontal', -- 浮动窗口
       float_opts = {
-        border = 'float',       -- 圆角边框
+        border = 'float', -- 圆角边框
       },
     },
     config = function(_, opts)

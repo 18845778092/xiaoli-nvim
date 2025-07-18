@@ -1,3 +1,5 @@
+-- ai completion
+
 return {
   'Exafunction/windsurf.vim',
   event = 'BufEnter',

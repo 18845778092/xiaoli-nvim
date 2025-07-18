@@ -1,3 +1,5 @@
+-- Neovim built-in LSP
+
 return {
   'neovim/nvim-lspconfig',
   enabled = true,
@@ -16,4 +18,3 @@ return {
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
   end,
 }
-

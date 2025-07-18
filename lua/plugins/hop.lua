@@ -1,3 +1,5 @@
+-- <leader>j  <leader>k
+
 return {
   'phaazon/hop.nvim',
   event = 'VeryLazy',

@@ -1,3 +1,5 @@
+-- lsp management
+
 return function()
   require('mason').setup({
     ui = {
@@ -9,4 +11,3 @@ return function()
     },
   })
 end
-

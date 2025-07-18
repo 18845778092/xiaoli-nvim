@@ -1,3 +1,5 @@
+-- shotcuts key prompt
+
 return {
   'folke/which-key.nvim',
   event = 'VeryLazy',

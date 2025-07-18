@@ -1,3 +1,5 @@
+-- mini.nvim collection
+
 return {
   'echasnovski/mini.nvim',
   config = function()

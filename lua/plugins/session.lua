@@ -1,3 +1,5 @@
+-- session manager
+
 return {
   'Shatur/neovim-session-manager',
   config = function()

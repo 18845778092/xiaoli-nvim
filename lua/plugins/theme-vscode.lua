@@ -1,3 +1,5 @@
+-- vscode like theme
+
 return {
   'YaQia/darkplus.nvim',
   enabled = true,

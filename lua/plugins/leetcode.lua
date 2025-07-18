@@ -1,3 +1,5 @@
+-- leetcode
+
 local function ensure_dir_exists(path)
   local ok, err = os.execute('mkdir -p ' .. path)
   if not ok then

@@ -1,3 +1,5 @@
+-- message notify
+
 return {
   'rcarriga/nvim-notify',
   enabled = true,
@@ -15,7 +17,7 @@ return {
       on_open = function(win)
         vim.api.nvim_win_set_config(win, { zindex = 100 })
       end,
-      top_down = false
+      top_down = false,
     })
   end,
 }

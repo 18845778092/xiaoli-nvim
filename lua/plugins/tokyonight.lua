@@ -1,3 +1,5 @@
+-- theme
+
 return {
   {
     'folke/tokyonight.nvim',
@@ -9,14 +11,14 @@ return {
       local bg = '#011628'
       local bg_dark = '#011423'
       local bg_highlight = '#143652'
-      local bg_visual = "#0A64AC"
+      local bg_visual = '#0A64AC'
       local bg_search = '#0A64AC'
       local fg = '#CBE0F0'
       local fg_dark = '#B4D0E9'
       local fg_gutter = '#627E97'
       -- local fg_gutter = '#a8fcfe'
       local border = '#547998'
-      local comment = "#0bf432"
+      local comment = '#0bf432'
       local active_line_num = '#a8fcfe'
 
       require('tokyonight').setup({

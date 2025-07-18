@@ -1,3 +1,5 @@
+-- auto code completion
+
 local use_coc = false
 -- 结合coc使用的配置
 return {
@@ -58,7 +60,8 @@ return {
           max_view_entries = 20,
         },
         completion = {
-          completeopt = 'menu,menuone,preview,select',
+          completeopt = 'menu,menuone,preview,noselect',
+          j,
         },
         snippet = { -- configure how nvim-cmp interacts with snippet engine
           expand = function(args)

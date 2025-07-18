@@ -1,3 +1,5 @@
+-- glsl syntax highlight
+
 return {
   'tikhomirov/vim-glsl',
   config = function()
@@ -5,7 +7,7 @@ return {
       pattern = '*.vs,*.fs',
       callback = function()
         vim.bo.filetype = 'glsl'
-      end
+      end,
     })
-  end
+  end,
 }

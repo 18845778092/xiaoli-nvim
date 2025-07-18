@@ -1,3 +1,5 @@
+-- coc lsp
+
 return {
   'neoclide/coc.nvim',
   branch = 'release',

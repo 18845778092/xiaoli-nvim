@@ -1,3 +1,5 @@
+-- code outline
+
 return {
   'hedyhli/outline.nvim',
   config = function()
