@@ -2,7 +2,7 @@
   "diagnostic.errorSign": ">>",
   "diagnostic.displayByVimDiagnostic": true,
   "cSpell.userWords": ["Potree"],
-  "eslint.enable": true,
+  "eslint.enable": false,
   "typescript.inlayHints.parameterNames.enabled": "all",
   "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": false,
   "typescript.inlayHints.parameterTypes.enabled": true,

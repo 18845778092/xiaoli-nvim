@@ -1,6 +1,7 @@
 return {
   'neoclide/coc.nvim',
   branch = 'release',
+  enabled = false,
   config = function()
     vim.g.coc_global_extensions = {
       '@yaegassy/coc-volar',

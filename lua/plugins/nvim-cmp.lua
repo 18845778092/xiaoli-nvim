@@ -1,4 +1,4 @@
-local use_coc = true
+local use_coc = false
 -- 结合coc使用的配置
 return {
   'hrsh7th/nvim-cmp',
@@ -37,24 +37,7 @@ return {
       })
     else
       local luasnip = require('luasnip')
-
       local lspkind = require('lspkind')
-
-      vim.keymap.set({ 'i' }, '<C-K>', function()
-        luasnip.expand()
-      end, { silent = true })
-      vim.keymap.set({ 'i', 's' }, '<C-L>', function()
-        luasnip.jump(1)
-      end, { silent = true })
-      vim.keymap.set({ 'i', 's' }, '<C-J>', function()
-        luasnip.jump(-1)
-      end, { silent = true })
-
-      vim.keymap.set({ 'i', 's' }, '<C-E>', function()
-        if luasnip.choice_active() then
-          luasnip.change_choice(1)
-        end
-      end, { silent = true })
 
       -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
       require('luasnip.loaders.from_vscode').lazy_load()
@@ -72,33 +55,23 @@ return {
 
       cmp.setup({
         performance = {
-          max_view_entries = 15,
+          max_view_entries = 20,
         },
         completion = {
-          completeopt = 'menu,menuone,preview,noselect',
+          completeopt = 'menu,menuone,preview,select',
         },
         snippet = { -- configure how nvim-cmp interacts with snippet engine
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end,
         },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
         mapping = cmp.mapping.preset.insert({
-          ['<C-k>'] = cmp.mapping.select_prev_item(), -- previous suggestion
           ['<C-j>'] = cmp.mapping.select_next_item(), -- next suggestion
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(), -- show completion suggestions
+          ['<C-k>'] = cmp.mapping.select_prev_item(), -- previous suggestion
           ['<C-e>'] = cmp.mapping.abort(), -- close completion window
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
           ['<TAB>'] = cmp.mapping.confirm({ select = false }),
-          -- A super tab
-          -- sourc: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
           ['<C-n>'] = cmp.mapping(function(fallback)
-            -- Hint: if the completion menu is visible select next one
             if cmp.visible() then
               cmp.select_next_item()
             elseif has_words_before() then
@@ -147,5 +120,8 @@ return {
         },
       }),
     })
+
+    -- vim.api.nvim_set_hl(0, 'Pmenu', { ctermbg = 8, bg = '#3B4252' }) -- 常规项背景
+    vim.api.nvim_set_hl(0, 'PmenuSel', { fg = '#0bf432', bg = '#3B4252' }) -- 选中项背景
   end,
 }

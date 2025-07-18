@@ -1,9 +1,7 @@
 return {
   'AckslD/nvim-neoclip.lua',
   dependencies = {
-    -- you'll need at least one of these
-    -- {'nvim-telescope/telescope.nvim'},
-    -- {'ibhagwan/fzf-lua'},
+    'nvim-telescope/telescope.nvim',
   },
   config = function()
     require('neoclip').setup({
@@ -29,12 +27,6 @@ return {
             edit = 'e',
             custom = {},
           },
-        },
-        fzf = {
-          select = 'default',
-          paste = '<cr>',
-          paste_behind = 'ctrl-k',
-          custom = {},
         },
       },
     })
