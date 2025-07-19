@@ -19,6 +19,26 @@ return function()
           },
         },
       },
+      typescript = {
+        inlayHints = {
+          parameterNames = { enabled = 'all', suppressWhenArgumentMatchesName = false },
+          parameterTypes = { enabled = true },
+          variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
+          propertyDeclarationTypes = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          enumMemberValues = { enabled = true },
+        },
+      },
+      javascript = {
+        inlayHints = {
+          parameterNames = { enabled = 'all', suppressWhenArgumentMatchesName = false },
+          parameterTypes = { enabled = true },
+          variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
+          propertyDeclarationTypes = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          enumMemberValues = { enabled = true },
+        },
+      },
     },
     filetypes = {
       'typescript',
@@ -64,4 +84,5 @@ return function()
     'vtsls',
     'vue_ls',
   })
+  vim.lsp.inlay_hint.enable()
 end
