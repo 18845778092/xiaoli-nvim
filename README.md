@@ -14,7 +14,7 @@ Everyone should have his or her unique config file. So you can download this rep
 # Installation
 
 ```bash
-$ git clone --depth 1 https://github.com/18845778092/xiaoli-nvim.git ~/.config/nvim
+$ git clone --depth 1 https://github.com/xiaoliyooo/xiaoli-nvim.git ~/.config/nvim
 ```
 
 # Usage
