@@ -144,3 +144,5 @@ vim.api.nvim_create_autocmd('VimEnter', {
     ]])
   end,
 })
+
+vim.api.nvim_set_hl(0, 'LspInlayHint', { fg = '#0bf432' })
