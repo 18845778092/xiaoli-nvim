@@ -10,6 +10,9 @@ return function()
         quit = { 'q', '<ESC>' },
       },
     },
+    code_action = {
+      show_server_name = true,
+    },
   })
 
   vim.keymap.set('n', 'gh', '<cmd>Lspsaga hover_doc<CR>')
