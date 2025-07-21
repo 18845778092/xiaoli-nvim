@@ -9,6 +9,7 @@ return {
     'nvim-telescope/telescope-ui-select.nvim',
     'nvim-telescope/telescope-live-grep-args.nvim',
   },
+  build = 'brew install ripgrep',
   event = 'VimEnter',
   config = function()
     local status, telescope = pcall(require, 'telescope')
@@ -93,7 +94,14 @@ return {
       telescope.extensions.live_grep_args.live_grep_args({
         auto_quoting = true,
         default_text = '', -- 默认搜索词
-        additional_args = { '--fixed-strings', '--ignore-case' }, -- 查询参数
+        additional_args = {
+          '--fixed-strings',
+          '--ignore-case',
+          '--no-heading',
+          '--with-filename',
+          '--line-number',
+          '--column',
+        }, -- 查询参数
       })
     end, { desc = 'Find string in cwd with args' })
   end,
