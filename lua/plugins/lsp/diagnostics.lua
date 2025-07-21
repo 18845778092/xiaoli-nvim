@@ -42,4 +42,21 @@ return function()
       },
     },
   })
+
+  local error_color = '#ff6b6b'
+  local warn_color = '#ffff44'
+  local info_colof = '#44ffff'
+  local hint_color = '#7fa2b8'
+  vim.api.nvim_set_hl(0, 'DiagnosticError', { fg = error_color })
+  vim.api.nvim_set_hl(0, 'DiagnosticWarn', { fg = warn_color })
+  vim.api.nvim_set_hl(0, 'DiagnosticInfo', { fg = info_colof })
+  vim.api.nvim_set_hl(0, 'DiagnosticHint', { fg = hint_color })
+
+  vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextError', { fg = error_color, bg = 'none' })
+  vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextWarn', { fg = warn_color, bg = 'none' })
+  vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextInfo', { fg = info_colof, bg = 'none' })
+  vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextHint', { fg = hint_color, bg = 'none' })
+
+  vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#72c6b1', bg = '#2a2a2a' }) -- 浮动边框
+  vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#2a2a2a' }) -- 浮动背景色
 end
