@@ -23,6 +23,7 @@ return {
   },
   config = function()
     local cmp = require('cmp')
+    local color_table = require('core.custom-style').color_table
 
     -- check if in start tag
     local function is_in_start_tag()
@@ -168,7 +169,7 @@ return {
     })
 
     -- vim.api.nvim_set_hl(0, 'Pmenu', { ctermbg = 8, bg = '#3B4252' }) -- 常规项背景
-    vim.api.nvim_set_hl(0, 'PmenuSel', { fg = '#0bf432', bg = '#3B4252' }) -- 选中项背景
+    vim.api.nvim_set_hl(0, 'PmenuSel', { fg = color_table.light_green, bg = '#3B4252' }) -- 选中项背景
 
     cmp.event:on('menu_closed', function()
       local bufnr = vim.api.nvim_get_current_buf()

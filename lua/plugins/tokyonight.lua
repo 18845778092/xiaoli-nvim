@@ -6,6 +6,8 @@ return {
     priority = 1000,
     enabled = false,
     config = function()
+      local color_table = require('core.custom-style').color_table
+
       local transparent = true -- set to true if you would like to enable transparency
 
       local bg = '#011628'
@@ -18,7 +20,7 @@ return {
       local fg_gutter = '#627E97'
       -- local fg_gutter = '#a8fcfe'
       local border = '#547998'
-      local comment = '#0bf432'
+      local comment = color_table.light_green
       local active_line_num = '#a8fcfe'
 
       require('tokyonight').setup({

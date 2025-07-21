@@ -1,3 +1,4 @@
+local color_table = require('core.custom-style').color_table
 local opt = vim.opt
 
 -- 行号
@@ -29,7 +30,7 @@ opt.wrap = false
 -- 启用光标行高亮
 opt.cursorline = true
 --  注释颜色
-vim.api.nvim_set_hl(0, '@comment', { fg = '#0bf432', bg = 'NONE' })
+vim.api.nvim_set_hl(0, '@comment', { fg = color_table.light_green, bg = 'NONE' })
 -- 设置光标行样式
 vim.api.nvim_set_hl(0, 'CursorLine', {
   bg = '#3E4452', -- 背景色（深灰色）
@@ -145,4 +146,4 @@ vim.api.nvim_create_autocmd('VimEnter', {
   end,
 })
 
-vim.api.nvim_set_hl(0, 'LspInlayHint', { fg = '#0bf432' })
+vim.api.nvim_set_hl(0, 'LspInlayHint', { fg = color_table.light_green })

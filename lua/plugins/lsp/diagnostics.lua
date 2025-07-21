@@ -1,6 +1,9 @@
 -- diagnostic display setting
 
 return function()
+  local style = require('core.custom-style')
+  local color_table = style.color_table
+  local border = style.border
   vim.diagnostic.config({
     virtual_text = {
       prefix = '●', -- virtual text的前缀符号
@@ -13,7 +16,7 @@ return function()
     underline = true, -- 在错误代码下方显示下划线
     update_in_insert = false, -- 在插入模式下不更新diagnostic
     float = {
-      border = 'double', -- 浮动窗口的边框样式
+      border, -- 浮动窗口的边框样式
       focusable = false, -- 浮动窗口不可聚焦
       source = 'if_many', -- 显示错误来源
       format = function(diagnostic)
@@ -43,19 +46,15 @@ return function()
     },
   })
 
-  local error_color = '#ff6b6b'
-  local warn_color = '#ffff44'
-  local info_colof = '#44ffff'
-  local hint_color = '#7fa2b8'
-  vim.api.nvim_set_hl(0, 'DiagnosticError', { fg = error_color })
-  vim.api.nvim_set_hl(0, 'DiagnosticWarn', { fg = warn_color })
-  vim.api.nvim_set_hl(0, 'DiagnosticInfo', { fg = info_colof })
-  vim.api.nvim_set_hl(0, 'DiagnosticHint', { fg = hint_color })
+  vim.api.nvim_set_hl(0, 'DiagnosticError', { fg = color_table.error_color })
+  vim.api.nvim_set_hl(0, 'DiagnosticWarn', { fg = color_table.warn_color })
+  vim.api.nvim_set_hl(0, 'DiagnosticInfo', { fg = color_table.info_color })
+  vim.api.nvim_set_hl(0, 'DiagnosticHint', { fg = color_table.hint_color })
 
-  vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextError', { fg = error_color, bg = 'none' })
-  vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextWarn', { fg = warn_color, bg = 'none' })
-  vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextInfo', { fg = info_colof, bg = 'none' })
-  vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextHint', { fg = hint_color, bg = 'none' })
+  vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextError', { fg = color_table.error_color, bg = 'none' })
+  vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextWarn', { fg = color_table.warn_color, bg = 'none' })
+  vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextInfo', { fg = color_table.info_color, bg = 'none' })
+  vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextHint', { fg = color_table.hint_color, bg = 'none' })
 
   vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#72c6b1', bg = '#2a2a2a' }) -- 浮动边框
   vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#2a2a2a' }) -- 浮动背景色
