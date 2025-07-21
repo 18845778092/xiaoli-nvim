@@ -1,9 +1,10 @@
 -- improves the Neovim built-in LSP experience
 
 return function()
+  local border = require('core.custom-style').border
   require('lspsaga').setup({
     ui = {
-      border = 'double', -- 非圆角边框
+      border = border, -- 非圆角边框
     },
     diagnostic = {
       keys = {

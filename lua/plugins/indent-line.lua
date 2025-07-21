@@ -6,6 +6,8 @@ return {
   lazy = true,
   event = { 'BufReadPost', 'BufNewFile' },
   config = function()
+    local color_table = require('core.custom-style').color_table
+
     -- 用mini.indentscope配置------------------------
     local useMiniIndentScope = true
     if useMiniIndentScope then
@@ -27,7 +29,7 @@ return {
       }
       local hooks = require('ibl.hooks')
       hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-        vim.api.nvim_set_hl(0, 'RainbowGreen', { fg = '#0bf432' }) -- 设置为注释的绿色
+        vim.api.nvim_set_hl(0, 'RainbowGreen', { fg = color_table.light_green }) -- 设置为注释的绿色
         vim.api.nvim_set_hl(0, 'RainbowYellow', { fg = '#E5C07B' })
         vim.api.nvim_set_hl(0, 'RainbowBlue', { fg = '#61AFEF' })
         vim.api.nvim_set_hl(0, 'RainbowOrange', { fg = '#D19A66' })

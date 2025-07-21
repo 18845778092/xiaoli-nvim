@@ -6,6 +6,8 @@ return {
   event = 'VeryLazy',
   config = function()
     local status_ok, lualine = pcall(require, 'lualine')
+    local color_table = require('core.custom-style').color_table
+
     if not status_ok then
       vim.notify('lualine not found!')
       return
@@ -37,7 +39,7 @@ return {
       'filename',
       file_status = true,
       path = 1, -- 0: Just the filename 1: Relative path 2: Absolute path
-      color = { fg = '#0bf432', gui = 'bold' },
+      color = { fg = color_table.light_green, gui = 'bold' },
       shorting_target = 40,
       symbols = {
         modified = '[+]',
