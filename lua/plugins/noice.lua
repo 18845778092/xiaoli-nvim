@@ -13,7 +13,7 @@ return {
         -- 移除命令行边框
         view = 'cmdline_popup',
         opts = {
-          border = { style = 'single' },
+          border = { style = 'double' },
         },
         format = {
           cmdline = { icon = '>' },

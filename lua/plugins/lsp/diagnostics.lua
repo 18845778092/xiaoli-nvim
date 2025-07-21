@@ -13,7 +13,7 @@ return function()
     underline = true, -- 在错误代码下方显示下划线
     update_in_insert = false, -- 在插入模式下不更新diagnostic
     float = {
-      border = 'rounded', -- 浮动窗口的边框样式
+      border = 'double', -- 浮动窗口的边框样式
       focusable = false, -- 浮动窗口不可聚焦
       source = 'if_many', -- 显示错误来源
       format = function(diagnostic)

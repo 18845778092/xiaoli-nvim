@@ -3,7 +3,7 @@
 return function()
   require('lspsaga').setup({
     ui = {
-      border = 'single', -- 非圆角边框
+      border = 'double', -- 非圆角边框
     },
     diagnostic = {
       keys = {
