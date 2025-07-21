@@ -39,7 +39,7 @@ return {
     dashboard.section.buttons.val = {
       dashboard.button('e', '  > New File', '<cmd>ene<CR>'),
       dashboard.button('SPC e', '  > Toggle file explorer', '<cmd>NvimTreeToggle<CR>'),
-      dashboard.button('SPC f', '󰱼  > Find File', '<cmd>Telescope find_files<CR>'),
+      dashboard.button('CTR f', '󰱼  > Find File', '<cmd>Telescope find_files<CR>'),
       dashboard.button('SPC fw', '  > Find Word', '<cmd>Telescope live_grep<CR>'),
       dashboard.button(
         'SPC r',
