@@ -5,9 +5,13 @@ return {
   enabled = true,
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason.nvim',
+    'mason-org/mason-lspconfig.nvim',
     'nvimdev/lspsaga.nvim',
+  },
+  build = {
+    'npm i -g vscode-langservers-extracted',
+    'npm i -g eslint',
   },
   config = function()
     require('plugins.lsp.mason')()

@@ -3,6 +3,7 @@
 return {
   '3rd/image.nvim',
   enabled = true,
+  build = 'brew install imagemagick',
   config = function()
     require('image').setup({
       backend = 'kitty',

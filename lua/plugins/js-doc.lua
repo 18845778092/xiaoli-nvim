@@ -2,6 +2,7 @@
 
 return {
   'heavenshell/vim-jsdoc',
+  build = 'npm i -g lehre',
   config = function()
     local function get_lehre_path()
       local handle = io.popen('which lehre')

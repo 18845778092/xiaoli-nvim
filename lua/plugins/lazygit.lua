@@ -3,6 +3,7 @@
 return {
   'kdheepak/lazygit.nvim',
   lazy = true,
+  build = 'brew install lazygit',
   event = 'BufWinEnter',
   dependencies = {
     'sindrets/diffview.nvim',

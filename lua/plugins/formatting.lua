@@ -2,6 +2,13 @@
 
 return {
   'stevearc/conform.nvim',
+  build = {
+    'npm i -g prettier',
+    'npm i -g @biomejs/biome@1.9.4',
+    'brew install stylua',
+    'brew install shfmt',
+    'brew install shellcheck',
+  },
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     local conform = require('conform')
