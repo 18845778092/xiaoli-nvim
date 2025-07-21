@@ -2,7 +2,13 @@
 
 This repo is my Neovim Configuration for macOs. It is based on [LazyVim](https://github.com/LazyVim/LazyVim).`init.lua` is the config entry point file.
 
-This configuration is very suitable for Vue developers. I use it for my daily work.
+# Feature
+- Using Neovim's Built-in Lsp
+- Built-in a lot of useful plugins
+- Specifically for `Vue3` development configuration
+
+ `Vue3` development experience is **good**! I use it for my **daily work**.
+
 Everyone should have his or her unique config file. So you can download this repo and modify it as you want.
 
 # Requirements
