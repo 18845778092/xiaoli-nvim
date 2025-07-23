@@ -43,7 +43,7 @@ return {
           },
         },
         sorting_strategy = 'ascending',
-        file_ignore_patterns = { 'node_modules', 'public/', 'dist' },
+        file_ignore_patterns = { 'node_modules', 'public/', 'dist', 'js%-debug' },
       },
       extensions = {
         file_browser = {
