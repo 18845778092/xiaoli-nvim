@@ -18,7 +18,5 @@ return {
     require('plugins.lsp.lspsaga')()
     require('plugins.lsp.servers')()
     require('plugins.lsp.diagnostics')()
-
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
   end,
 }

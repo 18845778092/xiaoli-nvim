@@ -14,10 +14,15 @@ return function()
     code_action = {
       show_server_name = true,
     },
+    finder = {
+      max_height = 0.5,
+    },
   })
 
   vim.keymap.set('n', 'gh', '<cmd>Lspsaga hover_doc<CR>')
   vim.keymap.set('n', '<leader>rn', '<cmd>Lspsaga rename<CR>')
   vim.keymap.set('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>')
   vim.keymap.set('n', '<leader>le', '<cmd>Lspsaga show_buf_diagnostics<CR>')
+  vim.keymap.set('n', 'gd', '<cmd>Lspsaga finder def<CR>')
+  vim.keymap.set('n', 'gr', '<cmd>Lspsaga finder ref<CR>')
 end
