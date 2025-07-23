@@ -38,8 +38,8 @@ map('n', 'cie', 'ggcG') --
 -- 取消高亮
 map('n', '<leader>nh', ':nohl<CR>')
 
-map('n', '<leader>vv', '<C-w>v') -- 水平新增窗口
-map('n', '<leader>hv', '<C-w>s') -- 垂直新增窗口
+map('n', '<leader>hh', '<C-w>v') -- 水平新增窗口
+map('n', '<leader>vv', '<C-w>s') -- 垂直新增窗口
 --
 -- 窗口光标移动 左右
 map('n', '<C-[>', '<C-W>h')
