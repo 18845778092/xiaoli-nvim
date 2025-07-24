@@ -21,6 +21,20 @@ return {
           cmdline = { icon = '>' },
         },
       },
+      routes = {
+        {
+          -- vue_ls lspsaga finder def error
+          filter = {
+            event = 'msg_show',
+            any = {
+              { find = 'Error executing vim.schedule lua callback' },
+              { find = 'attempt to index local \'r\'' },
+              { find = 'vue_ls.lua' },
+            },
+          },
+          opts = { skip = true },
+        },
+      },
     })
   end,
 }
