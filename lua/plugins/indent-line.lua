@@ -15,6 +15,11 @@ return {
         scope = {
           enabled = false,
         },
+        indent = {
+          char = '┋', -- 缩进线字符
+          tab_char = '┋', -- Tab 缩进线字符
+          highlight = 'IblIndent', -- 高亮组
+        },
       })
       return
     else

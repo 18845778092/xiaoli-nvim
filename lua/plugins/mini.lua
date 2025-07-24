@@ -3,6 +3,7 @@
 return {
   'echasnovski/mini.nvim',
   config = function()
+    local color_table = require('core.custom-style').color_table
     require('mini.ai').setup({
       custom_textobjects = {
         -- ia aa 参数处理
@@ -31,7 +32,13 @@ return {
         n_lines = 10000,
         try_as_border = false,
       },
-      symbol = '▎',
+      symbol = '┋',
+    })
+
+    vim.api.nvim_create_autocmd('VimEnter', {
+      callback = function()
+        vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = color_table.active_line_num_color }) -- mini.indentscope指示线颜色
+      end,
     })
 
     require('mini.surround').setup({
