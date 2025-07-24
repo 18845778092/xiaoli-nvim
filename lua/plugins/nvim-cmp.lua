@@ -21,7 +21,6 @@ return {
   },
   config = function()
     local cmp = require('cmp')
-    local color_table = require('core.custom-style').color_table
 
     -- check if in start tag
     local function is_in_start_tag()
@@ -52,7 +51,7 @@ return {
 
     cmp.setup({
       performance = {
-        max_view_entries = 20,
+        max_view_entries = 30,
       },
       completion = {
         completeopt = 'menu,menuone,preview,noselect',
@@ -138,8 +137,28 @@ return {
         }),
       },
     })
+
+    local cmdline_mapping = cmp.mapping.preset.cmdline()
+
+    -- 在补全菜单可见时使用 Up/Down 选择，否则回退到默认行为
+    cmdline_mapping['<Up>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback() -- 使用默认的历史记录导航
+      end
+    end, { 'c' }) -- 'c' 命令行模式
+
+    cmdline_mapping['<Down>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback() -- 使用默认的历史记录导航
+      end
+    end, { 'c' })
+
     cmp.setup.cmdline(':', {
-      mapping = cmp.mapping.preset.cmdline(),
+      mapping = cmdline_mapping,
       sources = cmp.config.sources({
         { name = 'path' },
       }, {
@@ -151,9 +170,56 @@ return {
         },
       }),
     })
+    vim.api.nvim_set_hl(0, 'Pmenu', {
+      bg = '#252526', -- VSCode 深色背景
+      fg = '#CCCCCC', -- 浅灰色文字
+      blend = 0, -- 不透明
+    })
 
-    -- vim.api.nvim_set_hl(0, 'Pmenu', { ctermbg = 8, bg = '#3B4252' }) -- 常规项背景
-    vim.api.nvim_set_hl(0, 'PmenuSel', { fg = color_table.light_green, bg = '#3B4252' }) -- 选中项背景
+    vim.api.nvim_set_hl(0, 'PmenuSel', {
+      bg = '#094771', -- VSCode 蓝色选中背景
+      fg = '#FFFFFF',
+      bold = true,
+    })
+
+    vim.api.nvim_set_hl(0, 'PmenuSbar', {
+      bg = '#3E3E42', -- 滚动条背景
+    })
+
+    vim.api.nvim_set_hl(0, 'PmenuThumb', {
+      bg = '#6A6A6A', -- 滚动条滑块
+    })
+
+    -- 补全菜单边框
+    vim.api.nvim_set_hl(0, 'FloatBorder', {
+      fg = '#464647', -- 边框颜色
+      bg = '#252526', -- 边框背景
+    })
+
+    -- 补全项类型图标颜色
+    vim.api.nvim_set_hl(0, 'CmpItemKindText', { fg = '#D4D4D4' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindMethod', { fg = '#B180D7' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { fg = '#B180D7' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindConstructor', { fg = '#B180D7' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindField', { fg = '#9CDCFE' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { fg = '#9CDCFE' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindClass', { fg = '#4EC9B0' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindInterface', { fg = '#4EC9B0' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindModule', { fg = '#4EC9B0' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { fg = '#9CDCFE' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindEnum', { fg = '#4EC9B0' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { fg = '#569CD6' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindSnippet', { fg = '#D7BA7D' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindColor', { fg = '#D7BA7D' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindFile', { fg = '#D7BA7D' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindReference', { fg = '#D7BA7D' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindFolder', { fg = '#D7BA7D' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindEnumMember', { fg = '#4FC1FF' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindConstant', { fg = '#4FC1FF' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindStruct', { fg = '#4EC9B0' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindEvent', { fg = '#4EC9B0' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindOperator', { fg = '#D4D4D4' })
+    vim.api.nvim_set_hl(0, 'CmpItemKindTypeParameter', { fg = '#4EC9B0' })
 
     cmp.event:on('menu_closed', function()
       local bufnr = vim.api.nvim_get_current_buf()
