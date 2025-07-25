@@ -41,6 +41,8 @@ return {
         'vim',
         'vue',
         'scss',
+        'markdown',
+        'markdown_inline',
       },
     })
 
