@@ -43,6 +43,7 @@ return {
         'scss',
         'markdown',
         'markdown_inline',
+        'yaml',
       },
     })
 
