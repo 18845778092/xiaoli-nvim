@@ -1,8 +1,10 @@
 -- <leader>j  <leader>k
 
 return {
-  'phaazon/hop.nvim',
+  'smoka7/hop.nvim',
   event = 'VeryLazy',
+  version = '*',
+  enabled = true,
   config = function()
     local hop = require('hop')
 
