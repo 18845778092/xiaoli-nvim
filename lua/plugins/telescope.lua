@@ -82,31 +82,34 @@ return {
     telescope.load_extension('ui-select')
 
     local keymap = vim.keymap
-
-    local tele_builtin = require('telescope.builtin')
-    keymap.set('n', '<leader>fo', tele_builtin.oldfiles, { desc = 'Fuzzy find recent files' })
-    keymap.set('n', '<leader>fm', tele_builtin.marks, { desc = 'show all marks' })
-    keymap.set('n', '<leader>fb', tele_builtin.buffers, { desc = 'Lists open buffers in current neovim instance' })
-    keymap.set('n', '<C-f>', function()
-      tele_builtin.find_files({
-        cwd = get_project_root(),
-      })
-    end, { desc = 'Fuzzy find files in project root' })
-    keymap.set('n', '<leader>fs', tele_builtin.lsp_document_symbols, { desc = 'Search symbols in current file' })
-    keymap.set('n', '<leader>fw', function()
-      telescope.extensions.live_grep_args.live_grep_args({
-        cwd = get_project_root(),
-        auto_quoting = true,
-        default_text = '', -- 默认搜索词
-        additional_args = {
-          '--fixed-strings',
-          '--ignore-case',
-          '--no-heading',
-          '--with-filename',
-          '--line-number',
-          '--column',
-        }, -- 查询参数
-      })
-    end, { desc = 'Find string in cwd with args' })
+    vim.api.nvim_create_autocmd('VimEnter', {
+      callback = function()
+        local tele_builtin = require('telescope.builtin')
+        keymap.set('n', '<leader>fo', tele_builtin.oldfiles, { desc = 'Fuzzy find recent files' })
+        keymap.set('n', '<leader>fm', tele_builtin.marks, { desc = 'show all marks' })
+        keymap.set('n', '<leader>fb', tele_builtin.buffers, { desc = 'Lists open buffers in current neovim instance' })
+        keymap.set('n', '<C-f>', function()
+          tele_builtin.find_files({
+            cwd = get_project_root(),
+          })
+        end, { desc = 'Fuzzy find files in project root' })
+        keymap.set('n', '<leader>fs', tele_builtin.lsp_document_symbols, { desc = 'Search symbols in current file' })
+        keymap.set('n', '<leader>fw', function()
+          telescope.extensions.live_grep_args.live_grep_args({
+            cwd = get_project_root(),
+            auto_quoting = true,
+            default_text = '', -- 默认搜索词
+            additional_args = {
+              '--fixed-strings',
+              '--ignore-case',
+              '--no-heading',
+              '--with-filename',
+              '--line-number',
+              '--column',
+            }, -- 查询参数
+          })
+        end, { desc = 'Find string in cwd with args' })
+      end,
+    })
   end,
 }

@@ -137,25 +137,25 @@ return {
     vim.keymap.set('n', '<leader>3', function()
       dap.step_out()
     end, { noremap = true })
-    vim.keymap.set('n', '<Leader>b', function()
+    vim.keymap.set('n', '<leader>b', function()
       dap.toggle_breakpoint()
     end, { noremap = true })
-    vim.keymap.set('n', '<Leader>t', function() -- 停止调试
+    vim.keymap.set('n', '<leader>t', function() -- 停止调试
       dap.terminate()
     end, { noremap = true })
-    vim.keymap.set('n', '<Leader>r', function() -- 重启调试
+    vim.keymap.set('n', '<leader>r', function() -- 重启调试
       dap.terminate()
       -- 使用run_last()复用上次配置重启调试
       dap.run_last()
     end, { noremap = true })
-    vim.keymap.set('n', '<Leader>f', function() -- 重启当前帧
+    vim.keymap.set('n', '<leader>f', function() -- 重启当前帧
       dap.restart_frame()
     end, { noremap = true })
 
-    vim.keymap.set('n', '<Leader>lp', function()
+    vim.keymap.set('n', '<leader>lp', function()
       dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
     end, { noremap = true })
-    vim.keymap.set('n', '<Leader>dr', function()
+    vim.keymap.set('n', '<leader>dr', function()
       dap.repl.open()
     end, { noremap = true })
   end,
