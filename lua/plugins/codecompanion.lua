@@ -1,3 +1,7 @@
+-- ai chat
+
+local is_leetcode_context = require('helper.is-leetcode')
+
 return {
   'olimorris/codecompanion.nvim',
   opts = {},
@@ -8,6 +12,7 @@ return {
     'j-hui/fidget.nvim',
     'franco-ruggeri/codecompanion-spinner.nvim',
   },
+  enabled = not is_leetcode_context(),
   init = function()
     require('helper.codecompanion-fidget-spinner'):init()
   end,

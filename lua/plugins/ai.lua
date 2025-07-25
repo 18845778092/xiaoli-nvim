@@ -1,8 +1,12 @@
 -- ai completion
 
+-- local is_leetcode_context = require('helper.is-leetcode')
+
 return {
   'Exafunction/windsurf.vim',
   event = 'BufEnter',
+  -- enabled = not is_leetcode_context(),
+  enabled = false,
   config = function()
     -- C-y接受ai
     vim.keymap.set('i', '<C-y>', function()
