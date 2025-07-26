@@ -21,7 +21,7 @@ return {
   },
   config = function()
     local cmp = require('cmp')
-
+    local snippets_path = vim.fn.stdpath('config') .. '/snippets'
     -- check if in start tag
     local function is_in_start_tag()
       local ts_utils = require('nvim-treesitter.ts_utils')
@@ -37,7 +37,8 @@ return {
 
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require('luasnip.loaders.from_vscode').lazy_load()
-
+    -- 加载自定义代码片段
+    require('luasnip.loaders.from_vscode').lazy_load({ paths = snippets_path })
     -- extend filetypes
     luasnip.filetype_extend('typescript', { 'javascript' })
     luasnip.filetype_extend('typescriptreact', { 'javascript' })
@@ -225,5 +226,23 @@ return {
       local bufnr = vim.api.nvim_get_current_buf()
       vim.b[bufnr]._vue_ts_cached_is_in_start_tag = nil
     end)
+
+    -- 代码片段 光标跳转顺序
+    vim.api.nvim_create_autocmd('VimEnter', {
+      callback = function()
+        vim.keymap.set('i', '<Tab>', function()
+          if luasnip.jumpable(1) then
+            luasnip.jump(1)
+          else
+            -- 默认 Tab 行为
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', false)
+          end
+        end, { noremap = true, silent = true })
+
+        vim.keymap.set('i', '<S-Tab>', function()
+          luasnip.jump(-1)
+        end, { noremap = true, silent = true })
+      end,
+    })
   end,
 }

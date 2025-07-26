@@ -1,0 +1,21 @@
+{
+  "Watch": {
+    "prefix": "wcd",
+    "body": [
+      "watch(",
+      "  $1,",
+      "  (v, o) => {",
+      "    console.trace(v);",
+      "  },",
+      "  {",
+      "    onTrigger(e) {",
+      "      console.log(e);",
+      "    },",
+      "    flush: 'sync',",
+      "  }",
+      ");"
+    ],
+    "description": "watch debug template"
+  }
+}
+
