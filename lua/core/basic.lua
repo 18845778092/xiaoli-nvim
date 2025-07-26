@@ -147,3 +147,20 @@ vim.api.nvim_create_autocmd('VimEnter', {
 })
 
 vim.api.nvim_set_hl(0, 'LspInlayHint', { fg = color_table.light_green })
+
+vim.api.nvim_set_hl(0, 'CustomYankHighlight', {
+  bg = '#06d6a0',
+  fg = '#ffffff',
+  bold = true,
+})
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'highlight after yank',
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = 'CustomYankHighlight',
+      timeout = 500,
+    })
+  end,
+})
