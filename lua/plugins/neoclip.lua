@@ -4,6 +4,7 @@ return {
   'AckslD/nvim-neoclip.lua',
   config = function()
     require('neoclip').setup({
+      content_spec_column = true,
       keys = {
         telescope = {
           i = {
