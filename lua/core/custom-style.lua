@@ -7,6 +7,7 @@ local style = {
     hint_color = '#7fa2b8',
     active_line_num_color = '#a8fcfe',
     vue_component_color = '#ffff44',
+    cursor_line_color = '#3E4452',
   },
   border = 'double',
 }

@@ -33,8 +33,7 @@ opt.cursorline = true
 vim.api.nvim_set_hl(0, '@comment', { fg = color_table.light_green, bg = 'NONE' })
 -- 设置光标行样式
 vim.api.nvim_set_hl(0, 'CursorLine', {
-  bg = '#3E4452', -- 背景色（深灰色）
-  -- fg = "gold",      -- 金色
+  bg = color_table.cursor_line_color,
   bold = true, -- 加粗（可选）
   underline = false, -- 下划线（可选）
 })

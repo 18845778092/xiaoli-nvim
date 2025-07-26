@@ -1,3 +1,5 @@
+-- maintain focus on the active part of the screen
+
 return {
   'tadaa/vimade',
   config = function()
