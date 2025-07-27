@@ -14,7 +14,6 @@ return {
         direction = 'float',
         float_opts = {
           border = 'double',
-          winblend = 20, -- 透明度 (0-100)
         },
       })
 
@@ -23,6 +22,9 @@ return {
       -- 普通终端
       local normal_term = Terminal:new({
         count = 1, -- 唯一 ID
+        float_opts = {
+          winblend = 20, -- 透明度 (0-100)
+        },
       })
 
       -- Lazygit 终端
