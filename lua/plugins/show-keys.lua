@@ -21,7 +21,7 @@ return {
       excluded_modes = {}, -- example: {"i"}
 
       -- bottom-left, bottom-right, bottom-center, top-left, top-right, top-center
-      position = 'top-center',
+      position = 'top-right',
 
       keyformat = {
         ['<BS>'] = '󰁮 ',
@@ -43,8 +43,8 @@ return {
       bg = color_table.cursor_line_color,
       fg = '#ffffff',
     })
-    vim.api.nvim_set_hl(0, 'SkActive', { bg = '#ff6b6b', fg = '#ffffff' })
-    vim.api.nvim_set_hl(0, 'ShowKeyBorder', { fg = '#ff6b6b' })
+    vim.api.nvim_set_hl(0, 'SkActive', { bg = '#4ce0a9', fg = '#ffffff' })
+    vim.api.nvim_set_hl(0, 'ShowKeyBorder', { fg = '#4ce0a9' })
     showkeys.toggle() -- 默认打开
   end,
 }
