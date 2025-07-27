@@ -20,12 +20,12 @@ return {
 
       local Terminal = require('toggleterm.terminal').Terminal
 
-      -- 普通终端 (ID: 1)
+      -- 普通终端
       local normal_term = Terminal:new({
         count = 1, -- 唯一 ID
       })
 
-      -- Lazygit 终端 (ID: 2)
+      -- Lazygit 终端
       local lazygit = Terminal:new({
         cmd = 'lazygit',
         dir = 'git_dir',
@@ -60,16 +60,25 @@ return {
         lazygit:toggle()
       end
 
-      vim.keymap.set({ 'n', 't' }, '<C-t>', '<cmd>lua _NORMAL_TERM_TOGGLE()<CR>', {
-        noremap = true,
-        silent = true,
-        desc = '切换普通终端',
-      })
+      -- 预创建终端
+      vim.api.nvim_create_autocmd('VimEnter', {
+        callback = function()
+          vim.keymap.set({ 'n', 't' }, '<C-t>', '<cmd>lua _NORMAL_TERM_TOGGLE()<CR>', {
+            noremap = true,
+            silent = true,
+            desc = '切换普通终端',
+          })
 
-      vim.keymap.set({ 'n', 't' }, '<C-g>', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', {
-        noremap = true,
-        silent = true,
-        desc = '切换 Lazygit',
+          vim.keymap.set({ 'n', 't' }, '<C-g>', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', {
+            noremap = true,
+            silent = true,
+            desc = '切换 Lazygit',
+          })
+
+          vim.schedule(function()
+            normal_term:spawn()
+          end)
+        end,
       })
     end,
   },
