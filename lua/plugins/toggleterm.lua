@@ -4,6 +4,7 @@ return {
   {
     'akinsho/toggleterm.nvim',
     version = '*',
+    build = 'brew install lazygit',
     config = function()
       require('toggleterm').setup({
         highlights = {
