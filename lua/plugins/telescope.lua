@@ -12,7 +12,7 @@ return {
   build = 'brew install ripgrep',
   event = 'VimEnter',
   config = function()
-    local get_project_root = require('helper.cwd').get_project_root
+    local get_package_json_root = require('helper.cwd').get_package_json_root
     local status, telescope = pcall(require, 'telescope')
     if not status then
       return
@@ -90,13 +90,13 @@ return {
         keymap.set('n', '<leader>fb', tele_builtin.buffers, { desc = 'Lists open buffers in current neovim instance' })
         keymap.set('n', '<C-f>', function()
           tele_builtin.find_files({
-            cwd = get_project_root(),
+            cwd = get_package_json_root(),
           })
         end, { desc = 'Fuzzy find files in project root' })
         keymap.set('n', '<leader>fs', tele_builtin.lsp_document_symbols, { desc = 'Search symbols in current file' })
         keymap.set('n', '<leader>fw', function()
           telescope.extensions.live_grep_args.live_grep_args({
-            cwd = get_project_root(),
+            cwd = get_package_json_root(),
             auto_quoting = true,
             default_text = '', -- 默认搜索词
             additional_args = {
