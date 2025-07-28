@@ -1,4 +1,6 @@
 -- telescope
+-- 在 config 函数开始处添加状态变量
+local use_package_json_root = true -- 默认使用 package.json 根目录
 
 return {
   'nvim-telescope/telescope.nvim',
@@ -12,7 +14,9 @@ return {
   build = 'brew install ripgrep',
   event = 'VimEnter',
   config = function()
-    local get_package_json_root = require('helper.cwd').get_package_json_root
+    local cwd_helper = require('helper.cwd')
+    local get_package_json_root = cwd_helper.get_package_json_root
+    local get_project_root = cwd_helper.get_project_root
     local status, telescope = pcall(require, 'telescope')
     if not status then
       return
@@ -26,7 +30,6 @@ return {
       },
       defaults = {
         layout_strategy = 'horizontal',
-        -- layout_strategy = 'vertical',
         layout_config = {
           -- 水平
           horizontal = {
@@ -59,56 +62,81 @@ return {
             },
           },
         },
-        -- live_grep_args = {
-        -- auto_quoting = true, -- enable/disable auto-quoting
-        -- define mappings, e.g.
-        -- mappings = {          -- extend mappings
-        --   i = {
-        --     ['<C-k>'] = lga_actions.quote_prompt(),
-        --     -- ['<C-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
-        --     ['<C-p>'] = lga_actions.quote_prompt({ postfix = ' --fixed-strings --ignore-case' }), -- 添加固定字符串搜索
-        --   },
-        --   n = {
-        --     ['<C-k>'] = lga_actions.quote_prompt(),
-        --     -- ['<C-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
-        --     ['<C-p>'] = lga_actions.quote_prompt({ postfix = ' -F --ignore-case' }), -- 添加固定字符串搜索
-        --   },
-        -- },
-        -- },
       },
     })
 
     telescope.load_extension('live_grep_args')
     telescope.load_extension('ui-select')
+    local tele_builtin = require('telescope.builtin')
 
+    local function get_search_dir()
+      return use_package_json_root and get_package_json_root() or get_project_root()
+    end
+
+    -- 切换搜索目录的函数
+    local function toggle_search_scope()
+      use_package_json_root = not use_package_json_root
+      local scope_name = use_package_json_root and 'package.json目录' or 'git目录'
+      print('搜索范围切换为: ' .. scope_name)
+    end
+    local toggle_key = '<C-t>'
+    local function live_grep_with_toggle()
+      telescope.extensions.live_grep_args.live_grep_args({
+        cwd = get_search_dir(),
+        auto_quoting = true,
+        default_text = '', -- 默认搜索词
+        additional_args = {
+          '--fixed-strings',
+          '--ignore-case',
+          '--no-heading',
+          '--with-filename',
+          '--line-number',
+          '--column',
+        }, -- 查询参数
+        attach_mappings = function(prompt_bufnr, map)
+          -- 在 live grep 中也添加切换功能
+          map({ 'i', 'n' }, toggle_key, function()
+            toggle_search_scope()
+            require('telescope.actions').close(prompt_bufnr)
+            vim.schedule(live_grep_with_toggle)
+          end)
+          return true
+        end,
+      })
+    end
+
+    local function find_files_with_toggle()
+      tele_builtin.find_files({
+        cwd = get_search_dir(),
+        attach_mappings = function(prompt_bufnr, map)
+          map({ 'i', 'n' }, toggle_key, function()
+            toggle_search_scope()
+            require('telescope.actions').close(prompt_bufnr)
+            vim.schedule(find_files_with_toggle)
+          end)
+          return true
+        end,
+      })
+    end
     local keymap = vim.keymap
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function()
-        local tele_builtin = require('telescope.builtin')
         keymap.set('n', '<leader>fo', tele_builtin.oldfiles, { desc = 'Fuzzy find recent files' })
         keymap.set('n', '<leader>fm', tele_builtin.marks, { desc = 'show all marks' })
         keymap.set('n', '<leader>fb', tele_builtin.buffers, { desc = 'Lists open buffers in current neovim instance' })
-        keymap.set('n', '<C-f>', function()
-          tele_builtin.find_files({
-            cwd = get_package_json_root(),
-          })
-        end, { desc = 'Fuzzy find files in project root' })
+        keymap.set(
+          'n',
+          '<C-f>',
+          find_files_with_toggle,
+          { desc = 'Fuzzy find files (' .. toggle_key .. '切换范围)' }
+        )
         keymap.set('n', '<leader>fs', tele_builtin.lsp_document_symbols, { desc = 'Search symbols in current file' })
-        keymap.set('n', '<leader>fw', function()
-          telescope.extensions.live_grep_args.live_grep_args({
-            cwd = get_package_json_root(),
-            auto_quoting = true,
-            default_text = '', -- 默认搜索词
-            additional_args = {
-              '--fixed-strings',
-              '--ignore-case',
-              '--no-heading',
-              '--with-filename',
-              '--line-number',
-              '--column',
-            }, -- 查询参数
-          })
-        end, { desc = 'Find string in cwd with args' })
+        keymap.set(
+          'n',
+          '<leader>fw',
+          live_grep_with_toggle,
+          { desc = 'Find string with args (' .. toggle_key .. '切换范围)' }
+        )
       end,
     })
   end,
