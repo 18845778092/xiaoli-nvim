@@ -8,8 +8,12 @@ return {
     'nvim-lua/plenary.nvim',
     'folke/trouble.nvim',
     'nvim-tree/nvim-web-devicons',
+    'noib3/nvim-oxi',
   },
-  build = 'brew install gnu-sed',
+  build = {
+    'brew install gnu-sed',
+    'sh build.sh',
+  },
   config = function()
     require('spectre').setup({
       color_devicons = true,
@@ -130,16 +134,21 @@ return {
             '--column',
           },
           options = {
+            ['word-regexp'] = {
+              value = '--word-regexp',
+              icon = '[W]',
+              desc = 'word boundary match',
+            },
             ['ignore-case'] = {
               value = '--ignore-case',
               icon = '[I]',
               desc = 'ignore case',
             },
-            ['hidden'] = {
-              value = '--hidden',
-              desc = 'hidden file',
-              icon = '[H]',
-            },
+            -- ['hidden'] = {
+            --   value = '--hidden',
+            --   desc = 'hidden file',
+            --   icon = '[H]',
+            -- },
             -- you can put any rg search option you want here it can toggle with
             -- show_option function
           },
@@ -201,7 +210,7 @@ return {
         },
         replace = {
           --pick one of item in replace_engine
-          cmd = 'sed',
+          cmd = 'oxi',
         },
       },
       replace_vim_cmd = 'cdo',
