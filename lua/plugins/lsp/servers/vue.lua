@@ -81,5 +81,5 @@ return function()
     end,
   })
 
-  vim.lsp.inlay_hint.enable()
+  -- vim.lsp.inlay_hint.enable()
 end

@@ -75,8 +75,8 @@ return {
       },
     })
 
-    vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', { desc = '下一个 buffer', noremap = true })
-    vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', { desc = '上一个 buffer', noremap = true })
+    -- vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', { desc = '下一个 buffer', noremap = true })
+    -- vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', { desc = '上一个 buffer', noremap = true })
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function()
         vim.keymap.set(
