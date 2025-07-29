@@ -12,6 +12,7 @@
   "codecompanion-spinner.nvim": { "branch": "main", "commit": "1f53b8d402de2a5ee6f9d64793f5eda49ed12a64" },
   "codecompanion.nvim": { "branch": "main", "commit": "dd06dd9f75725457f2924968ec83f5495eaf5d5a" },
   "conform.nvim": { "branch": "master", "commit": "973f3cb73887d510321653044791d7937c7ec0fa" },
+  "cutlass.nvim": { "branch": "main", "commit": "1ac7e4b53d79410be52a9e464d44c60556282b3e" },
   "darkplus.nvim": { "branch": "master", "commit": "c3f3b6a6d3a0db946e36252cd5c2a08549327580" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "dropbar.nvim": { "branch": "master", "commit": "fcdbb566744847f9a2a973224c0e4cd78356935a" },
