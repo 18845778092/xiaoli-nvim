@@ -123,7 +123,11 @@ return {
       callback = function()
         keymap.set('n', '<leader>fo', tele_builtin.oldfiles, { desc = 'Fuzzy find recent files' })
         keymap.set('n', '<leader>fm', tele_builtin.marks, { desc = 'show all marks' })
-        keymap.set('n', '<leader>fb', tele_builtin.buffers, { desc = 'Lists open buffers in current neovim instance' })
+        keymap.set('n', '<C-Tab>', function()
+          tele_builtin.buffers({
+            sort_lastused = true,
+          })
+        end, { desc = 'Lists open buffers in current neovim instance' })
         keymap.set(
           'n',
           '<C-f>',
