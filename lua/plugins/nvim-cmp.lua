@@ -64,29 +64,15 @@ return {
         end,
       },
       mapping = cmp.mapping.preset.insert({
-        ['<C-j>'] = cmp.mapping.select_next_item(), -- next suggestion
-        ['<C-k>'] = cmp.mapping.select_prev_item(), -- previous suggestion
         ['<C-e>'] = cmp.mapping.abort(), -- close completion window
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ['<TAB>'] = cmp.mapping.confirm({ select = false }),
-        ['<C-n>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif has_words_before() then
+        ['<C-i>'] = cmp.mapping(function()
+          -- vscode like complete by <C-i>
+          if not cmp.visible() and has_words_before() then
             cmp.complete()
-          else
-            fallback()
           end
-        end, { 'i', 's' }), -- i - insert mode; s - select mode
-        ['<C-p>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
+        end, { 'i' }), -- i - insert mode; s - select mode
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
