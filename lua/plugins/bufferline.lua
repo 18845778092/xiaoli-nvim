@@ -85,6 +85,12 @@ return {
           close_buffer_and_goto_next,
           { desc = '关闭当前buffer选择下一个', noremap = true }
         )
+        vim.keymap.set(
+          'n',
+          '<leader>Q',
+          '<CMD>BufferLineCloseOthers<CR>',
+          { desc = 'close others buffer', noremap = true }
+        )
       end,
     })
   end,
