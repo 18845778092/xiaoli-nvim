@@ -123,7 +123,7 @@ return {
       callback = function()
         keymap.set('n', '<leader>fo', tele_builtin.oldfiles, { desc = 'Fuzzy find recent files' })
         keymap.set('n', '<leader>fm', tele_builtin.marks, { desc = 'show all marks' })
-        keymap.set('n', '<C-Tab>', function()
+        keymap.set({ 'n', 'i' }, '<C-Tab>', function()
           tele_builtin.buffers({
             sort_lastused = true,
           })
