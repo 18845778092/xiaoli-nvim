@@ -5,6 +5,14 @@ return {
   dependencies = 'nvim-lua/plenary.nvim',
   config = function()
     require('diffview').setup({
+      hooks = {
+        view_opened = function(view)
+          vim.g.diffview_open_flag = true
+        end,
+        view_closed = function(view)
+          vim.g.diffview_open_flag = false
+        end,
+      },
       enhanced_diff_hl = true,
       file_history_panel = {
         log_options = {
@@ -31,7 +39,6 @@ return {
         -- map('n', '<leader>h', '<CMD>DiffviewFileHistory<CR>')
         map('n', '<leader>gh', '<CMD>DiffviewFileHistory %<CR>') -- 当前文件全量历史
         map('n', '<leader>gd', '<CMD>DiffviewOpen<CR>')
-        map('n', '<leader>gc', '<CMD>DiffviewClose<CR>')
       end,
     })
   end,

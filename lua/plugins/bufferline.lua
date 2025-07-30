@@ -50,6 +50,15 @@ local function close_buffer_and_goto_next()
   vim.cmd('bdelete ' .. current_buf)
 end
 
+local function auto_close_target_buf()
+  local maybe_close_diffview = require('helper.close-helper').maybe_close_diffview
+  if maybe_close_diffview() then
+    return
+  end
+
+  close_buffer_and_goto_next()
+end
+
 return {
   'akinsho/bufferline.nvim',
   version = '*',
@@ -82,7 +91,7 @@ return {
         vim.keymap.set(
           'n',
           '<leader>q',
-          close_buffer_and_goto_next,
+          auto_close_target_buf,
           { desc = '关闭当前buffer选择下一个', noremap = true }
         )
         vim.keymap.set(
