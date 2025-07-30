@@ -53,3 +53,8 @@ map('i', 'jk', '<Esc>')
 map('n', '<leader>mm', '<CMD>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>')
 vim.keymap.set('n', '<leader>ls', ':SessionManager load_session<CR>', { desc = '加载会话', silent = true })
 map('n', '<space>e', vim.diagnostic.open_float)
+
+vim.keymap.set('n', '=', '<cmd>vertical resize +2<cr>', { desc = '增加窗口左右宽度' })
+vim.keymap.set('n', '-', '<cmd>vertical resize -2<cr>', { desc = '减少左右宽度' })
+vim.keymap.set('n', '<C-=>', '<cmd>resize +2<cr>', { desc = '增加窗口上下高度' })
+vim.keymap.set('n', '<C-->', '<cmd>resize -2<cr>', { desc = '减少窗口上下高度' })
