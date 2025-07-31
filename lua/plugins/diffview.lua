@@ -4,9 +4,25 @@ return {
   'sindrets/diffview.nvim',
   dependencies = 'nvim-lua/plenary.nvim',
   config = function()
+    vim.opt.fillchars = {
+      diff = '╱',
+    }
     require('diffview').setup({
       hooks = {
         view_opened = function(view)
+          local diff_green = '#4e5c34'
+          local diff_red = '#3d1a1a'
+          vim.api.nvim_set_hl(0, 'DiffDelete', {
+            bg = 'NONE',
+            fg = '#474849',
+          })
+          vim.api.nvim_set_hl(0, 'DiffAdd', {
+            bg = diff_green,
+          })
+          vim.api.nvim_set_hl(0, 'DiffText', {
+            fg = 'NONE',
+            bg = diff_green,
+          })
           vim.g.diffview_open_flag = true
         end,
         view_closed = function(view)
