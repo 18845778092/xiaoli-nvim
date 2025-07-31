@@ -73,6 +73,11 @@ return {
             modified = true,
           },
           glyphs = glyphs,
+          git_placement = 'after',
+          modified_placement = 'after',
+          hidden_placement = 'after',
+          diagnostics_placement = 'after',
+          bookmarks_placement = 'after',
         },
       },
       filters = {
