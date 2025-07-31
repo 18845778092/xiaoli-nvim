@@ -17,6 +17,9 @@ return function()
     finder = {
       max_height = 0.5,
     },
+    lightbulb = {
+      virtual_text = false,
+    },
   })
 
   vim.api.nvim_create_autocmd('VimEnter', {
