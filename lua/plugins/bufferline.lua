@@ -51,8 +51,15 @@ local function close_buffer_and_goto_next()
 end
 
 local function auto_close_target_buf()
-  local maybe_close_diffview = require('helper.close-helper').maybe_close_diffview
+  local close_helper = require('helper.close-helper')
+  local maybe_close_diffview = close_helper.maybe_close_diffview
+  local maybe_close_gitsigns_blame = close_helper.maybe_close_gitsigns_blame
+
   if maybe_close_diffview() then
+    return
+  end
+
+  if maybe_close_gitsigns_blame() then
     return
   end
 

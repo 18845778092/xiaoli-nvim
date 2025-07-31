@@ -8,10 +8,18 @@ return {
       fg = 'gold', -- 使用和注释相同的颜色
       italic = true, -- 保持斜体样式（可选）
     })
+    local border = require('core.custom-style').border
     require('gitsigns').setup({
       current_line_blame = true,
       current_line_blame_opts = { delay = 0 },
       current_line_blame_formatter = 'commit: <abbrev_sha>, <author>, <author_time:%R> - <summary>',
+      preview_config = {
+        border = border,
+        style = 'minimal',
+        relative = 'cursor',
+        row = 1,
+        col = 1,
+      },
       signs = {
         add = { text = '+' },
         change = { text = '~' },
@@ -35,6 +43,7 @@ return {
 
         -- 当前文件提交完整记录
         map('n', '<leader>gB', function()
+          vim.g.gitsigns_blame_open = true
           gitsigns.blame()
         end)
       end,
