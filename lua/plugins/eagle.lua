@@ -27,27 +27,6 @@ return {
       title_color = '#8AAAE5',
       border_color = '#8AAAE5',
     })
-    before_eagle_win_open_hl = {}
-    eagle_win_open = false
-    local hl_name = '@spell.markdown'
-    vim.api.nvim_create_autocmd('VimEnter', {
-      callback = function()
-        vim.keymap.set('n', 'gh', function()
-          eagle_win_open = true
-          before_eagle_win_open_hl = vim.api.nvim_get_hl(0, { name = hl_name })
-          vim.api.nvim_set_hl(0, hl_name, { fg = '#aadafb' })
-          vim.cmd('EagleWin')
-        end, { noremap = true, silent = true })
-      end,
-    })
-
-    vim.api.nvim_create_autocmd('BufLeave', {
-      callback = function()
-        if eagle_win_open == true then
-          vim.api.nvim_set_hl(0, hl_name, before_eagle_win_open_hl)
-          eagle_win_open = false
-        end
-      end,
-    })
+    vim.keymap.set('n', 'gh', ':EagleWin<CR>', { noremap = true, silent = true })
   end,
 }
