@@ -24,6 +24,24 @@ return {
             bg = diff_green,
           })
           vim.g.diffview_open_flag = true
+          -- 自动聚焦diff页面
+          local function auto_focus()
+            for _, win in ipairs(vim.api.nvim_list_wins()) do
+              local buf = vim.api.nvim_win_get_buf(win)
+              local buf_name = vim.api.nvim_buf_get_name(buf)
+              local filetype = vim.api.nvim_buf_get_option(buf, 'filetype')
+              if
+                filetype ~= 'DiffviewFiles'
+                and filetype ~= 'DiffviewFileHistory'
+                and buf_name:match('diffview://')
+                and not buf_name:match('%.git/')
+              then
+                vim.api.nvim_set_current_win(win)
+                break
+              end
+            end
+          end
+          vim.schedule(auto_focus)
         end,
         view_closed = function(view)
           vim.g.diffview_open_flag = false
