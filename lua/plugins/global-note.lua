@@ -4,7 +4,8 @@ return {
     local style = require('core.custom-style')
     local border = style.border
 
-    require('global-note').setup({
+    local global_note = require('global-note')
+    global_note.setup({
       filename = 'global.md',
       directory = '~/notes/',
 
@@ -41,8 +42,8 @@ return {
 
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function()
-        vim.keymap.set('n', '<C-m>', function()
-          require('global-note').toggle_note()
+        vim.keymap.set('n', '<leader>e', function()
+          global_note.toggle_note()
         end, { desc = '全局note' })
       end,
     })
