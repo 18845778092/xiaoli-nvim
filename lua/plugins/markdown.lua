@@ -7,70 +7,88 @@ return {
       file_types = { 'markdown', 'codecompanion', 'telekasten' },
       render_modes = render_modes,
       heading = {
-        enabled = true,
-        sign = true,
-        icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
-        width = 'full',
-        left_margin = 0,
-        right_margin = 0,
-        min_width = 0,
-        border = false,
-        border_prefix = false,
+        width = 'block',
+        sign = false,
+        left_pad = 1,
+        right_pad = 0,
+        position = 'right',
+        icons = {
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+        },
       },
       code = {
-        enabled = true,
-        sign = true,
-        style = 'full',
-        left_margin = 0,
-        right_margin = 0,
-        width = 'full',
+        sign = false,
         border = 'thin',
+        position = 'right',
+        width = 'block',
+        above = '▁',
+        below = '▔',
+        language_left = '█',
+        language_right = '█',
+        language_border = '▁',
+        left_pad = 1,
+        right_pad = 1,
       },
-      bullet = {
-        enabled = true,
-        icons = { '●', '○', '◆', '◇' },
-        right_margin = 0,
-        highlight = 'RenderMarkdownBullet',
+      checkbox = {
+        enable = true,
+        position = 'inline',
       },
     })
 
-    -- AI generated...
+    -- 动态获取背景色的函数
+    local function get_adaptive_bg()
+      -- 检查是否在浮动窗口中
+      local win_config = vim.api.nvim_win_get_config(0)
+      if win_config.relative ~= '' then
+        -- 在浮动窗口中，尝试获取 NormalFloat 背景
+        local float_hl = vim.api.nvim_get_hl(0, { name = 'NormalFloat' })
+        if float_hl.bg then
+          return string.format('#%06x', float_hl.bg)
+        end
+      end
+
+      -- 普通窗口，获取 Normal 背景
+      local normal_hl = vim.api.nvim_get_hl(0, { name = 'Normal' })
+      if normal_hl.bg then
+        return string.format('#%06x', normal_hl.bg)
+      end
+
+      -- 默认背景色
+      return '#1e1e1e'
+    end
+
     local function set_markdown_colors()
-      -- 标题颜色 - 背景色与前景色更接近，形成柔和对比
-      vim.api.nvim_set_hl(0, 'RenderMarkdownH1', { fg = '#F44336', bold = true }) -- 鲜艳红色
-      vim.api.nvim_set_hl(0, 'RenderMarkdownH1Bg', { bg = '#8B3A3A', fg = '#F44336' }) -- 更接近前景色
+      -- 动态获取当前背景色
+      local current_bg = get_adaptive_bg()
 
-      vim.api.nvim_set_hl(0, 'RenderMarkdownH2', { fg = '#FF9800', bold = true }) -- 活力橙色
-      vim.api.nvim_set_hl(0, 'RenderMarkdownH2Bg', { bg = '#B36B00', fg = '#FF9800' }) -- 更接近前景色
+      -- H1 - 天蓝色
+      vim.api.nvim_set_hl(0, 'RenderMarkdownH1', { bg = current_bg, fg = current_bg, bold = true })
+      vim.api.nvim_set_hl(0, 'RenderMarkdownH1Bg', { bg = '#3B82F6', fg = 'NONE' })
 
-      vim.api.nvim_set_hl(0, 'RenderMarkdownH3', { fg = '#FFEB3B', bold = true }) -- 明亮黄色
-      vim.api.nvim_set_hl(0, 'RenderMarkdownH3Bg', { bg = '#B3A52B', fg = '#FFEB3B' }) -- 更接近前景色
+      -- H2 - 橙色
+      vim.api.nvim_set_hl(0, 'RenderMarkdownH2', { bg = current_bg, fg = current_bg, bold = true })
+      vim.api.nvim_set_hl(0, 'RenderMarkdownH2Bg', { bg = '#F97316', fg = 'NONE' })
 
-      vim.api.nvim_set_hl(0, 'RenderMarkdownH4', { fg = '#4CAF50', bold = true }) -- 清新绿色
-      vim.api.nvim_set_hl(0, 'RenderMarkdownH4Bg', { bg = '#3A7A3A', fg = '#4CAF50' }) -- 更接近前景色
+      -- H3 - 绿色
+      vim.api.nvim_set_hl(0, 'RenderMarkdownH3', { bg = current_bg, fg = current_bg, bold = true })
+      vim.api.nvim_set_hl(0, 'RenderMarkdownH3Bg', { bg = '#22C55E', fg = 'NONE' })
 
-      vim.api.nvim_set_hl(0, 'RenderMarkdownH5', { fg = '#00BCD4', bold = true }) -- 青蓝色
-      vim.api.nvim_set_hl(0, 'RenderMarkdownH5Bg', { bg = '#008A95', fg = '#00BCD4' }) -- 更接近前景色
+      -- H4 - 紫色
+      vim.api.nvim_set_hl(0, 'RenderMarkdownH4', { bg = current_bg, fg = current_bg, bold = true })
+      vim.api.nvim_set_hl(0, 'RenderMarkdownH4Bg', { bg = '#A855F7', fg = 'NONE' })
 
-      vim.api.nvim_set_hl(0, 'RenderMarkdownH6', { fg = '#9C27B0', bold = true }) -- 紫色
-      vim.api.nvim_set_hl(0, 'RenderMarkdownH6Bg', { bg = '#6D1B7A', fg = '#9C27B0' }) -- 更接近前景色
+      -- H5 - 粉红色
+      vim.api.nvim_set_hl(0, 'RenderMarkdownH5', { bg = current_bg, fg = current_bg, bold = true })
+      vim.api.nvim_set_hl(0, 'RenderMarkdownH5Bg', { bg = '#EC4899', fg = 'NONE' })
 
-      -- 代码块颜色 - 背景色与前景色更协调
-      vim.api.nvim_set_hl(0, 'RenderMarkdownCode', { bg = '#3A3A4A', fg = '#F8F8F2' })
-      vim.api.nvim_set_hl(0, 'RenderMarkdownCodeInline', { bg = '#3A5A3A', fg = '#50FA7B', bold = true })
-
-      -- 列表符号颜色
-      vim.api.nvim_set_hl(0, 'RenderMarkdownBullet', { fg = '#FF6E40', bold = true })
-
-      -- 链接颜色
-      vim.api.nvim_set_hl(0, 'RenderMarkdownLink', { fg = '#03DAC6', underline = true, bold = true })
-
-      -- 引用块颜色 - 背景色更接近前景色
-      vim.api.nvim_set_hl(0, 'RenderMarkdownQuote', { fg = '#BD93F9', italic = true, bg = '#4A3A5A' })
-
-      -- 表格颜色 - 背景色更接近前景色
-      vim.api.nvim_set_hl(0, 'RenderMarkdownTableHead', { fg = '#FF5722', bold = true, bg = '#5A2A1A' })
-      vim.api.nvim_set_hl(0, 'RenderMarkdownTableRow', { fg = '#E8EAED' })
+      -- H6 - 黄色
+      vim.api.nvim_set_hl(0, 'RenderMarkdownH6', { bg = current_bg, fg = current_bg, bold = true })
+      vim.api.nvim_set_hl(0, 'RenderMarkdownH6Bg', { bg = '#EAB308', fg = 'NONE' })
 
       -- 分割线颜色
       vim.api.nvim_set_hl(0, 'RenderMarkdownDash', { fg = '#26C6DA', bold = true })
@@ -82,9 +100,12 @@ return {
       vim.api.nvim_set_hl(0, 'RenderMarkdownTodo', { fg = '#FF5722', bold = true })
       vim.api.nvim_set_hl(0, 'RenderMarkdownDone', { fg = '#8BC34A', bold = true })
 
-      -- code
-      vim.api.nvim_set_hl(0, 'RenderMarkdownCode', { bg = '#2D3748', fg = '#E2E8F0' }) -- 深灰背景，浅灰前景
-      vim.api.nvim_set_hl(0, 'RenderMarkdownCodeInline', { bg = '#4A5568', fg = '#CBD5E0', bold = false }) -- 内联代码稍亮一些
+      -- 标题文本颜色
+      vim.api.nvim_set_hl(0, '@text.title.markdown', { fg = '#ffffff', bold = true })
+
+      -- 代码块颜色
+      vim.api.nvim_set_hl(0, 'RenderMarkdownCode', { bg = '#2D3748', fg = '#E2E8F0' })
+      vim.api.nvim_set_hl(0, 'RenderMarkdownCodeInline', { bg = '#4A5568', fg = '#CBD5E0', bold = false })
     end
 
     vim.api.nvim_create_autocmd({ 'FileType', 'BufEnter', 'ColorScheme' }, {
