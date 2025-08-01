@@ -104,8 +104,8 @@ return {
       vim.api.nvim_set_hl(0, '@text.title.markdown', { fg = '#ffffff', bold = true })
 
       -- 代码块颜色
-      vim.api.nvim_set_hl(0, 'RenderMarkdownCode', { bg = '#2D3748', fg = '#E2E8F0' })
-      vim.api.nvim_set_hl(0, 'RenderMarkdownCodeInline', { bg = '#4A5568', fg = '#CBD5E0', bold = false })
+      vim.api.nvim_set_hl(0, 'RenderMarkdownCode', { bg = '#2D3748' })
+      vim.api.nvim_set_hl(0, 'RenderMarkdownCodeInline', { bg = '#4A5568', bold = false })
     end
 
     vim.api.nvim_create_autocmd({ 'FileType', 'BufEnter', 'ColorScheme' }, {
