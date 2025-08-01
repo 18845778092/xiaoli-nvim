@@ -15,6 +15,7 @@
   "darkplus.nvim": { "branch": "master", "commit": "c3f3b6a6d3a0db946e36252cd5c2a08549327580" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "dropbar.nvim": { "branch": "master", "commit": "80751f5e9db69b0cdf2a25d321f1e79745f9b324" },
+  "eagle.nvim": { "branch": "main", "commit": "dd1a28c4d8626fbe85580b0a9ed8f88d77a26da1" },
   "fidget.nvim": { "branch": "main", "commit": "4ec7bed6c86b671ddde03ca1b227343cfa3e65fa" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
   "follow-md-links.nvim": { "branch": "main", "commit": "ce8735a15dc3e5fc5bb052ec51b849c03e57df53" },

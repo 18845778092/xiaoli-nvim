@@ -1,4 +1,4 @@
--- improves the Neovim built-in LSP experience
+-- improve the Neovim built-in LSP experience
 
 return function()
   local border = require('core.custom-style').border
@@ -24,7 +24,7 @@ return function()
 
   vim.api.nvim_create_autocmd('VimEnter', {
     callback = function()
-      vim.keymap.set('n', 'gh', '<cmd>Lspsaga hover_doc<CR>')
+      -- vim.keymap.set('n', 'gh', '<cmd>Lspsaga hover_doc<CR>')
       vim.keymap.set('n', '<leader>rn', '<cmd>Lspsaga rename<CR>')
       vim.keymap.set('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>')
       vim.keymap.set('n', '<leader>le', '<cmd>Lspsaga show_buf_diagnostics<CR>')

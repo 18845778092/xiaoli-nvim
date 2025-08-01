@@ -109,7 +109,7 @@ return {
     end
 
     vim.api.nvim_create_autocmd({ 'FileType', 'BufEnter', 'ColorScheme' }, {
-      pattern = { 'markdown', 'codecompanion', 'telekasten', '*' },
+      pattern = { 'markdown', 'codecompanion', 'telekasten' },
       callback = function()
         -- 延迟执行确保插件完全加载
         vim.schedule(function()
@@ -120,7 +120,10 @@ return {
       end,
     })
 
-    -- 立即设置一次颜色
-    set_markdown_colors()
+    vim.api.nvim_create_autocmd('VimEnter', {
+      callback = function()
+        set_markdown_colors()
+      end,
+    })
   end,
 }
