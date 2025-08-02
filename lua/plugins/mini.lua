@@ -4,12 +4,6 @@ return {
   'echasnovski/mini.nvim',
   config = function()
     local color_table = require('core.custom-style').color_table
-    require('mini.ai').setup({
-      custom_textobjects = {
-        -- ia aa 参数处理
-        a = require('mini.ai').gen_spec.argument({ brackets = { '%b()', '%b[]', '%b{}' } }),
-      },
-    })
     local indent_scope_instance = require('mini.indentscope')
     indent_scope_instance.setup({
       draw = {
@@ -20,8 +14,9 @@ return {
         priority = 2,
       },
       mappings = {
-        object_scope = 'ii',
-        object_scope_with_border = 'ai',
+        object_scope = '',
+        object_scope_with_border = '',
+
         goto_top = 'tt',
         goto_bottom = 'tb',
       },

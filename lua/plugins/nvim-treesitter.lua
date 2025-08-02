@@ -6,6 +6,7 @@ return {
   enabled = true,
   dependencies = {
     'nvim-treesitter/nvim-treesitter-context',
+    'nvim-treesitter/nvim-treesitter-textobjects',
   },
   config = function()
     require('nvim-treesitter.configs').setup({
@@ -44,6 +45,46 @@ return {
         'markdown',
         'markdown_inline',
         'yaml',
+      },
+      textobjects = {
+        move = {
+          enable = true,
+          set_jumps = true,
+          goto_next_start = {
+            [','] = '@parameter.inner',
+          },
+          goto_previous_start = {
+            ['<'] = '@parameter.inner',
+          },
+          goto_next = {
+            [']d'] = '@conditional.outer',
+          },
+          goto_previous = {
+            ['[d'] = '@conditional.outer',
+          },
+        },
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ['af'] = '@function.outer',
+            ['if'] = '@function.inner',
+            ['ac'] = '@class.outer',
+            ['ic'] = '@class.inner',
+            ['aa'] = '@parameter.outer',
+            ['ia'] = '@parameter.inner',
+          },
+        },
+        swap = {
+          -- 交换参数位置
+          enable = true,
+          swap_next = {
+            ['<leader>cl'] = '@parameter.inner',
+          },
+          swap_previous = {
+            ['<leader>ch'] = '@parameter.inner',
+          },
+        },
       },
     })
 
