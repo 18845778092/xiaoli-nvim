@@ -46,6 +46,7 @@ return {
         readonly = '[-]',
         unnamed = '[No Name]',
       },
+      separator = { left = '', right = '' },
     }
 
     local tabline_file_name = {
@@ -73,6 +74,20 @@ return {
       icon = '',
     }
 
+    local venn_indicator = {
+      function()
+        if vim.b.venn_enabled then
+          return '🎨 Venn Mode'
+        else
+          return ''
+        end
+      end,
+      color = { fg = '#ff6b6b', gui = 'bold' },
+      cond = function()
+        return vim.b.venn_enabled ~= nil
+      end,
+    }
+
     -- add gps module to get the position information
     -- local gps = require("nvim-gps")
 
@@ -91,7 +106,7 @@ return {
       sections = {
         lualine_a = { branch, diagnostics },
         lualine_b = { mode },
-        lualine_c = { file_name },
+        lualine_c = { file_name, venn_indicator },
         lualine_x = { filetype, 'fileformat' },
         lualine_y = { progress },
       },
