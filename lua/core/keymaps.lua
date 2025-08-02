@@ -49,7 +49,7 @@ map('n', 'T', '<Nop>')
 map('n', '<leader>ll', '"ayiwoconsole.log(\'<C-R>a:\', <C-R>a);<Esc>')
 map('i', 'jk', '<Esc>')
 
--- map("n", "<leader>w", ":w<CR>") -- 保存
+map('n', '<leader>w', ':w<CR>') -- 保存
 
 map('n', '<leader>mm', '<CMD>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>')
 vim.keymap.set('n', '<leader>ls', ':SessionManager load_session<CR>', { desc = '加载会话', silent = true })
