@@ -8,7 +8,7 @@ return function()
     virtual_text = {
       prefix = '●', -- virtual text的前缀符号
       spacing = 4, -- virtual text与代码的间距
-      source = 'if_many', -- 显示错误来源
+      source = true,
       format = function(diagnostic)
         return string.format('%s', diagnostic.message)
       end,
