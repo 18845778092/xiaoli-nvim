@@ -89,5 +89,14 @@ return {
     -- vim.keymap.set('n', '<leader>ff', '<CMD>NvimTreeToggle<CR>')
     -- vim.keymap.set('n', '<leader>nf', '<CMD>NvimTreeFindFile<CR>')
     -- vim.keymap.set('n', '<leader>bf', '<CMD>NvimTreeFocus<CR>')
+    vim.api.nvim_create_autocmd('VimEnter', {
+      callback = function()
+        vim.api.nvim_set_hl(0, 'NvimTreeWindowPicker', {
+          fg = '#ededed',
+          bg = '#4493c8',
+          bold = true,
+        })
+      end,
+    })
   end,
 }
