@@ -224,5 +224,8 @@ return {
         -- { search_text = 'text1', replace_text = '', path = "" }
       },
     })
+    vim.api.nvim_create_user_command('FindAndReplace', function()
+      vim.cmd('Spectre')
+    end, { desc = 'Find and replace' })
   end,
 }
