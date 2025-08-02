@@ -11,35 +11,34 @@ return function()
     configNamespace = 'typescript',
   }
 
+  local shared_config = {
+    suggest = { completeFunctionCalls = true },
+    inlayHints = {
+      parameterNames = { enabled = 'all', suppressWhenArgumentMatchesName = false },
+      parameterTypes = { enabled = true },
+      variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
+      propertyDeclarationTypes = { enabled = true },
+      functionLikeReturnTypes = { enabled = true },
+      enumMemberValues = { enabled = true },
+    },
+  }
+
   local vtsls_config = {
     settings = {
       vtsls = {
+        experimental = {
+          completion = {
+            enableServerSideFuzzyMatch = true,
+          },
+        },
         tsserver = {
           globalPlugins = {
             vue_plugin,
           },
         },
       },
-      typescript = {
-        inlayHints = {
-          parameterNames = { enabled = 'all', suppressWhenArgumentMatchesName = false },
-          parameterTypes = { enabled = true },
-          variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
-          propertyDeclarationTypes = { enabled = true },
-          functionLikeReturnTypes = { enabled = true },
-          enumMemberValues = { enabled = true },
-        },
-      },
-      javascript = {
-        inlayHints = {
-          parameterNames = { enabled = 'all', suppressWhenArgumentMatchesName = false },
-          parameterTypes = { enabled = true },
-          variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
-          propertyDeclarationTypes = { enabled = true },
-          functionLikeReturnTypes = { enabled = true },
-          enumMemberValues = { enabled = true },
-        },
-      },
+      typescript = shared_config,
+      javascript = shared_config,
     },
     filetypes = {
       'typescript',
