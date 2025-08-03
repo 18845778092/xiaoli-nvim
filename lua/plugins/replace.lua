@@ -8,7 +8,7 @@ return {
       transient = true, -- 临时缓冲区
       keymaps = {
         replace = { n = '<localleader>r' },
-        qflist = { n = '' }, --[[ { n = '<localleader>q' }, ]]
+        qflist = { n = '' },
         syncLocations = { n = '<localleader>s' },
         syncLine = { n = '<localleader>l' },
         close = { n = '<localleader>c' },
@@ -22,7 +22,7 @@ return {
         pickHistoryEntry = { n = '<enter>' },
         abort = { n = '<localleader>b' },
         help = { n = 'g?' },
-        toggleShowCommand = { n = '<localleader>w' },
+        toggleShowCommand = { n = '' },
         swapEngine = { n = '<localleader>e' },
         previewLocation = { n = '<localleader>i' },
         swapReplacementInterpreter = { n = '<localleader>x' },
@@ -33,6 +33,30 @@ return {
         syncFile = { n = '<localleader>v' },
         nextInput = { n = '<tab>' },
         prevInput = { n = '<s-tab>' },
+      },
+      engines = {
+        -- see https://github.com/BurntSushi/ripgrep
+        ripgrep = {
+          path = 'rg',
+          showReplaceDiff = true,
+          placeholders = {
+            enabled = true,
+            search = 'e.g. foo   foo([a-z0-9]*)   fun\\(',
+            replacement = 'e.g. bar   ${1}_foo   $$MY_ENV_VAR ',
+            replacement_lua = 'e.g. if vim.startsWith(match, "use") \\n then return "employ" .. match \\n else return match end',
+            replacement_vimscript = 'e.g. return "bob_" .. match',
+            filesFilter = 'e.g. *.lua   *.{css,js}   **/docs/*.md   (specify one per line)',
+            flags = 'e.g. --help --ignore-case (-i) --replace= (empty replace) --multiline (-U)',
+            paths = 'e.g. /foo/bar   ../   ./hello\\ world/   ./src/foo.lua   ~/.config',
+          },
+          defaults = {
+            search = nil,
+            replacement = nil,
+            filesFilter = nil,
+            flags = '--fixed-strings', -- .、*、?、[]
+            paths = nil,
+          },
+        },
       },
     })
 
@@ -48,6 +72,17 @@ return {
 
         vim.keymap.set('n', '<leader>fc', '<CMD>FindCwd<CR>', { noremap = true })
         vim.keymap.set('n', '<leader>ff', '<CMD>FindCurFile<CR>', { noremap = true })
+      end,
+    })
+
+    vim.api.nvim_create_autocmd('FileType', {
+      group = vim.api.nvim_create_augroup('custom-keybinds', { clear = true }),
+      pattern = { 'grug-far' },
+      callback = function()
+        vim.keymap.set('n', '<localleader>w', function()
+          local state = unpack(require('grug-far').get_instance(0):toggle_flags({ '--word-regexp' }))
+          vim.notify('grug-far: toggled --word-regexp ' .. (state and 'ON' or 'OFF'))
+        end, { buffer = true })
       end,
     })
   end,
