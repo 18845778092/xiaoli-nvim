@@ -13,12 +13,12 @@ return function()
         return string.format('%s', diagnostic.message)
       end,
     },
-    underline = true, -- 在错误代码下方显示下划线
+    underline = true,
     update_in_insert = false, -- 在插入模式下不更新diagnostic
     float = {
-      border = border, -- 浮动窗口的边框样式
+      border = border,
       focusable = false, -- 浮动窗口不可聚焦
-      source = 'if_many', -- 显示错误来源
+      source = true,
       format = function(diagnostic)
         return string.format('%s', diagnostic.message)
       end,
