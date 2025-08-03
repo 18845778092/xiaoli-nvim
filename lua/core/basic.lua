@@ -12,6 +12,8 @@ opt.expandtab = true
 opt.autoindent = true
 opt.jumpoptions = 'stack' -- gd ctrl+o 跳转模型
 opt.swapfile = false
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- - "t"  -- 不根据 textwidth 自动换行
 -- - "c"  -- 不自动换行注释
