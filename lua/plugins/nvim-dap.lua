@@ -158,5 +158,9 @@ return {
     vim.keymap.set('n', '<leader>dr', function()
       dap.repl.open()
     end, { noremap = true })
+
+    vim.api.nvim_create_user_command('Debug', function()
+      vim.cmd('DapNew')
+    end, { desc = 'Dapnew alias' })
   end,
 }
