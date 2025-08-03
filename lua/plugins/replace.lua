@@ -53,10 +53,13 @@ return {
             search = nil,
             replacement = nil,
             filesFilter = nil,
-            flags = '--fixed-strings', -- .、*、?、[]
+            flags = '--fixed-strings --ignore-case ', -- .、*、?、[]
             paths = nil,
           },
         },
+      },
+      folding = {
+        enabled = false,
       },
     })
 

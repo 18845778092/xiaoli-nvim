@@ -22,6 +22,7 @@ return {
       return
     end
 
+    local lga_actions = require('telescope-live-grep-args.actions')
     telescope.setup({
       pickers = {
         colorscheme = {
@@ -30,13 +31,12 @@ return {
       },
       defaults = {
         mappings = {
-          i = {
-            ['<esc>'] = require('telescope.actions').close,
-          },
+          -- i = {
+          --   ['<esc>'] = require('telescope.actions').close, -- esc 直接关闭
+          -- },
         },
         layout_strategy = 'horizontal',
         layout_config = {
-          -- 水平
           horizontal = {
             width = 0.9,
             preview_width = 0.4,
@@ -67,6 +67,15 @@ return {
             },
           },
         },
+        live_grep_args = {
+          auto_quoting = true,
+          default_text = '',
+          mappings = {
+            i = {
+              ['<C-w>'] = lga_actions.quote_prompt({ postfix = ' --word-regexp ' }),
+            },
+          },
+        },
       },
     })
 
@@ -88,8 +97,6 @@ return {
     local function live_grep_with_toggle()
       telescope.extensions.live_grep_args.live_grep_args({
         cwd = get_search_dir(),
-        auto_quoting = true,
-        default_text = '', -- 默认搜索词
         additional_args = {
           '--fixed-strings',
           '--ignore-case',
