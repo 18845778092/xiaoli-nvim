@@ -96,7 +96,6 @@ return {
             if vim.b[bufnr]._vue_ts_cached_is_in_start_tag == false then
               return true
             end
-            -- rest of the code
 
             local cursor_before_line = ctx.cursor_before_line
             -- For events
@@ -104,7 +103,8 @@ return {
               return entry.completion_item.label:match('^@')
               -- For props also exclude events with `:on-` prefix
             elseif cursor_before_line:sub(-1) == ':' then
-              return entry.completion_item.label:match('^:') and not entry.completion_item.label:match('^:on%-')
+              -- entry.completion_item.label:match('^:')
+              return entry.completion_item.label:match(':') and not entry.completion_item.label:match('^:on%-')
             else
               return true
             end
