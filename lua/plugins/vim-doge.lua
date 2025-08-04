@@ -4,6 +4,7 @@ return {
     -- Interactive mode comment todo-jumping
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function()
+        vim.cmd('call doge#install()')
         -- Generate comment for current line
         vim.keymap.set('n', '<Leader>dc', '<Plug>(doge-generate)')
 
