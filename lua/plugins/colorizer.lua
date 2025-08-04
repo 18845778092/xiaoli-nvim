@@ -39,7 +39,7 @@ return {
         },
         -- parsers can contain values used in `user_default_options`
         sass = { enable = true, parsers = { 'css' } }, -- Enable sass colors
-        scss = { enable = true, parsers = { 'css' } }, -- Enable sass colors
+        scss = { enable = true, parsers = { 'css' } }, -- Enable scss colors
         xterm = false, -- Enable xterm 256-color codes (#xNN, \e[38;5;NNNm)
         -- Highlighting mode.  'background'|'foreground'|'virtualtext'
         mode = 'background', -- Set the display mode

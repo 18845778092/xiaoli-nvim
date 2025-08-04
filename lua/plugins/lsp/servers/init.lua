@@ -10,5 +10,7 @@ return function()
 
   -- Biome
   -- require('plugins.lsp.servers.biome')()
-end
 
+  -- Css
+  require('plugins.lsp.servers.css')()
+end

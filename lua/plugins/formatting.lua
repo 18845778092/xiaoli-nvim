@@ -19,7 +19,7 @@ return {
         typescript = { 'biome' },
         javascriptreact = { 'prettier' },
         typescriptreact = { 'prettier' },
-        css = { 'prettier' },
+        -- css = { 'prettier' }, -- css formatting is handled by cssls -> vscode-css-language-server
         html = { 'prettier' },
         vue = { 'prettier' },
         json = { 'prettier' },
