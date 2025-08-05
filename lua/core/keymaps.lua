@@ -21,7 +21,8 @@ map({ 'v', 'o' }, 'b', 'i(')
 map({ 'v', 'o', 'n' }, 'H', '^')
 map({ 'v', 'o', 'n' }, 'L', 'g_')
 
-map('n', '<leader>s', 'V$%')
+map('n', '<leader>s', require('helper.smart-select-block'))
+
 map('n', '<leader>a', 'za')
 
 map('v', 'ie', '<Esc>ggVG') -- 全选整个文件内容
