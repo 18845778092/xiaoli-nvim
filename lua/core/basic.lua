@@ -4,7 +4,7 @@ local opt = vim.opt
 -- 行号
 opt.relativenumber = true
 opt.number = true
-
+opt.autoread = true -- 自动重载变更
 -- 缩进
 opt.tabstop = 2
 opt.shiftwidth = 2
@@ -25,6 +25,17 @@ vim.g.maplocalleader = ' '
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   command = 'set formatoptions-=ro',
 })
+
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' }, {
+  pattern = '*',
+  command = 'if mode() != \'c\' | checktime | endif',
+})
+-- -- 文件变更时的通知
+vim.api.nvim_create_autocmd('FileChangedShellPost', {
+  pattern = '*',
+  command = 'echohl WarningMsg | echo \'文件已被外部程序修改\' | echohl None',
+})
+
 -- 防止包裹
 opt.wrap = false
 
