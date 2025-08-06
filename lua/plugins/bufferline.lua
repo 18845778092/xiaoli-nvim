@@ -71,10 +71,21 @@ return {
   version = '*',
   dependencies = 'nvim-tree/nvim-web-devicons',
   config = function()
+    local color_table = require('core.custom-style').color_table
+
     vim.opt.termguicolors = true
+    local selectedColor = '#4792a8'
+    local visibleColor = color_table.current_index
+    local indicatorColor = '#fde047'
+    local pickFgColor = color_table.light_green
+    local visibleFgColor = '#e2e8f0'
+    local errorFgColor = '#ffffff'
+    local warningFgColor = '#ffffff'
+    local infoFgColor = '#ffffff'
+    local hintFgColor = '#ffffff'
     require('bufferline').setup({
       options = {
-        -- 使用 nvim 内置lsp
+        max_name_length = 30, -- 文件名最大长度
         diagnostics = 'nvim_lsp',
         -- 左侧让出 nvim-tree 的位置
         offsets = {
@@ -88,11 +99,165 @@ return {
         -- 插入顺序排序
         sort_by = 'insert_at_end',
         show_buffer_close_icons = false,
+        separator_style = 'slope', -- slant , slope
+        diagnostics_indicator = function(count, level, diagnostics_dict, context)
+          local icons = {
+            error = ' ',
+            warning = ' ',
+            info = ' ',
+            hint = '󰚩 ',
+          }
+          local result = {}
+          for severity, count in pairs(diagnostics_dict) do
+            if count > 0 then
+              table.insert(result, icons[severity] .. count)
+            end
+          end
+
+          return table.concat(result, ' ')
+        end,
+      },
+      highlights = {
+        buffer = {},
+        buffer_visible = {
+          fg = visibleFgColor,
+          bg = visibleColor,
+        },
+        buffer_selected = {
+          bg = selectedColor,
+          bold = true,
+        },
+        separator = {},
+        separator_visible = {
+          bg = visibleColor,
+        },
+        separator_selected = {
+          bg = selectedColor,
+          bold = true,
+        },
+        modified = {
+          fg = indicatorColor,
+        },
+        modified_visible = {
+          fg = indicatorColor,
+          bg = visibleColor,
+        },
+        modified_selected = {
+          fg = indicatorColor,
+          bg = selectedColor,
+          -- No need for bold!
+        },
+        error = {
+          fg = errorFgColor,
+        },
+        warning = {
+          fg = warningFgColor,
+        },
+        info = {
+          fg = infoFgColor,
+        },
+        hint = {
+          fg = hintFgColor,
+        },
+        error_selected = {
+          fg = errorFgColor,
+          bg = selectedColor,
+          bold = true,
+        },
+        warning_selected = {
+          fg = warningFgColor,
+          bg = selectedColor,
+          bold = true,
+        },
+        info_selected = {
+          fg = infoFgColor,
+          bg = selectedColor,
+          bold = true,
+        },
+        hint_selected = {
+          fg = hintFgColor,
+          bg = selectedColor,
+          bold = true,
+        },
+        error_visible = {
+          fg = errorFgColor,
+          bg = visibleColor,
+        },
+        warning_visible = {
+          fg = warningFgColor,
+          bg = visibleColor,
+        },
+        info_visible = {
+          fg = infoFgColor,
+          bg = visibleColor,
+        },
+        hint_visible = {
+          fg = hintFgColor,
+          bg = visibleColor,
+        },
+        error_diagnostic = {
+          fg = errorFgColor,
+        },
+        warning_diagnostic = {
+          fg = warningFgColor,
+        },
+        info_diagnostic = {
+          fg = infoFgColor,
+        },
+        hint_diagnostic = {
+          fg = hintFgColor,
+        },
+        error_diagnostic_selected = {
+          fg = errorFgColor,
+          bg = selectedColor,
+          bold = true,
+        },
+        warning_diagnostic_selected = {
+          fg = warningFgColor,
+          bg = selectedColor,
+          bold = true,
+        },
+        info_diagnostic_selected = {
+          fg = infoFgColor,
+          bg = selectedColor,
+          bold = true,
+        },
+        hint_diagnostic_selected = {
+          fg = hintFgColor,
+          bg = selectedColor,
+          bold = true,
+        },
+        error_diagnostic_visible = {
+          fg = errorFgColor,
+          bg = visibleColor,
+        },
+        warning_diagnostic_visible = {
+          fg = warningFgColor,
+          bg = visibleColor,
+        },
+        info_diagnostic_visible = {
+          fg = infoFgColor,
+          bg = visibleColor,
+        },
+        hint_diagnostic_visible = {
+          fg = hintFgColor,
+          bg = visibleColor,
+        },
+        pick = {
+          fg = pickFgColor,
+        },
+        pick_selected = {
+          fg = pickFgColor,
+          bg = selectedColor,
+          bold = true,
+        },
+        pick_visible = {
+          fg = pickFgColor,
+          bg = visibleColor,
+        },
       },
     })
 
-    -- vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', { desc = '下一个 buffer', noremap = true })
-    -- vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', { desc = '上一个 buffer', noremap = true })
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function()
         vim.keymap.set(
