@@ -77,6 +77,7 @@ return {
     local selectedColor = '#4792a8'
     local visibleColor = color_table.current_index
     local indicatorColor = '#fde047'
+    local duplicateColor = color_table.light_green
     local pickFgColor = color_table.light_green
     local visibleFgColor = '#e2e8f0'
     local errorFgColor = '#ffffff'
@@ -85,7 +86,8 @@ return {
     local hintFgColor = '#ffffff'
     require('bufferline').setup({
       options = {
-        max_name_length = 30, -- 文件名最大长度
+        max_prefix_length = 25,
+        max_name_length = 40, -- 文件名最大长度
         diagnostics = 'nvim_lsp',
         -- 左侧让出 nvim-tree 的位置
         offsets = {
@@ -132,6 +134,18 @@ return {
           bg = visibleColor,
         },
         separator_selected = {
+          bg = selectedColor,
+          bold = true,
+        },
+        duplicate = {
+          fg = duplicateColor,
+        },
+        duplicate_visible = {
+          fg = duplicateColor,
+          bg = visibleColor,
+        },
+        duplicate_selected = {
+          fg = duplicateColor,
           bg = selectedColor,
           bold = true,
         },
