@@ -7,6 +7,14 @@ gui:
   sidePanelWidth: 0.3 #左侧面板宽度 (0 - 1.0)
   showFileTree: false
   nerdFontsVersion: "3"
+  branchColorPatterns:
+    "^feature/": "#00ff00"
+    "^refactor/": "cyan"
+    "^bugfix/": "#FF6B6B"
+    "^master$": "yellow"
+    "^main$": "yellow"
+    "^uat$": "yellow"
+    "^dev$": "yellow"
 
 git: # Config relating to git
   paging:
