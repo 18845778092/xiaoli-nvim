@@ -1,8 +1,8 @@
 return function()
   local color_table = require('core.custom-style').color_table
   local vue_language_server_path = vim.fn.expand('$MASON/packages')
-    .. '/vue-language-server'
-    .. '/node_modules/@vue/language-server'
+      .. '/vue-language-server'
+      .. '/node_modules/@vue/language-server'
 
   local vue_plugin = {
     name = '@vue/typescript-plugin',
@@ -12,13 +12,13 @@ return function()
   }
 
   local shared_config = {
-    suggest = { completeFunctionCalls = true },
+    -- suggest = { completeFunctionCalls = true },
     inlayHints = {
-      parameterNames = { enabled = 'all', suppressWhenArgumentMatchesName = false },
-      parameterTypes = { enabled = true },
-      variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
-      propertyDeclarationTypes = { enabled = true },
-      functionLikeReturnTypes = { enabled = true },
+      -- parameterNames = { enabled = 'all', suppressWhenArgumentMatchesName = false },
+      -- parameterTypes = { enabled = true },
+      -- variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
+      -- propertyDeclarationTypes = { enabled = true },
+      -- functionLikeReturnTypes = { enabled = true },
       enumMemberValues = { enabled = true },
     },
   }
@@ -60,7 +60,7 @@ return function()
     end,
   }
 
-  vim.lsp.config('vtsls', vtsls_config) -- vue 文件 ts部分支持
+  vim.lsp.config('vtsls', vtsls_config)   -- vue 文件 ts部分支持
   vim.lsp.config('vue_ls', vue_ls_config) -- vue文件 html css支持
 
   vim.lsp.enable({
@@ -80,5 +80,5 @@ return function()
     end,
   })
 
-  -- vim.lsp.inlay_hint.enable()
+  vim.lsp.inlay_hint.enable()
 end
