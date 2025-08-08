@@ -112,7 +112,7 @@ return {
       },
       completion = {
         keyword_length = 0,
-        completeopt = 'menu,menuone,preview,noselect',
+        completeopt = 'menu,menuone,preview,select',
       },
       snippet = { -- configure how nvim-cmp interacts with snippet engine
         expand = function(args)
