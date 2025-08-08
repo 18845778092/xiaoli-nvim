@@ -1,5 +1,33 @@
 -- auto code completion
 
+local symbol_map = {
+  Text = '',
+  Method = '',
+  Function = '',
+  Constructor = '',
+  Field = '',
+  Variable = '',
+  Class = '',
+  Interface = '',
+  Module = '',
+  Property = '',
+  Unit = '',
+  Value = '',
+  Enum = '',
+  Keyword = '',
+  Snippet = '',
+  Color = '',
+  File = '',
+  Reference = '',
+  Folder = '',
+  EnumMember = '',
+  Constant = '',
+  Struct = '',
+  Event = '',
+  Operator = '',
+  TypeParameter = '',
+}
+
 return {
   'hrsh7th/nvim-cmp',
   event = { 'BufReadPre', 'BufNewFile', 'VimEnter' },
@@ -9,6 +37,7 @@ return {
     'hrsh7th/cmp-path', -- source for file system paths
     'hrsh7th/cmp-cmdline', -- cmdline auto-completion
     'saadparwaiz1/cmp_luasnip', -- for autocompletion
+    'xzbdmw/colorful-menu.nvim',
     {
       'L3MON4D3/LuaSnip',
       -- follow latest release.
@@ -33,7 +62,34 @@ return {
       return vim.tbl_contains(node_to_check, node:type())
     end
     local luasnip = require('luasnip')
-    local lspkind = require('lspkind')
+
+    require('vim.lsp.protocol').CompletionItemKind = {
+      '  Text', -- = 1
+      '  Function', -- = 2;
+      '  Method', -- = 3;
+      '  Constructor', -- = 4;
+      '  Field', -- = 5;
+      '  Variable', -- = 6;
+      '  Class', -- = 7;
+      '  Interface', -- = 8;
+      '  Module', -- = 9;
+      '  Property', -- = 10;
+      '  Unit', -- = 11;
+      '  Value', -- = 12;
+      '  Enum', -- = 13;
+      '  Keyword', -- = 14;
+      '  Snippet', -- = 15;
+      '  Color', -- = 16;
+      '  File', -- = 17;
+      '  Reference', -- = 18;
+      '  Folder', -- = 19;
+      '  EnumMember', -- = 20;
+      '  Constant', -- = 21;
+      '  Struct', -- = 22;
+      '  Event', -- = 23;
+      '  Operator', -- = 24;
+      '  TypeParameter', -- = 25;
+    }
 
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require('luasnip.loaders.from_vscode').lazy_load()
@@ -105,6 +161,8 @@ return {
             elseif cursor_before_line:sub(-1) == ':' then
               -- entry.completion_item.label:match('^:')
               return entry.completion_item.label:match(':') and not entry.completion_item.label:match('^:on%-')
+            elseif cursor_before_line:sub(-1) == '#' then
+              return entry.completion_item.kind == types.lsp.CompletionItemKind.Method
             else
               return true
             end
@@ -116,12 +174,27 @@ return {
         { name = 'render-markdown' },
       }),
 
-      -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
-        format = lspkind.cmp_format({
-          maxwidth = 50,
-          ellipsis_char = '...',
-        }),
+        fields = { 'kind', 'abbr', 'menu' },
+        format = function(entry, vim_item)
+          local kind = require('lspkind').cmp_format({
+            mode = 'symbol_text',
+            symbol_map = symbol_map,
+          })(entry, vim.deepcopy(vim_item))
+          local highlights_info = require('colorful-menu').cmp_highlights(entry)
+
+          if highlights_info ~= nil then
+            vim_item.abbr_hl_group = highlights_info.highlights
+            local strings = vim.split(highlights_info.text, '%s', { trimempty = true })
+            vim_item.abbr = strings[1] or ''
+          end
+
+          local strings = vim.split(kind.kind, '%s', { trimempty = true })
+          vim_item.kind = '' .. (strings[1] or '') .. ''
+          vim_item.menu = '[' .. entry.source.name .. ']'
+
+          return vim_item
+        end,
       },
     })
 
@@ -183,30 +256,34 @@ return {
       bg = '#252526', -- 边框背景
     })
 
-    -- 补全项类型图标颜色
-    vim.api.nvim_set_hl(0, 'CmpItemKindText', { fg = '#D4D4D4' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindMethod', { fg = '#B180D7' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { fg = '#B180D7' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindConstructor', { fg = '#B180D7' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindField', { fg = '#9CDCFE' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { fg = '#9CDCFE' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindClass', { fg = '#4EC9B0' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindInterface', { fg = '#4EC9B0' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindModule', { fg = '#4EC9B0' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { fg = '#9CDCFE' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindEnum', { fg = '#4EC9B0' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { fg = '#569CD6' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindSnippet', { fg = '#D7BA7D' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindColor', { fg = '#D7BA7D' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindFile', { fg = '#D7BA7D' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindReference', { fg = '#D7BA7D' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindFolder', { fg = '#D7BA7D' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindEnumMember', { fg = '#4FC1FF' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindConstant', { fg = '#4FC1FF' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindStruct', { fg = '#4EC9B0' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindEvent', { fg = '#4EC9B0' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindOperator', { fg = '#D4D4D4' })
-    vim.api.nvim_set_hl(0, 'CmpItemKindTypeParameter', { fg = '#4EC9B0' })
+    vim.api.nvim_create_autocmd('VimEnter', {
+      callback = function()
+        -- 补全项类型图标颜色
+        vim.api.nvim_set_hl(0, 'CmpItemKindText', { fg = '#D4D4D4' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindMethod', { fg = '#B180D7' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { fg = '#B180D7' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindConstructor', { fg = '#B180D7' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindField', { fg = '#9CDCFE' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { fg = '#9CDCFE' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindClass', { fg = '#4EC9B0' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindInterface', { fg = '#4EC9B0' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindModule', { fg = '#4EC9B0' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { fg = '#9CDCFE' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindEnum', { fg = '#4EC9B0' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { fg = '#569CD6' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindSnippet', { fg = '#D7BA7D' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindColor', { fg = '#D7BA7D' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindFile', { fg = '#D7BA7D' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindReference', { fg = '#D7BA7D' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindFolder', { fg = '#D7BA7D' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindEnumMember', { fg = '#4FC1FF' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindConstant', { fg = '#4FC1FF' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindStruct', { fg = '#4EC9B0' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindEvent', { fg = '#e2a144' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindOperator', { fg = '#D4D4D4' })
+        vim.api.nvim_set_hl(0, 'CmpItemKindTypeParameter', { fg = '#4EC9B0' })
+      end,
+    })
 
     cmp.event:on('menu_closed', function()
       local bufnr = vim.api.nvim_get_current_buf()
