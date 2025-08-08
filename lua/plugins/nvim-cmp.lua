@@ -55,7 +55,6 @@ return {
         max_view_entries = 30,
       },
       completion = {
-        keyword_pattern = [[\%(\k\+\|[a-zA-Z_@][-a-zA-Z0-9_:@.]*\%(:[-a-zA-Z0-9_]*\)*\)]],
         keyword_length = 0,
         completeopt = 'menu,menuone,preview,noselect',
       },
