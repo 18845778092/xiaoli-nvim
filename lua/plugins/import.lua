@@ -6,6 +6,7 @@ return {
   config = function()
     require('import').setup({
       picker = 'telescope',
+      insert_at_top = false,
     })
 
     vim.api.nvim_create_autocmd('VimEnter', {
