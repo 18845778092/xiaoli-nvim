@@ -14,6 +14,9 @@ return function()
   -- Css
   require('plugins.lsp.servers.css')()
 
+  -- Html
+  require('plugins.lsp.servers.html')()
+
   -- Emmet
   require('plugins.lsp.servers.emmet')()
 end
