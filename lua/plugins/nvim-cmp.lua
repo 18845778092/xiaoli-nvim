@@ -179,13 +179,22 @@ return {
       else
         fallback() -- 使用默认的历史记录导航
       end
-    end, { 'c' }) -- 'c' 命令行模式
+    end, { 'c' })
 
     cmdline_mapping['<Down>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       else
-        fallback() -- 使用默认的历史记录导航
+        fallback()
+      end
+    end, { 'c' })
+
+    cmdline_mapping['<CR>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.confirm({ select = true })
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', false)
+      else
+        fallback()
       end
     end, { 'c' })
 
@@ -193,7 +202,6 @@ return {
       mapping = cmdline_mapping,
       sources = cmp.config.sources({
         { name = 'path' },
-      }, {
         {
           name = 'cmdline',
           option = {
@@ -201,6 +209,47 @@ return {
           },
         },
       }),
+      sorting = {
+        comparators = {
+          function(entry1, entry2)
+            local input = vim.fn.getcmdline()
+            local label1 = entry1.completion_item.label
+            local label2 = entry2.completion_item.label
+
+            -- :w -> write
+            if input == 'w' then
+              if label1 == 'write' and label2 ~= 'write' then
+                return true
+              elseif label2 == 'write' and label1 ~= 'write' then
+                return false
+              end
+
+              if label1 == 'w' and label2 ~= 'w' then
+                return true
+              elseif label2 == 'w' and label1 ~= 'w' then
+                return false
+              end
+            end
+
+            -- q -> quit
+            if input == 'q' then
+              if label1 == 'quit' and label2 ~= 'quit' then
+                return true
+              elseif label2 == 'quit' and label1 ~= 'quit' then
+                return false
+              end
+
+              if label1 == 'q' and label2 ~= 'q' then
+                return true
+              elseif label2 == 'q' and label1 ~= 'q' then
+                return false
+              end
+            end
+
+            return nil
+          end,
+        },
+      },
     })
     vim.api.nvim_set_hl(0, 'Pmenu', {
       bg = '#252526', -- VSCode 深色背景
