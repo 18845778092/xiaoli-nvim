@@ -201,6 +201,14 @@ return {
       end
     end, { 'c' })
 
+    cmdline_mapping['<TAB>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.confirm({ select = true })
+      else
+        fallback()
+      end
+    end, { 'c' })
+
     cmp.setup.cmdline(':', {
       mapping = cmdline_mapping,
       sources = cmp.config.sources({
