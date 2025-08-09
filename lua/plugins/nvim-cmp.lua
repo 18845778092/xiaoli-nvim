@@ -101,7 +101,10 @@ return {
             cmp.complete()
           end
         end, { 'i' }), -- i - insert mode; s - select mode
-      }),
+        ['<C-y>'] = cmp.mapping(function(fallback)
+          fallback()
+        end),
+      }, { 'i' }),
       -- sources for autocompletion
       sources = cmp.config.sources({
         {
@@ -202,6 +205,7 @@ return {
       mapping = cmdline_mapping,
       sources = cmp.config.sources({
         { name = 'path' },
+      }, {
         {
           name = 'cmdline',
           option = {
