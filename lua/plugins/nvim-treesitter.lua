@@ -45,6 +45,7 @@ return {
         'markdown',
         'markdown_inline',
         'yaml',
+        'vimdoc',
       },
       textobjects = {
         move = {

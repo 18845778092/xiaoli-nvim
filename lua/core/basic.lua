@@ -36,6 +36,14 @@ vim.api.nvim_create_autocmd('FileChangedShellPost', {
   command = 'echohl WarningMsg | echo \'文件已被外部程序修改\' | echohl None',
 })
 
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  pattern = '*',
+  callback = function()
+    if vim.bo.buftype == 'help' then
+      vim.cmd('wincmd L') -- 右侧打开
+    end
+  end,
+})
 -- 防止包裹
 opt.wrap = false
 

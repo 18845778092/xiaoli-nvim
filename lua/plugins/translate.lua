@@ -56,8 +56,8 @@ return {
         vim.keymap.set(
           'v',
           '<leader>tr',
-          pantran.motion_translate,
-          { desc = '翻译选中文本', noremap = true, silent = true, expr = true }
+          ':\'<,\'>Pantran target=zh-CN<CR>',
+          { desc = '翻译选中文本', silent = true, noremap = true }
         )
 
         vim.api.nvim_create_user_command('TranslateCN', function()
