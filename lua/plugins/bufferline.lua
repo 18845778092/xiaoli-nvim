@@ -54,12 +54,17 @@ local function auto_close_target_buf()
   local close_helper = require('helper.close-helper')
   local maybe_close_diffview = close_helper.maybe_close_diffview
   local maybe_close_gitsigns_blame = close_helper.maybe_close_gitsigns_blame
+  local maybe_close_quickfix = close_helper.maybe_close_quickfix
 
   if maybe_close_diffview() then
     return
   end
 
   if maybe_close_gitsigns_blame() then
+    return
+  end
+
+  if maybe_close_quickfix() then
     return
   end
 
