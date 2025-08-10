@@ -26,6 +26,7 @@ return {
 
       vim.keymap.set('n', '<CR>', api.node.open.edit, opts('open'))
       vim.keymap.set('n', 'o', api.node.open.edit, opts('open'))
+      vim.keymap.del('n', '-', { buffer = bufnr })
     end
 
     local glyphs = {
