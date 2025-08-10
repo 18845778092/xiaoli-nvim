@@ -4,7 +4,6 @@ return {
   'RRethy/vim-illuminate',
   config = function()
     local illuminate = require('illuminate')
-    local color_table = require('core.custom-style').color_table
 
     illuminate.configure({
       providers = {
@@ -31,23 +30,5 @@ return {
     vim.keymap.set('n', '[[', function()
       illuminate_goto('prev')
     end, { desc = '上一个引用' })
-
-    vim.api.nvim_create_autocmd('VimEnter', {
-      callback = function()
-        vim.api.nvim_set_hl(0, 'IlluminatedWordText', {
-          bg = color_table.cursor_line_color,
-          bold = true,
-        })
-        vim.api.nvim_set_hl(0, 'IlluminatedWordRead', {
-          bg = color_table.cursor_line_color,
-
-          bold = true,
-        })
-        vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', {
-          bg = color_table.cursor_line_color,
-          bold = true,
-        })
-      end,
-    })
   end,
 }

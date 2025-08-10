@@ -135,6 +135,13 @@ return {
       callback = function()
         keymap.set('n', '<leader>fo', tele_builtin.oldfiles, { desc = 'Fuzzy find recent files' })
         keymap.set('n', '<leader>fm', tele_builtin.marks, { desc = 'show all marks' })
+        keymap.set('n', '<leader>fh', tele_builtin.highlights, { desc = 'Fuzzy find highlights' })
+        keymap.set(
+          'n',
+          '<leader>ft',
+          require('helper.theme.switcher').preview_theme_selector,
+          { desc = 'Fuzzy find themes with preview' }
+        )
         keymap.set({ 'n', 'i' }, '<C-Tab>', function()
           tele_builtin.buffers({
             sort_lastused = true,

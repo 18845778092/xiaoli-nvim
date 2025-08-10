@@ -7,11 +7,6 @@ return {
     build = 'brew install lazygit',
     config = function()
       require('toggleterm').setup({
-        highlights = {
-          FloatBorder = {
-            guifg = '#72c6b1',
-          },
-        },
         direction = 'float',
         float_opts = {
           border = 'double',

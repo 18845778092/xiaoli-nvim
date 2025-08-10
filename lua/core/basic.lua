@@ -5,7 +5,6 @@ local opt = vim.opt
 opt.relativenumber = true
 opt.number = true
 opt.autoread = true -- 自动重载变更
--- 缩进
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
@@ -51,13 +50,6 @@ opt.wrap = false
 -- 启用光标行高亮
 opt.cursorline = true
 --  注释颜色
-vim.api.nvim_set_hl(0, '@comment', { fg = color_table.light_green, bg = 'NONE' })
--- 设置光标行样式
-vim.api.nvim_set_hl(0, 'CursorLine', {
-  bg = color_table.cursor_line_color,
-  bold = true, -- 加粗（可选）
-  underline = false, -- 下划线（可选）
-})
 
 -- 启用鼠标
 opt.mouse:append('a')
@@ -76,8 +68,6 @@ opt.smartcase = true
 -- 外观
 opt.termguicolors = true
 opt.signcolumn = 'yes'
-vim.api.nvim_set_hl(0, 'FlashMatch', { fg = '#00FF00' })
-vim.api.nvim_set_hl(0, 'FlashCurrent', { fg = 'gold' })
 
 -- -- cmd('syntax on')
 -- vim.api.nvim_command('filetype plugin indent on')
@@ -164,14 +154,6 @@ vim.api.nvim_create_autocmd('VimEnter', {
       inoremap <silent> <Esc> <Esc>
     ]])
   end,
-})
-
-vim.api.nvim_set_hl(0, 'LspInlayHint', { fg = color_table.light_green })
-
-vim.api.nvim_set_hl(0, 'CustomYankHighlight', {
-  bg = '#06d6a0',
-  fg = '#ffffff',
-  bold = true,
 })
 
 vim.api.nvim_create_autocmd('TextYankPost', {

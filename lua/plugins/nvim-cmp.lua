@@ -263,60 +263,6 @@ return {
         },
       },
     })
-    vim.api.nvim_set_hl(0, 'Pmenu', {
-      bg = '#252526', -- VSCode 深色背景
-      fg = '#CCCCCC', -- 浅灰色文字
-      blend = 0, -- 不透明
-    })
-
-    vim.api.nvim_set_hl(0, 'PmenuSel', {
-      bg = '#094771', -- VSCode 蓝色选中背景
-      fg = '#FFFFFF',
-      bold = true,
-    })
-
-    vim.api.nvim_set_hl(0, 'PmenuSbar', {
-      bg = '#3E3E42', -- 滚动条背景
-    })
-
-    vim.api.nvim_set_hl(0, 'PmenuThumb', {
-      bg = '#6A6A6A', -- 滚动条滑块
-    })
-
-    -- 补全菜单边框
-    vim.api.nvim_set_hl(0, 'FloatBorder', {
-      fg = '#464647', -- 边框颜色
-      bg = '#252526', -- 边框背景
-    })
-
-    vim.api.nvim_create_autocmd('VimEnter', {
-      callback = function()
-        -- 补全项类型图标颜色
-        vim.api.nvim_set_hl(0, 'CmpItemKindText', { fg = '#D4D4D4' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindMethod', { fg = '#B180D7' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { fg = '#B180D7' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindConstructor', { fg = '#B180D7' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindField', { fg = '#9CDCFE' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { fg = '#9CDCFE' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindClass', { fg = '#4EC9B0' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindInterface', { fg = '#4EC9B0' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindModule', { fg = '#4EC9B0' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { fg = '#9CDCFE' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindEnum', { fg = '#4EC9B0' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { fg = '#569CD6' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindSnippet', { fg = '#D7BA7D' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindColor', { fg = '#D7BA7D' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindFile', { fg = '#D7BA7D' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindReference', { fg = '#D7BA7D' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindFolder', { fg = '#D7BA7D' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindEnumMember', { fg = '#4FC1FF' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindConstant', { fg = '#4FC1FF' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindStruct', { fg = '#4EC9B0' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindEvent', { fg = '#e2a144' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindOperator', { fg = '#D4D4D4' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindTypeParameter', { fg = '#4EC9B0' })
-      end,
-    })
 
     cmp.event:on('menu_closed', function()
       local bufnr = vim.api.nvim_get_current_buf()

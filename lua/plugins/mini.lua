@@ -29,11 +29,5 @@ return {
       },
       symbol = '┋',
     })
-
-    vim.api.nvim_create_autocmd('VimEnter', {
-      callback = function()
-        vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = color_table.active_line_num_color }) -- mini.indentscope指示线颜色
-      end,
-    })
   end,
 }

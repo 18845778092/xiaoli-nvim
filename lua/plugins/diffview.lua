@@ -10,19 +10,7 @@ return {
     require('diffview').setup({
       hooks = {
         view_opened = function(view)
-          local diff_green = '#4e5c34'
-          local diff_red = '#3d1a1a'
-          vim.api.nvim_set_hl(0, 'DiffDelete', {
-            bg = 'NONE',
-            fg = '#474849',
-          })
-          vim.api.nvim_set_hl(0, 'DiffAdd', {
-            bg = diff_green,
-          })
-          vim.api.nvim_set_hl(0, 'DiffText', {
-            fg = 'NONE',
-            bg = diff_green,
-          })
+          require('helper.theme.plugins.diffview').reset()
           vim.g.diffview_open_flag = true
           -- 自动聚焦diff页面
           local function auto_focus()
