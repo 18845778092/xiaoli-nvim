@@ -24,6 +24,15 @@ local function get_bufferline_hl_map(ops)
       fg = fgColor,
       bold = true,
     },
+    numbers = {},
+    numbers_visible = {
+      fg = visibleFgColor,
+      bg = visibleColor,
+    },
+    numbers_selected = {
+      bg = selectedBgColor,
+      fg = fgColor,
+    },
     separator = {},
     separator_visible = {
       bg = visibleColor,
@@ -184,15 +193,20 @@ local M = {}
 function M.get_bufferline_config()
   return {
     options = {
+      numbers = function(opts)
+        return string.format('%s ╱', opts.ordinal)
+      end,
       max_prefix_length = 25,
       max_name_length = 40, -- 文件名最大长度
       diagnostics = 'nvim_lsp',
       offsets = {
         {
           filetype = 'NvimTree',
-          text = 'File Explorer',
+          text = function()
+            return 'File Explorer -> ' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+          end,
           highlight = 'Directory',
-          text_align = 'left',
+          text_align = 'center',
         },
       },
       -- 插入顺序排序
@@ -223,7 +237,7 @@ end
 M.highlight_map = {
   darkplus = darkplus_hl_map,
   ['gruvbox-material'] = get_bufferline_hl_map({
-    selectedBgColor =color_table.gruvbox_material_background,
+    selectedBgColor = color_table.gruvbox_material_background,
     fgColor = '#ffffff',
     visibleColor = color_table.current_index,
     indicatorColor = '#fde047',
