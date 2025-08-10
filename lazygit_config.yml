@@ -15,20 +15,6 @@ gui:
     "^main$": "yellow"
     "^uat$": "yellow"
     "^dev$": "yellow"
-
-git: # Config relating to git
-  paging:
-    colorArg: always
-    pager: "delta --dark --paging=never"
-    useConfig: false
-    externalDiffCommand: ""
-  # Command used when displaying the current branch git log in the main window
-  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(yellow)%h%Creset %C(white)-%Creset %C(bold magenta)%an%Creset %C(white)-%Creset %C(cyan)%ad%Creset %C(white)-%Creset %C(ul bold green)%s%Creset' {{branchName}}"
-  # Commands used to display git log of all branches in the main window, they will be cycled in order of appearance (array of strings)
-  allBranchesLogCmds:
-    - "git log --graph --color=always --abbrev-commit --decorate --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(yellow)%h%Creset %C(white)-%Creset %C(bold magenta)%an%Creset %C(white)-%Creset %C(cyan)%ad%Creset %C(white)-%Creset %C(ul bold green)%s%Creset'"
-
-  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#color-attributes
   theme:
     # Border color of focused window
     activeBorderColor:
@@ -51,7 +37,7 @@ git: # Config relating to git
     # Background color of selected line.
     # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#highlighting-the-selected-line
     selectedLineBgColor:
-      - blue
+      - black
 
     # Background color of selected line when view doesn't have focus.
     inactiveViewSelectedLineBgColor:
@@ -80,3 +66,16 @@ git: # Config relating to git
     # Default text color
     defaultFgColor:
       - default
+
+# Config relating to git
+git:
+  paging:
+    colorArg: always
+    pager: "delta --dark --paging=never"
+    useConfig: false
+    externalDiffCommand: ""
+  # Command used when displaying the current branch git log in the main window
+  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(yellow)%h%Creset %C(white)-%Creset %C(bold magenta)%an%Creset %C(white)-%Creset %C(cyan)%ad%Creset %C(white)-%Creset %C(ul bold green)%s%Creset' {{branchName}}"
+  # Commands used to display git log of all branches in the main window, they will be cycled in order of appearance (array of strings)
+  allBranchesLogCmds:
+    - "git log --graph --color=always --abbrev-commit --decorate --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(yellow)%h%Creset %C(white)-%Creset %C(bold magenta)%an%Creset %C(white)-%Creset %C(cyan)%ad%Creset %C(white)-%Creset %C(ul bold green)%s%Creset'"
