@@ -136,6 +136,9 @@ return {
         keymap.set('n', '<leader>fo', tele_builtin.oldfiles, { desc = 'Fuzzy find recent files' })
         keymap.set('n', '<leader>fm', tele_builtin.marks, { desc = 'show all marks' })
         keymap.set('n', '<leader>fh', tele_builtin.highlights, { desc = 'Fuzzy find highlights' })
+        keymap.set({ 'n', 'v' }, '<leader>fb', function()
+          require('helper.comment-box-selector').comment_box_selector()
+        end, { desc = 'Fuzzy find highlights' })
         keymap.set(
           'n',
           '<leader>ft',
