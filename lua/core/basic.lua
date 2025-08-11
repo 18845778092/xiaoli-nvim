@@ -61,6 +61,8 @@ opt.clipboard:append('unnamedplus')
 opt.splitright = true
 opt.splitbelow = true
 
+opt.foldlevel = 99
+opt.foldlevelstart = 99
 -- 搜索
 opt.ignorecase = true
 opt.smartcase = true
