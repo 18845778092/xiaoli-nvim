@@ -148,7 +148,7 @@ return {
           })
         end, { desc = 'Lists open buffers in current neovim instance' })
         keymap.set(
-          'n',
+          { 'n', 'i' },
           '<C-f>',
           find_files_with_toggle,
           { desc = 'Fuzzy find files (' .. toggle_key .. '切换范围)' }
