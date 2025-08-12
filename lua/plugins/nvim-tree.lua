@@ -9,7 +9,8 @@ return {
     local function my_on_attach(bufnr)
       local api = require('nvim-tree.api')
 
-      --
+      vim.b[bufnr].miniindentscope_disable = true
+
       local function opts(desc)
         return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
       end
@@ -24,9 +25,24 @@ return {
       vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('nav parent'))
       vim.keymap.set('n', 'l', api.node.open.preview, opts('open / preview'))
 
+      -- 跳转到当前文件夹的第一个
+      vim.keymap.set('n', 'tt', api.node.navigate.sibling.first, opts('Go to First Sibling'))
+      -- 跳转到当前文件夹的最后一个
+      vim.keymap.set('n', 'tb', api.node.navigate.sibling.last, opts('Go to Last Sibling'))
+
       vim.keymap.set('n', '<CR>', api.node.open.edit, opts('open'))
       vim.keymap.set('n', 'o', api.node.open.edit, opts('open'))
       vim.keymap.del('n', '-', { buffer = bufnr })
+      vim.keymap.del('n', 'J', { buffer = bufnr })
+      vim.keymap.del('n', 'K', { buffer = bufnr })
+
+      -- actions.expand_all
+      vim.keymap.set('n', 'zr', api.tree.expand_all, opts('Expand All'))
+      -- vim.keymap.set('n', 'zm', api.tree.collapse_all, opts('Collapse All'))
+      vim.keymap.set('n', 'zm', function()
+        api.tree.collapse_all()
+        vim.cmd('normal! gg')
+      end, opts('Collapse All and Go to Top'))
     end
 
     local glyphs = {
@@ -62,9 +78,21 @@ return {
         ignore_list = {}, -- 不想自动聚焦的文件类型可以加在这里
       },
       view = {
-        width = 45,
+        width = 40,
       },
       renderer = {
+        indent_width = 2,
+        indent_markers = {
+          enable = true,
+          inline_arrows = true,
+          icons = {
+            corner = '└',
+            edge = '│',
+            item = '│',
+            bottom = '─',
+            none = ' ',
+          },
+        },
         icons = {
           show = {
             file = true,
@@ -91,6 +119,18 @@ return {
         no_bookmark = false,
         custom = {},
         exclude = {},
+      },
+      actions = {
+        expand_all = {
+          exclude = {
+            '.git',
+            'node_modules',
+            'js-debug',
+            'after',
+            'images',
+            'snippets',
+          },
+        },
       },
     })
 
