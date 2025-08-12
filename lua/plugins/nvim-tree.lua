@@ -9,8 +9,6 @@ return {
     local function my_on_attach(bufnr)
       local api = require('nvim-tree.api')
 
-      vim.b[bufnr].miniindentscope_disable = true
-
       local function opts(desc)
         return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
       end
