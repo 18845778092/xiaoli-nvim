@@ -3,12 +3,16 @@
   "contributes": {
     "snippets": [
       {
-        "language": "javascript",
-        "path": "./javascript.json"
+        "language": "typescript",
+        "path": "./vue-ts-normal.json"
       },
       {
         "language": "vue",
-        "path": "./vue.json"
+        "path": "./vue-ts-normal.json"
+      },
+      {
+        "language": "lua",
+        "path": "./lua.json"
       }
     ]
   }

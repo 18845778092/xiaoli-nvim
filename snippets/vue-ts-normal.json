@@ -1,0 +1,33 @@
+{
+  "Arrow Function": {
+    "prefix": "anfn",
+    "body": ["const $1 = ($2) => {", "  $3", "};"],
+    "description": "arrow fn"
+  },
+  "Watch": {
+    "prefix": "watch;",
+    "scope": "typescript,vue",
+    "body": [
+      "watch(",
+      "  $1,",
+      "  (v, o) => {",
+      "    console.trace(v);",
+      "  },",
+      "  {",
+      "    onTrigger(e) {",
+      "      console.log(e);",
+      "    },",
+      "    flush: 'sync',",
+      "    $2",
+      "  }",
+      ");"
+    ],
+    "description": "watch debug template"
+  },
+  "Computed": {
+    "prefix": "computed;",
+    "scope": "typescript,vue",
+    "body": ["const compute${1} = computed(() => {", "  return null", "});"],
+    "description": "watch debug template"
+  }
+}

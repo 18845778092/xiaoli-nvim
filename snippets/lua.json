@@ -1,0 +1,19 @@
+{
+  "Config": {
+    "prefix": "config;",
+    "body": ["config = function()", "  $0", "end"],
+    "description": "lua config"
+  },
+  "VimEnter": {
+    "prefix": "vimenter;",
+    "body": [
+      "vim.api.nvim_create_autocmd('VimEnter', {",
+      "  callback = function()",
+      "    $1",
+      "  end,",
+      "  desc = '${2:Description of the autocmd}'",
+      "})"
+    ],
+    "description": "VimEnter"
+  }
+}

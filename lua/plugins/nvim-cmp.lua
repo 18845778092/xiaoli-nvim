@@ -94,13 +94,21 @@ return {
       mapping = cmp.mapping.preset.insert({
         ['<C-e>'] = cmp.mapping.abort(), -- close completion window
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<TAB>'] = cmp.mapping.confirm({ select = false }),
+        ['<Tab>'] = cmp.mapping(function(fallback)
+          if luasnip.jumpable(1) then
+            luasnip.jump(1)
+          else
+            -- 默认 Tab 行为
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', false)
+          end
+        end),
+
         ['<C-i>'] = cmp.mapping(function()
           -- vscode like complete by <C-i>
           if not cmp.visible() and has_words_before() then
             cmp.complete()
           end
-        end, { 'i' }), -- i - insert mode; s - select mode
+        end), -- i - insert mode; s - select mode
         ['<C-y>'] = cmp.mapping(function(fallback)
           fallback()
         end),
