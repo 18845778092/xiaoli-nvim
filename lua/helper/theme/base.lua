@@ -18,6 +18,11 @@ function M.reset()
     bold = true,
     underline = false,
   })
+  vim.api.nvim_set_hl(0, 'CursorColumn', {
+    bg = color_table.cursor_line_color,
+    bold = true,
+    underline = false,
+  })
 
   vim.api.nvim_set_hl(0, 'CustomYankHighlight', {
     bg = '#06d6a0',

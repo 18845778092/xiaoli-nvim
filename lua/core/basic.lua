@@ -13,6 +13,8 @@ opt.jumpoptions = 'stack' -- gd ctrl+o 跳转模型
 opt.swapfile = false
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.opt.cursorcolumn = true
+vim.opt.cursorline = true
 
 -- - "t"  -- 不根据 textwidth 自动换行
 -- - "c"  -- 不自动换行注释
@@ -92,7 +94,6 @@ opt.signcolumn = 'yes'
 -- o.numberwidth = 2
 -- o.relativenumber = false
 -- o.signcolumn = 'yes'
--- o.cursorline = true
 
 -- -- Better editing experience
 -- o.expandtab = true
