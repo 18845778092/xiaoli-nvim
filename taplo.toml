@@ -1,0 +1,18 @@
+[formatting]
+# 基本缩进
+indent_type = "spaces"
+indent_size = 2
+column_width = 100
+
+# 数组格式化
+array_trailing_comma = false
+array_auto_expand = true
+compact_arrays = false
+
+# 内联表格
+inline_table_expand = true
+compact_inline_tables = false
+
+# 其他
+comment_align = true       # 注释对齐
+string_format = "preserve" # 字符串格式保持原样

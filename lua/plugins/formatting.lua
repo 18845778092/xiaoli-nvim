@@ -8,6 +8,7 @@ return {
     'brew install stylua',
     'brew install shfmt',
     'brew install shellcheck',
+    'brew install taplo',
   },
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
@@ -32,6 +33,7 @@ return {
         sh = { 'shfmt' }, -- brew install shfmt  brew install shellcheck
         bash = { 'shfmt' },
         zsh = { 'shfmt' },
+        toml = { 'taplo' },
       },
       format_on_save = {
         lsp_fallback = true,
@@ -49,7 +51,6 @@ return {
             '--stdin-file-path',
             '$FILENAME',
           },
-          -- args = { 'format', '--stdin-file-path', '$FILENAME' },
           stdin = true,
         },
         clang_format = {
@@ -58,6 +59,14 @@ return {
         },
         shfmt = {
           command = 'shfmt',
+          args = {
+            '--config',
+            vim.fn.stdpath('config') .. '/taplo.toml',
+          },
+          stdin = true,
+        },
+        taplo = {
+          command = 'taplo',
           stdin = true,
         },
       },
