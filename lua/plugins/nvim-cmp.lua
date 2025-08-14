@@ -50,6 +50,11 @@ return {
   },
   config = function()
     local cmp = require('cmp')
+
+    -- insert `(` after select function or method item
+    local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+
     local snippets_path = vim.fn.stdpath('config') .. '/snippets'
     -- check if in start tag
     local function is_in_start_tag()
@@ -81,6 +86,7 @@ return {
     cmp.setup({
       performance = {
         max_view_entries = 30,
+        debounce = 30,
       },
       completion = {
         keyword_length = 0,
@@ -209,13 +215,25 @@ return {
       end
     end, { 'c' })
 
-    cmdline_mapping['<TAB>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.confirm({ select = true })
-      else
-        fallback()
-      end
-    end, { 'c' })
+    vim.schedule(function()
+      cmdline_mapping['<Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.confirm({ select = true })
+        else
+          fallback()
+        end
+      end, { 'c' })
+    end, 100)
+
+    cmp.setup.cmdline({ '/', '?' }, {
+      mapping = cmdline_mapping,
+      completion = {
+        completeopt = 'menu,menuone,select',
+      },
+      sources = {
+        { name = 'buffer', keyword_length = 0 },
+      },
+    })
 
     cmp.setup.cmdline(':', {
       mapping = cmdline_mapping,
