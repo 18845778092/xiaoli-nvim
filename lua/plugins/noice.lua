@@ -11,6 +11,7 @@ return {
     local border = require('core.custom-style').border
 
     require('noice').setup({
+      presets = { inc_rename = true },
       cmdline = {
         -- 移除命令行边框
         view = 'cmdline_popup',
