@@ -3,14 +3,9 @@ local function get_insert_line()
     return 1
   end
 
-  local bufnr = vim.api.nvim_get_current_buf()
-  local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-  for i, line in ipairs(lines) do
-    if line:match('<script[^>]*>') then
-      return i + 1 -- script 标签的下一行
-    end
-  end
-  return 1 -- 没找到 script 标签，默认插入到第一行
+  local script_end_line = vim.fn.search('</script>', 'n') -- >= 1
+
+  return math.max(script_end_line, 1)
 end
 
 return {
