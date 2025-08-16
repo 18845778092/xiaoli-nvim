@@ -1,0 +1,41 @@
+{
+	"name": "Vimium C",
+	"@time": "2025/8/16 16:05:21",
+	"time": 1755331521135,
+	"environment": {
+		"extension": "2.12.2",
+		"platform": "mac",
+		"chromium": 139
+	},
+	"allBrowserUrls": true,
+	"exclusionRules": [],
+	"keyLayout": 2,
+	"keyMappings": [
+		"mapkey <L:v> <$>",
+		"mapkey <H:v> <0>",
+		"unmap H",
+		"unmap L",
+		"unmap T",
+		"unmap o",
+		"",
+		"map J scrollDown count=5",
+		"map K scrollUp count=5",
+		"",
+		"map <c-o> goBack",
+		"map <c-i> goForward",
+		"",
+		"# map <m-[> previousTab",
+		"# map <m-]> nextTab",
+		"map f LinkHints.activateOpenInNewForegroundTab",
+		"map yl LinkHints.activateCopyLinkUrl",
+		"map <m-l> ",
+		"map <m-l> Vomnibar.activateTabs",
+		"map <m-s-f> Vomnibar.activateInNewTab",
+		"map <m-s-t> restoreTab",
+		""
+	],
+	"localeEncoding": "",
+	"newTabUrl": "https://cn.bing.com/",
+	"searchUrl": "https://www.baidu.com/s?ie=utf-8&wd=$s 百度",
+	"vimSync": true
+}
