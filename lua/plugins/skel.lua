@@ -1,5 +1,5 @@
 return {
-  'motosir/skel-nvim',
+  'xiaoliyooo/skel-nvim',
   enabled = true,
   config = function()
     -- import basic default placeholder callbacks
