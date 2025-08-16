@@ -40,13 +40,15 @@ return {
         log_options = {
           git = {
             single_file = {
-              follow = true, -- 跟踪文件重命名
               all = true,
             },
             multi_file = {
               all = true,
             },
           },
+        },
+        win_config = {
+          height = 23,
         },
       },
     })
@@ -56,10 +58,7 @@ return {
 
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function()
-        -- Git diffview
-        -- map('n', '<leader>d', '<CMD>Git<CR>')
-        -- map('n', '<leader>h', '<CMD>DiffviewFileHistory<CR>')
-        map('n', '<leader>gh', '<CMD>DiffviewFileHistory %<CR>') -- 当前文件全量历史
+        map('n', '<leader>gh', '<CMD>DiffviewFileHistory %<CR>') -- 当前文件历史
         map('n', '<leader>gd', '<CMD>DiffviewOpen<CR>')
       end,
     })
