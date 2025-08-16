@@ -89,13 +89,13 @@ return {
       -- 预创建终端
       vim.api.nvim_create_autocmd('VimEnter', {
         callback = function()
-          vim.keymap.set({ 'n', 't' }, '<C-t>', '<cmd>lua _NORMAL_TERM_TOGGLE()<CR>', {
+          vim.keymap.set({ 'n', 'i', 't' }, '<D-j>', '<cmd>lua _NORMAL_TERM_TOGGLE()<CR>', {
             noremap = true,
             silent = true,
             desc = '切换普通终端',
           })
 
-          vim.keymap.set({ 'n', 't' }, '<C-g>', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', {
+          vim.keymap.set({ 'n', 'i', 't' }, '<D-S-g>', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', {
             noremap = true,
             silent = true,
             desc = '切换 Lazygit',

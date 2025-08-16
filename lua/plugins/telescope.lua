@@ -133,7 +133,6 @@ return {
     local keymap = vim.keymap
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function()
-        keymap.set('n', '<leader>fo', tele_builtin.oldfiles, { desc = 'Fuzzy find recent files' })
         keymap.set('n', '<leader>fm', tele_builtin.marks, { desc = 'show all marks' })
         keymap.set('n', '<leader>fh', tele_builtin.highlights, { desc = 'Fuzzy find highlights' })
         keymap.set({ 'n', 'v' }, '<leader>fb', function()
@@ -150,19 +149,22 @@ return {
             sort_lastused = true,
           })
         end, { desc = 'Lists open buffers in current neovim instance' })
+        keymap.set('n', '<leader>fs', tele_builtin.lsp_document_symbols, { desc = 'Search symbols in current file' })
+        --  +-------------------------------+ cmd +-------------------------------+
+        keymap.set({ 'n', 'i' }, '<D-l>', tele_builtin.oldfiles, { desc = 'Fuzzy find recent files' })
         keymap.set(
           { 'n', 'i' },
-          '<C-f>',
+          '<D-p>',
           find_files_with_toggle,
           { desc = 'Fuzzy find files (' .. toggle_key .. '切换范围)' }
         )
-        keymap.set('n', '<leader>fs', tele_builtin.lsp_document_symbols, { desc = 'Search symbols in current file' })
         keymap.set(
-          'n',
-          '<leader>fw',
+          { 'n', 'i' },
+          '<D-S-f>',
           live_grep_with_toggle,
           { desc = 'Find string with args (' .. toggle_key .. '切换范围)' }
         )
+        --  +-----------------------------+ cmd end +-----------------------------+
       end,
     })
   end,

@@ -142,10 +142,6 @@ opt.signcolumn = 'yes'
 -- --
 -- opt.mouse = 'a'
 
--- -- Map <leader> to space
--- g.mapleader = ' '
--- g.maplocalleader = ' '
-
 -- o.modifiable = true
 
 -- 完全禁用窗口自动跳转
