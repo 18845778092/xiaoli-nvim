@@ -5,6 +5,7 @@ return {
   config = function()
     local indent_scope_instance = require('mini.indentscope')
 
+    local special_filetypes = require('helper.constant').special_filetypes
     indent_scope_instance.setup({
       draw = {
         delay = 50,
@@ -31,18 +32,7 @@ return {
     })
 
     vim.api.nvim_create_autocmd('FileType', {
-      pattern = {
-        'help',
-        'alpha',
-        'dashboard',
-        'NvimTree',
-        'lazy',
-        'mason',
-        'notify',
-        'toggleterm',
-        'codecompanion',
-        'grug-far',
-      },
+      pattern = special_filetypes,
       callback = function()
         vim.b.miniindentscope_disable = true
       end,

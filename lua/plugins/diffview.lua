@@ -62,5 +62,27 @@ return {
         map('n', '<leader>gd', '<CMD>DiffviewOpen<CR>')
       end,
     })
+
+    vim.api.nvim_create_autocmd({
+      'User',
+      'BufEnter',
+      'WinEnter',
+      'BufWinEnter',
+    }, {
+      callback = function()
+        local bufname = vim.api.nvim_buf_get_name(0)
+        -- 检测 diffview
+        if
+          string.match(bufname, 'diffview://')
+          or string.match(bufname, 'DiffviewFilePanel')
+          or string.match(bufname, 'DiffviewFiles')
+          or vim.wo.diff
+          or vim.bo.filetype == 'DiffviewFiles'
+        then
+          vim.opt_local.cursorcolumn = false
+        end
+      end,
+      desc = 'disable cursorcolumn in diffview',
+    })
   end,
 }

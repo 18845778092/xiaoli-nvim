@@ -1,4 +1,4 @@
-local color_table = require('core.custom-style').color_table
+local special_filetypes = require('helper.constant').special_filetypes
 local opt = vim.opt
 
 -- 行号
@@ -15,6 +15,13 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.opt.cursorcolumn = true
 vim.opt.cursorline = true
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = special_filetypes,
+  callback = function()
+    vim.opt_local.cursorcolumn = false
+  end,
+  desc = 'disable cursorcolumn',
+})
 
 -- - "t"  -- 不根据 textwidth 自动换行
 -- - "c"  -- 不自动换行注释
