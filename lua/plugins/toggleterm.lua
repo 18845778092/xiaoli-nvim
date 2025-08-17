@@ -13,80 +13,11 @@ return {
         },
       })
 
-      local Terminal = require('toggleterm.terminal').Terminal
+      local terminal_helper = require('helper.toggleterm')
 
-      -- 普通终端
-      local normal_term = Terminal:new({
-        count = 1, -- 唯一 ID
-        float_opts = {
-          winblend = 20, -- 透明度 (0-100)
-        },
-      })
+      terminal_helper.init_and_warmup()
 
-      -- Lazygit 终端
-      local lazygit = Terminal:new({
-        cmd = 'lazygit',
-        dir = 'git_dir',
-        count = 2, -- 唯一 ID
-        float_opts = {
-          width = function()
-            return math.floor(vim.o.columns * 0.9)
-          end,
-          height = function()
-            return math.floor(vim.o.lines * 0.9)
-          end,
-        },
-        env = {
-          LG_CONFIG_FILE = os.getenv('HOME') .. '/.config/lazygit/config.yml',
-        },
-        close_on_exit = true,
-        on_exit = function(term)
-          -- 进程退出时自动关闭终端窗口
-          vim.schedule(function()
-            if term:is_open() then
-              term:close()
-            end
-          end)
-        end,
-      })
-
-      local yazi = Terminal:new({
-        cmd = 'yazi',
-        count = 3, -- 唯一 ID
-        float_opts = {
-          width = function()
-            return math.floor(vim.o.columns * 0.9)
-          end,
-          height = function()
-            return math.floor(vim.o.lines * 0.9)
-          end,
-        },
-        env = {
-          LG_CONFIG_FILE = os.getenv('HOME') .. '/.config/lazygit/config.yml',
-        },
-        close_on_exit = true,
-        on_exit = function(term)
-          -- 进程退出时自动关闭终端窗口
-          vim.schedule(function()
-            if term:is_open() then
-              term:close()
-            end
-          end)
-        end,
-      })
-
-      function _NORMAL_TERM_TOGGLE()
-        normal_term:toggle()
-      end
-
-      function _LAZYGIT_TOGGLE()
-        lazygit:toggle()
-      end
-      function _YAZI_TOGGLE()
-        yazi:toggle()
-      end
-
-      -- 预创建终端
+      -- 设置键位映射
       vim.api.nvim_create_autocmd('VimEnter', {
         callback = function()
           vim.keymap.set({ 'n', 'i', 't' }, '<D-j>', '<cmd>lua _NORMAL_TERM_TOGGLE()<CR>', {
@@ -106,9 +37,6 @@ return {
             silent = true,
             desc = '切换 yazi',
           })
-          vim.schedule(function()
-            normal_term:spawn()
-          end)
         end,
       })
     end,
