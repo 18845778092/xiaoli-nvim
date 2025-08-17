@@ -42,6 +42,14 @@ return {
           vim.g.gitsigns_blame_open = true
           gitsigns.blame()
         end)
+        map('n', 'rh', gitsigns.reset_hunk)
+        -- Navigation
+        map('n', ']c', function()
+          gitsigns.nav_hunk('next')
+        end)
+        map('n', '[c', function()
+          gitsigns.nav_hunk('prev')
+        end)
       end,
     })
   end,

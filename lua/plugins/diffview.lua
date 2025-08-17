@@ -48,7 +48,19 @@ return {
           },
         },
         win_config = {
-          height = 23,
+          height = 20,
+        },
+      },
+      view = {
+        default = {
+          layout = 'diff2_horizontal',
+          disable_diagnostics = false,
+          winbar_info = false,
+        },
+        merge_tool = {
+          layout = 'diff4_mixed',
+          disable_diagnostics = true,
+          winbar_info = true,
         },
       },
     })
