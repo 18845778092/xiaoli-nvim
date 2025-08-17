@@ -55,11 +55,6 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
 -- 防止包裹
 opt.wrap = false
 
--- 光标行
--- 启用光标行高亮
-opt.cursorline = true
---  注释颜色
-
 -- 启用鼠标
 opt.mouse:append('a')
 
@@ -72,16 +67,11 @@ opt.splitbelow = true
 
 opt.foldlevel = 99
 opt.foldlevelstart = 99
--- 搜索
 opt.ignorecase = true
 opt.smartcase = true
 
--- 外观
 opt.termguicolors = true
 opt.signcolumn = 'yes'
-
--- -- cmd('syntax on')
--- vim.api.nvim_command('filetype plugin indent on')
 
 -- o.termguicolors = true
 -- -- o.background = 'dark'
@@ -109,7 +99,6 @@ opt.signcolumn = 'yes'
 -- o.autoindent = true
 -- o.wrap = true
 -- o.textwidth = 300
--- o.tabstop = 2
 -- o.shiftwidth = 2
 -- o.softtabstop = -1 -- If negative, shiftwidth value is used
 -- o.list = true

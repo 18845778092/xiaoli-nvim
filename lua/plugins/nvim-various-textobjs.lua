@@ -78,6 +78,7 @@ return {
     vim.keymap.set({ 'o', 'x' }, 'av', '<cmd>lua require("various-textobjs").value("outer")<CR>')
 
     -- quote: between any unescaped ", ', or ` in one line
+    vim.keymap.set({ 'o', 'x' }, 'q', '<cmd>lua require("various-textobjs").anyQuote("inner")<CR>')
     vim.keymap.set({ 'o', 'x' }, 'iq', '<cmd>lua require("various-textobjs").anyQuote("inner")<CR>')
     vim.keymap.set({ 'o', 'x' }, 'aq', '<cmd>lua require("various-textobjs").anyQuote("outer")<CR>')
 
