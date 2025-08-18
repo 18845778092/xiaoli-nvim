@@ -44,6 +44,9 @@ return {
         vim.api.nvim_set_hl(0, 'CustomYankHighlight', { link = 'PmenuKindSel' })
         vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'NONE' })
         vim.api.nvim_set_hl(0, 'FloatTitle', { bg = 'NONE' })
+        -- 设置滚动条颜色
+        vim.api.nvim_set_hl(0, 'ScrollView', { link = 'Search' })
+
         set_hl_with_gruvbox()
       end,
     })
