@@ -75,7 +75,7 @@ git:
     useConfig: false
     externalDiffCommand: ""
   # Command used when displaying the current branch git log in the main window
-  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(yellow)%h%Creset %C(white)-%Creset %C(bold magenta)%an%Creset %C(white)-%Creset %C(cyan)%ad%Creset %C(white)-%Creset %C(ul bold green)%s%Creset' {{branchName}}"
+  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(yellow)%h%Creset %C(white)-%Creset %C(bold magenta)%an%Creset %C(white)-%Creset %C(cyan)%ad%Creset %C(white)-%Creset %C(bold green)%s%Creset' {{branchName}}"
   # Commands used to display git log of all branches in the main window, they will be cycled in order of appearance (array of strings)
   allBranchesLogCmds:
-    - "git log --graph --color=always --abbrev-commit --decorate --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(yellow)%h%Creset %C(white)-%Creset %C(bold magenta)%an%Creset %C(white)-%Creset %C(cyan)%ad%Creset %C(white)-%Creset %C(ul bold green)%s%Creset'"
+    - "git log --graph --color=always --abbrev-commit --decorate --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(yellow)%h%Creset %C(white)-%Creset %C(bold magenta)%an%Creset %C(white)-%Creset %C(cyan)%ad%Creset %C(white)-%Creset %C(bold green)%s%Creset'"

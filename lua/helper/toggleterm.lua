@@ -1,5 +1,5 @@
 local M = {}
-
+local winblend = 30
 local Terminal = require('toggleterm.terminal').Terminal
 
 -- 全局终端实例存储
@@ -51,7 +51,7 @@ end
 function M.toggle_normal_term()
   local term = M.get_or_create_terminal('normal', 1, nil, {
     float_opts = {
-      winblend = 20,
+      winblend = winblend,
     },
   })
   term:toggle()
@@ -62,6 +62,7 @@ function M.toggle_lazygit()
   local term = M.get_or_create_terminal('lazygit', 2, 'lazygit', {
     dir = 'git_dir',
     float_opts = {
+      winblend = winblend,
       width = function()
         return math.floor(vim.o.columns * 0.9)
       end,
@@ -119,7 +120,7 @@ end
 function M.warmup_terminals()
   local normal_term = M.get_or_create_terminal('normal', 1, nil, {
     float_opts = {
-      winblend = 20,
+      winblend = winblend,
     },
   })
 
