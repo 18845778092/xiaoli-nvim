@@ -1,33 +1,5 @@
 -- auto code completion
 
-local symbol_map = {
-  Text = '',
-  Method = '',
-  Function = '',
-  Constructor = '',
-  Field = '',
-  Variable = '',
-  Class = '',
-  Interface = '',
-  Module = '',
-  Property = '',
-  Unit = '',
-  Value = '',
-  Enum = '',
-  Keyword = '',
-  Snippet = '',
-  Color = '',
-  File = '',
-  Reference = '',
-  Folder = '',
-  EnumMember = '',
-  Constant = '',
-  Struct = '',
-  Event = '',
-  Operator = '',
-  TypeParameter = '',
-}
-
 return {
   'hrsh7th/nvim-cmp',
   event = { 'BufReadPre', 'BufNewFile', 'VimEnter' },
@@ -50,22 +22,16 @@ return {
   },
   config = function()
     local cmp = require('cmp')
+    local cmp_helper = require('helper.nvim-cmp')
+    local symbol_map = cmp_helper.symbol_map
+    local is_in_start_tag = cmp_helper.is_in_start_tag
+    local has_words_before = cmp_helper.has_words_before
+    local execute_jump_or_indentation = cmp_helper.execute_jump_or_indentation
 
     -- insert `(` after select function or method item
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-
     local snippets_path = vim.fn.stdpath('config') .. '/snippets'
-    -- check if in start tag
-    local function is_in_start_tag()
-      local ts_utils = require('nvim-treesitter.ts_utils')
-      local node = ts_utils.get_node_at_cursor()
-      if not node then
-        return false
-      end
-      local node_to_check = { 'start_tag', 'self_closing_tag', 'directive_attribute' }
-      return vim.tbl_contains(node_to_check, node:type())
-    end
     local luasnip = require('luasnip')
 
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
@@ -76,12 +42,6 @@ return {
     luasnip.filetype_extend('typescript', { 'javascript' })
     luasnip.filetype_extend('typescriptreact', { 'javascript' })
     luasnip.filetype_extend('javascriptreact', { 'javascript' })
-
-    local has_words_before = function()
-      unpack = unpack or table.unpack
-      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
-    end
 
     cmp.setup({
       performance = {
@@ -188,7 +148,6 @@ return {
     })
 
     local cmdline_mapping = cmp.mapping.preset.cmdline()
-
     -- 在补全菜单可见时使用 Up/Down 选择，否则回退到默认行为
     cmdline_mapping['<Up>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -201,15 +160,6 @@ return {
     cmdline_mapping['<Down>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      else
-        fallback()
-      end
-    end, { 'c' })
-
-    cmdline_mapping['<CR>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.confirm({ select = true })
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', false)
       else
         fallback()
       end
@@ -228,7 +178,7 @@ return {
     cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmdline_mapping,
       completion = {
-        completeopt = 'menu,menuone,select',
+        completeopt = 'menu,menuone,noselect',
       },
       sources = {
         { name = 'buffer', keyword_length = 0 },
@@ -237,6 +187,9 @@ return {
 
     cmp.setup.cmdline(':', {
       mapping = cmdline_mapping,
+      completion = {
+        completeopt = 'menu,menuone,noselect',
+      },
       sources = cmp.config.sources({
         { name = 'path' },
       }, {
@@ -247,47 +200,6 @@ return {
           },
         },
       }),
-      sorting = {
-        comparators = {
-          function(entry1, entry2)
-            local input = vim.fn.getcmdline()
-            local label1 = entry1.completion_item.label
-            local label2 = entry2.completion_item.label
-
-            -- :w -> write
-            if input == 'w' then
-              if label1 == 'write' and label2 ~= 'write' then
-                return true
-              elseif label2 == 'write' and label1 ~= 'write' then
-                return false
-              end
-
-              if label1 == 'w' and label2 ~= 'w' then
-                return true
-              elseif label2 == 'w' and label1 ~= 'w' then
-                return false
-              end
-            end
-
-            -- q -> quit
-            if input == 'q' then
-              if label1 == 'quit' and label2 ~= 'quit' then
-                return true
-              elseif label2 == 'quit' and label1 ~= 'quit' then
-                return false
-              end
-
-              if label1 == 'q' and label2 ~= 'q' then
-                return true
-              elseif label2 == 'q' and label1 ~= 'q' then
-                return false
-              end
-            end
-
-            return nil
-          end,
-        },
-      },
     })
 
     cmp.event:on('menu_closed', function()
@@ -295,16 +207,11 @@ return {
       vim.b[bufnr]._vue_ts_cached_is_in_start_tag = nil
     end)
 
-    -- 代码片段 光标跳转顺序
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function()
         vim.keymap.set('i', '<Tab>', function()
-          if luasnip.jumpable(1) then
-            luasnip.jump(1)
-          else
-            -- 默认 Tab 行为
-            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', false)
-          end
+          -- 执行代码片段跳转or缩进
+          execute_jump_or_indentation(luasnip)
         end, { noremap = true, silent = true })
 
         vim.keymap.set('i', '<S-Tab>', function()
