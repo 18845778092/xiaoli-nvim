@@ -5,6 +5,7 @@ return {
   priority = 900,
   config = function()
     local color_table = require('core.custom-style').color_table
+    local set_hl_with_gruvbox = require('helper.telescope').set_hl_with_gruvbox
     local registe_default_hl_reset = require('helper.theme.common-hl-reset')
     registe_default_hl_reset()
 
@@ -43,6 +44,7 @@ return {
         vim.api.nvim_set_hl(0, 'CustomYankHighlight', { link = 'PmenuKindSel' })
         vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'NONE' })
         vim.api.nvim_set_hl(0, 'FloatTitle', { bg = 'NONE' })
+        set_hl_with_gruvbox()
       end,
     })
 

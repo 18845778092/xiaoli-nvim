@@ -30,12 +30,9 @@ return {
         },
       },
       defaults = {
-        mappings = {
-          -- i = {
-          --   ['<esc>'] = require('telescope.actions').close, -- esc 直接关闭
-          -- },
-        },
-        layout_strategy = 'horizontal',
+        borderchars = { '═', '║', '═', '║', '╔', '╗', '╝', '╚' },
+        winblend = 30,
+        layout_strategy = 'vertical',
         layout_config = {
           horizontal = {
             width = 0.9,
