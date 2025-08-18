@@ -7,12 +7,13 @@ _G.terminal_instances = _G.terminal_instances or {}
 
 -- 动态创建终端的函数
 local function create_terminal(count, cmd, extra_opts)
+  local border = require('core.custom-style').border
+
   local opts = {
     count = count,
     direction = 'float',
     float_opts = {
-      border = 'double',
-      winblend = 20,
+      border = border,
     },
   }
 
