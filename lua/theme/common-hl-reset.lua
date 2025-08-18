@@ -1,5 +1,5 @@
-local base = require('helper.theme.base')
-local plugin_reseter_path = 'helper.theme.plugins'
+local base = require('theme.base')
+local plugin_reseter_path = 'theme.plugins'
 
 local function import(file_name)
   return require(plugin_reseter_path .. '.' .. file_name)

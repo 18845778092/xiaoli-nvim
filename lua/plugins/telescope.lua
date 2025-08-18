@@ -138,7 +138,7 @@ return {
         keymap.set(
           'n',
           '<leader>ft',
-          require('helper.theme.switcher').preview_theme_selector,
+          require('helper.switcher').preview_theme_selector,
           { desc = 'Fuzzy find themes with preview' }
         )
         keymap.set({ 'n', 'i' }, '<C-Tab>', function()

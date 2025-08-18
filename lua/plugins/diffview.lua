@@ -10,7 +10,7 @@ return {
     require('diffview').setup({
       hooks = {
         view_opened = function(view)
-          require('helper.theme.plugins.diffview').reset()
+          require('theme.plugins.diffview').reset()
           vim.g.diffview_open_flag = true
           -- 自动聚焦diff页面
           local function auto_focus()

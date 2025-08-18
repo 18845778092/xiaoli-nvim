@@ -3,7 +3,7 @@
 return {
   'soulis-1256/eagle.nvim',
   config = function()
-    local utils = require('helper.theme.eagle')
+    local utils = require('theme.eagle')
     local config = utils.get_eagle_config()
     local color = utils.get_color()
     config.border_color = color

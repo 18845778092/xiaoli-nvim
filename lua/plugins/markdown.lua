@@ -46,7 +46,7 @@ return {
         -- 延迟执行确保插件完全加载
         vim.schedule(function()
           if vim.bo.filetype == 'markdown' or vim.bo.filetype == 'codecompanion' or vim.bo.filetype == 'telekasten' then
-            -- require('helper.theme.plugins.render-markdown').reset()
+            -- require('theme.plugins.render-markdown').reset()
           end
         end)
       end,
@@ -54,7 +54,7 @@ return {
 
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function()
-        -- require('helper.theme.plugins.render-markdown').reset()
+        -- require('theme.plugins.render-markdown').reset()
       end,
     })
   end,

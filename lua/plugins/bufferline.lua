@@ -1,6 +1,6 @@
 -- buffer tab
 
-local utils = require('helper.theme.bufferline')
+local utils = require('theme.bufferline')
 
 -- 自定义 buffer 关闭函数，确保选择视觉上的下一个
 local function close_buffer_and_goto_next()

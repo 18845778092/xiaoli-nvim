@@ -4,7 +4,7 @@ return {
   'YaQia/darkplus.nvim',
   priority = 1000,
   config = function()
-    local registe_default_hl_reset = require('helper.theme.common-hl-reset')
+    local registe_default_hl_reset = require('theme.common-hl-reset')
     registe_default_hl_reset()
 
     vim.api.nvim_create_autocmd('ColorScheme', {

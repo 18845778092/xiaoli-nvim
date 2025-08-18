@@ -1,6 +1,6 @@
 -- bottom status line
 
-local utils = require('helper.theme.lualine')
+local utils = require('theme.lualine')
 
 return {
   'nvim-lualine/lualine.nvim',

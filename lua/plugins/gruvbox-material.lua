@@ -5,8 +5,8 @@ return {
   priority = 900,
   config = function()
     local color_table = require('core.custom-style').color_table
-    local set_hl_with_gruvbox = require('helper.telescope').set_hl_with_gruvbox
-    local registe_default_hl_reset = require('helper.theme.common-hl-reset')
+    local set_hl_with_gruvbox = require('theme.telescope').set_hl_with_gruvbox
+    local registe_default_hl_reset = require('theme.common-hl-reset')
     registe_default_hl_reset()
 
     vim.g.gruvbox_material_enable_italic = true
