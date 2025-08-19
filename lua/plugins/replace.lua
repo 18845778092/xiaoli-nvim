@@ -66,10 +66,12 @@ return {
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function()
         vim.api.nvim_create_user_command('FindCwd', function()
+          vim.cmd('wa!')
           require('grug-far').open({ windowCreationCommand = 'below split' })
         end, { desc = 'Find and replace current cwd' })
 
         vim.api.nvim_create_user_command('FindCurFile', function()
+          vim.cmd('w!')
           require('grug-far').open({ prefills = { paths = vim.fn.expand('%') }, windowCreationCommand = 'below split' })
         end, { desc = 'Find and replace current file' })
 
