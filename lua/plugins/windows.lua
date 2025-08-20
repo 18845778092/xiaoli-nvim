@@ -11,6 +11,7 @@ return {
     vim.o.equalalways = false
     require('windows').setup({
       ignore = {
+        buftype = { 'quickfix' },
         filetype = {
           'alpha',
           'dashboard',
