@@ -9,7 +9,11 @@ return {
     vim.o.winwidth = num
     vim.o.winminwidth = num
     vim.o.equalalways = false
-    require('windows').setup()
+    require('windows').setup({
+      ignore = {
+        filetype = { 'DiffviewFiles' },
+      },
+    })
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function()
         vim.keymap.set('n', '<C-S-m>', function()
