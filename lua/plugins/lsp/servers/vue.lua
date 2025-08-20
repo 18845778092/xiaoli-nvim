@@ -1,8 +1,8 @@
 return function()
   local color_table = require('core.custom-style').color_table
   local vue_language_server_path = vim.fn.expand('$MASON/packages')
-      .. '/vue-language-server'
-      .. '/node_modules/@vue/language-server'
+    .. '/vue-language-server'
+    .. '/node_modules/@vue/language-server'
 
   local vue_plugin = {
     name = '@vue/typescript-plugin',
@@ -60,13 +60,14 @@ return function()
     end,
   }
 
-  vim.lsp.config('vtsls', vtsls_config)   -- vue 文件 ts部分支持
+  vim.lsp.config('vtsls', vtsls_config) -- vue 文件 ts部分支持
   vim.lsp.config('vue_ls', vue_ls_config) -- vue文件 html css支持
 
-  vim.lsp.enable({
-    'vtsls',
-    'vue_ls',
-  })
+  vim.lsp.enable('vtsls')
+  -- 等待vtsls启动
+  vim.schedule(function()
+    vim.lsp.enable('vue_ls')
+  end)
 
   -- 注册LSP附加回调
   vim.api.nvim_create_autocmd('VimEnter', {
