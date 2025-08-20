@@ -11,7 +11,17 @@ return {
     vim.o.equalalways = false
     require('windows').setup({
       ignore = {
-        filetype = { 'DiffviewFiles' },
+        filetype = {
+          'alpha',
+          'dashboard',
+          'NvimTree',
+          'lazy',
+          'mason',
+          'notify',
+          'toggleterm',
+          'codecompanion',
+          'DiffviewFiles',
+        },
       },
     })
     vim.api.nvim_create_autocmd('VimEnter', {
