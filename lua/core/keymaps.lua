@@ -44,7 +44,6 @@ map({ 'n', 'i' }, '<D-s>', function()
   vim.cmd('w')
 end)
 
-vim.keymap.set('n', '<leader>ls', ':SessionManager load_session<CR>', { desc = '加载会话', silent = true })
 map('n', '<space>e', vim.diagnostic.open_float)
 
 vim.keymap.set('n', '=', function()

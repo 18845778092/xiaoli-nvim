@@ -44,5 +44,11 @@ return {
         terminal_helper.init_and_warmup()
       end,
     })
+    vim.api.nvim_create_autocmd('VimEnter', {
+      callback = function()
+        vim.keymap.set('n', '<leader>ls', ':SessionManager load_session<CR>', { desc = '加载会话', silent = true })
+      end,
+      desc = 'Description of the autocmd',
+    })
   end,
 }
