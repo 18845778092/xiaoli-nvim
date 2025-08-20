@@ -2,7 +2,7 @@
 
 return {
   'ggandor/leap.nvim',
-  enabled = true,
+  enabled = false,
   dependencies = { 'tpope/vim-repeat' },
   config = function()
     local leap = require('leap')
