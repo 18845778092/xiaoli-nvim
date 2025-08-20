@@ -28,18 +28,26 @@ function M.get_lualine_config()
     always_visible = true,
   }
 
-  local progress = {
-    'progress',
-    color = { fg = '#ffffff' },
+  local lsp_server = {
+    'lsp_status',
+    icon = ' ',
+    symbols = {
+      spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+      done = '',
+      separator = ' ',
+    },
+    -- List of LSP names to ignore (e.g., `null-ls`):
+    ignore_lsp = {},
   }
 
-  local mode = {
-    'mode',
-    fmt = function(str)
-      return '-- ' .. str .. ' --'
+  local current_time = {
+    function()
+      return os.date('%H:%M')
     end,
-    color = { fg = '#ffffff', gui = 'bold' },
+    color = { fg = '#98c379' },
+    icon = '󰥔',
   }
+
   local file_name_color = get_filename_color()
   local file_name = {
     'filename',
@@ -53,19 +61,6 @@ function M.get_lualine_config()
       unnamed = '[No Name]',
     },
     separator = { left = '', right = '' },
-  }
-
-  local tabline_file_name = {
-    'filename',
-    file_status = true, -- Displays file status (readonly status, modified status)
-    path = 0, -- 0: Just the filename
-
-    shorting_target = 40, -- Shortens path to leave 40 spaces in the window
-    symbols = {
-      modified = '[+]', -- Text to show when the file is modified.
-      readonly = '[-]', -- Text to show when the file is non-modifiable or readonly.
-      unnamed = '[No Name]', -- Text to show for unnamed buffers.
-    },
   }
 
   local filetype = {
@@ -132,23 +127,30 @@ function M.get_lualine_config()
     options = {
       icons_enabled = true,
       theme = M.get_lualine_theme(),
-      component_separators = { left = '', right = '' },
+      component_separators = { left = '', right = '│' },
       section_separators = { left = '', right = '' },
       disabled_filetypes = { 'alpha', 'dashboard', 'NvimTree', 'Outline' },
       always_divide_middle = true,
     },
     sections = {
-      lualine_a = { branch, diagnostics },
-      lualine_b = { mode },
-      lualine_c = { file_name, venn_indicator, formatter },
-      lualine_x = { filetype, 'fileformat' },
-      lualine_y = { progress },
+      lualine_a = { branch },
+      lualine_b = { current_time },
+      lualine_c = { file_name, venn_indicator },
+      lualine_x = {
+        filetype,
+        lsp_server,
+        formatter,
+      },
+      lualine_y = {},
+      lualine_z = {},
     },
     inactive_sections = {
       lualine_a = {},
       lualine_b = {},
       lualine_c = { file_name },
-      lualine_x = { 'location' },
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = {},
     },
     extensions = {},
   }
