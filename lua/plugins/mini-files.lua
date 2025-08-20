@@ -48,12 +48,23 @@ return {
         -- Whether to show preview of file/directory under cursor
         preview = true,
         -- Width of focused window
-        width_focus = 50,
+        width_focus = 30,
         -- Width of non-focused window
-        width_nofocus = 15,
+        width_nofocus = 30,
         -- Width of preview window
         width_preview = 60,
       },
+    })
+
+    vim.api.nvim_create_autocmd('VimEnter', {
+      callback = function()
+        vim.schedule(function()
+          vim.keymap.set('n', '<leader>mm', '<CMD>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>', {
+            silent = true,
+          })
+        end)
+      end,
+      desc = 'Description of the autocmd',
     })
   end,
 }
