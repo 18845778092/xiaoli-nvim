@@ -5,6 +5,8 @@ return {
   event = 'BufRead',
   config = function()
     local border = require('core.custom-style').border
+    local addChar = '┃'
+    local deleteChar = '_'
     require('gitsigns').setup({
       current_line_blame = true,
       current_line_blame_opts = { delay = 0 },
@@ -17,11 +19,20 @@ return {
         col = 1,
       },
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
+        add = { text = addChar },
+        change = { text = addChar },
+        delete = { text = deleteChar },
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
+        untracked = { text = '┆' },
+      },
+      signs_staged = {
+        add = { text = addChar },
+        change = { text = addChar },
+        delete = { text = deleteChar },
+        topdelete = { text = '‾' },
+        changedelete = { text = '~' },
+        untracked = { text = '┆' },
       },
       on_attach = function(bufnr)
         local gitsigns = require('gitsigns')
@@ -44,10 +55,10 @@ return {
         end)
         map('n', 'rh', gitsigns.reset_hunk)
         -- Navigation
-        map('n', ']c', function()
+        map('n', 'nc', function()
           gitsigns.nav_hunk('next')
         end)
-        map('n', '[c', function()
+        map('n', 'pc', function()
           gitsigns.nav_hunk('prev')
         end)
       end,
