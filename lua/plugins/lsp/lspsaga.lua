@@ -29,7 +29,7 @@ return function()
       vim.keymap.set('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>')
       vim.keymap.set('n', '<leader>le', '<cmd>Lspsaga show_buf_diagnostics<CR>')
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
-      vim.keymap.set('n', 'gr', '<cmd>Lspsaga finder ref<CR>')
+      -- vim.keymap.set('n', 'gr', '<cmd>Lspsaga finder ref<CR>')
     end,
   })
 end
