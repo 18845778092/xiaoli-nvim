@@ -63,11 +63,7 @@ return function()
   vim.lsp.config('vtsls', vtsls_config) -- vue 文件 ts部分支持
   vim.lsp.config('vue_ls', vue_ls_config) -- vue文件 html css支持
 
-  vim.lsp.enable('vtsls')
-  -- 等待vtsls启动
-  vim.schedule(function()
-    vim.lsp.enable('vue_ls')
-  end)
+  vim.lsp.enable({ 'vtsls', 'vue_ls' })
 
   -- 注册LSP附加回调
   vim.api.nvim_create_autocmd('VimEnter', {
