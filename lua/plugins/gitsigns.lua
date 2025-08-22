@@ -65,7 +65,7 @@ return {
           local cursor_line = vim.fn.line('.')
           gitsigns.reset_hunk({ cursor_line, cursor_line })
         end)
-        map('n', '<leader>sh', function()
+        map('n', '<leader>hk', function()
           gitsigns.select_hunk()
         end)
       end,
