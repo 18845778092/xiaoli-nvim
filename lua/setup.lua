@@ -11,6 +11,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+require('helper.auto-keyboard-layout').check_imselect()
+
 require('lazy').setup({ import = 'plugins' }, {
   checker = {
     enabled = true,

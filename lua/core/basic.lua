@@ -161,3 +161,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     })
   end,
 })
+
+require('helper.auto-keyboard-layout').register_auto_keyboard_layout()
