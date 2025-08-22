@@ -69,8 +69,8 @@ return {
           end
         end),
 
-        ['<D-i>'] = cmp.mapping(function()
-          -- vscode like complete by <D-i>
+        ['<C-i>'] = cmp.mapping(function()
+          -- vscode like complete by <C-i>
           if not cmp.visible() and has_words_before() then
             cmp.complete()
           end
