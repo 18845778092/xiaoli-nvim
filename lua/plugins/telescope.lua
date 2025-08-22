@@ -30,6 +30,7 @@ return {
         },
       },
       defaults = {
+        prompt_prefix = '   ',
         borderchars = { '═', '║', '═', '║', '╔', '╗', '╝', '╚' },
         winblend = 30,
         layout_strategy = 'vertical',
