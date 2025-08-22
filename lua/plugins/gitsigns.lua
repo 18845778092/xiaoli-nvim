@@ -61,6 +61,10 @@ return {
         map('n', 'pc', function()
           gitsigns.nav_hunk('prev')
         end)
+        map('n', 'rl', function()
+          local cursor_line = vim.fn.line('.')
+          gitsigns.reset_hunk({ cursor_line, cursor_line })
+        end)
       end,
     })
   end,
