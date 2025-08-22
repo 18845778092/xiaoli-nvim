@@ -123,6 +123,26 @@ function M.get_lualine_config()
     end,
   }
 
+  local line_count = {
+    function()
+      local total_lines = vim.api.nvim_buf_line_count(0)
+      return 'Lines: ' .. total_lines
+    end,
+    color = function()
+      local total_lines = vim.api.nvim_buf_line_count(0)
+
+      local res_template = {
+        bold = true,
+      }
+
+      if total_lines > 600 then
+        res_template.bg = '#ea6962'
+        res_template.fg = '#282828'
+        return res_template
+      end
+    end,
+  }
+
   return {
     options = {
       icons_enabled = true,
@@ -137,6 +157,7 @@ function M.get_lualine_config()
       lualine_b = { current_time },
       lualine_c = { file_name, venn_indicator },
       lualine_x = {
+        line_count,
         filetype,
         lsp_server,
         formatter,
