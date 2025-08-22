@@ -12,6 +12,7 @@ return {
         left_pad = 1,
         right_pad = 0,
         position = 'right',
+        -- ◢◤ --reverse
         icons = {
           '',
           '',
