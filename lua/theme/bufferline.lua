@@ -200,14 +200,14 @@ function M.get_bufferline_config()
       max_name_length = 40, -- 文件名最大长度
       diagnostics = 'nvim_lsp',
       offsets = {
-        {
-          filetype = 'NvimTree',
-          text = function()
-            return 'File Explorer -> ' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
-          end,
-          highlight = 'Directory',
-          text_align = 'center',
-        },
+        -- {
+        --   filetype = 'NvimTree',
+        --   text = function()
+        --     return 'File Explorer -> ' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+        --   end,
+        --   highlight = 'Directory',
+        --   text_align = 'center',
+        -- },
       },
       -- 插入顺序排序
       sort_by = 'insert_at_end',
