@@ -48,6 +48,12 @@ return {
         vim.api.nvim_set_hl(0, 'ScrollView', { link = 'Search' })
 
         set_hl_with_gruvbox()
+
+        -- visual-whitespace color
+        local visual_hl = vim.api.nvim_get_hl(0, {
+          name = 'Visual',
+        })
+        vim.api.nvim_set_hl(0, 'VisualNonText', { fg = '#716d62', bg = visual_hl.bg }) -- best
       end,
     })
 
