@@ -29,22 +29,27 @@ return {
               end
             end
           end
-          vim.schedule(auto_focus)
+          -- vim.schedule(auto_focus)
         end,
         view_closed = function(view)
           vim.g.diffview_open_flag = false
         end,
       },
       enhanced_diff_hl = true,
+      file_panel = {
+        listing_style = 'list', -- One of 'list' or 'tree'
+        win_config = {
+          position = 'bottom',
+          height = 15,
+        },
+      },
       file_history_panel = {
         log_options = {
           git = {
             single_file = {
               all = true,
             },
-            multi_file = {
-              all = true,
-            },
+            multi_file = {},
           },
         },
         win_config = {
@@ -58,20 +63,33 @@ return {
           winbar_info = false,
         },
         merge_tool = {
-          layout = 'diff4_mixed',
+          layout = 'diff3_mixed',
           disable_diagnostics = true,
           winbar_info = true,
+        },
+      },
+      keymaps = {
+        file_panel = {
+          {
+            'n',
+            '-',
+            function()
+              vim.cmd('WindowsDisableAutowidth')
+              vim.cmd('vertical resize -2')
+            end,
+            { desc = '左右宽度减少' },
+          },
         },
       },
     })
     local function map(m, k, v)
       vim.keymap.set(m, k, v, { silent = true })
     end
-
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function()
         map('n', '<leader>gh', '<CMD>DiffviewFileHistory %<CR>') -- 当前文件历史
         map('n', '<leader>gd', '<CMD>DiffviewOpen<CR>')
+        map('n', '<leader>bh', '<CMD>DiffviewFileHistory<CR>') -- 当前分支
       end,
     })
 
