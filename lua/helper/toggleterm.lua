@@ -44,6 +44,19 @@ function M.get_or_create_terminal(key, count, cmd, extra_opts)
 end
 
 function M.recreate_all_terminals()
+  for key, terminal in pairs(_G.terminal_instances) do
+    if terminal then
+      if terminal:is_open() then
+        terminal:close()
+      end
+
+      -- 销毁终端实例
+      if terminal.shutdown then
+        terminal:shutdown()
+      end
+    end
+  end
+
   _G.terminal_instances = {}
 end
 
