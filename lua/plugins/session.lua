@@ -12,12 +12,7 @@ return {
       autoload_mode = config.AutoloadMode.CurrentDir, -- Define what to do when Neovim is started without arguments. See "Autoload mode" section below.
       autosave_last_session = true, -- Automatically save last session on exit and on session switch.
       autosave_ignore_not_normal = true, -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
-      autosave_ignore_dirs = {
-        '~/',
-        '~/Projects',
-        '~/Downloads',
-        '/',
-      }, -- A list of directories where the session will not be autosaved.
+      autosave_ignore_dirs = {}, -- A list of directories where the session will not be autosaved.
       autosave_ignore_filetypes = { -- All buffers of these file types will be closed before the session is saved.
         'gitcommit',
         'gitrebase',
@@ -29,6 +24,20 @@ return {
     })
 
     local config_group = vim.api.nvim_create_augroup('MyConfigGroup', {}) -- A global group for all your config autocommands
+    local is_path_allowed_save_session = require('helper.session').is_path_allowed_save_session
+
+    -- 重写保存会话函数
+    local original_save_session = require('session_manager.utils').save_session
+    require('session_manager.utils').save_session = function(filename)
+      local current_dir = vim.fn.getcwd()
+
+      if not is_path_allowed_save_session(current_dir) then
+        vim.notify('Session save cancelled: current directory is not in allowed paths', vim.log.levels.WARN)
+        return
+      end
+
+      original_save_session(filename)
+    end
 
     vim.api.nvim_create_autocmd({ 'User' }, {
       pattern = 'SessionLoadPost',
