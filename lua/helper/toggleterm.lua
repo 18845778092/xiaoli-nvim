@@ -15,6 +15,11 @@ local function create_terminal(count, cmd, extra_opts)
     float_opts = {
       border = border,
     },
+    on_open = function(term)
+      vim.api.nvim_win_call(term.window, function()
+        vim.cmd('normal! gg0') -- 重置终端左上角, 避免内容偏移
+      end)
+    end,
   }
 
   if cmd then
