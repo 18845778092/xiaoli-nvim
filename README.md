@@ -33,4 +33,4 @@ $ nvim
 # Preview
 
 Greeter page
-![image](./images/alpha.png)
+![image](./images/dashboard.jpeg)
