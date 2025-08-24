@@ -51,6 +51,9 @@ return {
 
         local terminal_helper = require('helper.toggleterm')
         terminal_helper.init_and_warmup()
+
+        local get_dashboard_config = require('helper.dashboard').get_dashboard_config
+        require('dashboard').setup(get_dashboard_config())
       end,
     })
     vim.api.nvim_create_autocmd('VimEnter', {
