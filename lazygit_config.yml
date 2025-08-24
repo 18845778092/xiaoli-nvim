@@ -4,7 +4,7 @@ os:
   editAtLine: "nvim +{{line}} {{filename}}"
 
 gui:
-  sidePanelWidth: 0.3 #左侧面板宽度 (0 - 1.0)
+  sidePanelWidth: 0.25 #左侧面板宽度 (0 - 1.0)
   showFileTree: false
   nerdFontsVersion: "3"
   branchColorPatterns:

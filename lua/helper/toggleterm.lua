@@ -82,10 +82,10 @@ function M.toggle_lazygit()
     float_opts = {
       winblend = winblend,
       width = function()
-        return math.floor(vim.o.columns * 0.9)
+        return vim.o.columns
       end,
       height = function()
-        return math.floor(vim.o.lines * 0.9)
+        return vim.o.lines
       end,
     },
     env = {
