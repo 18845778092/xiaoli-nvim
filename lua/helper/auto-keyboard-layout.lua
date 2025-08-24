@@ -40,9 +40,9 @@ local function auto_switch_abc()
 end
 
 function M.register_auto_keyboard_layout()
-  vim.api.nvim_create_autocmd('InsertLeave', {
+  vim.api.nvim_create_autocmd({ 'CmdlineLeave', 'InsertLeave' }, {
     callback = auto_switch_abc,
-    desc = '进入Normal模式时切换英文输入法',
+    desc = '切换英文输入法',
   })
 
   vim.api.nvim_create_autocmd('VimEnter', {
