@@ -1,14 +1,16 @@
 local M = {}
 
 function M.reset()
-  local diff_green = '#4e5c34'
+  local diff_green = '#47552c'
+
   vim.api.nvim_set_hl(0, 'DiffDelete', {
-    bg = 'NONE',
-    fg = '#474849',
+    bg = '#6b1d1a',
   })
+
   vim.api.nvim_set_hl(0, 'DiffAdd', {
     bg = diff_green,
   })
+
   vim.api.nvim_set_hl(0, 'DiffText', {
     fg = 'NONE',
     bg = diff_green,
