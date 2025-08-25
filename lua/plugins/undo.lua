@@ -2,7 +2,7 @@
 
 return {
   'simnalamburt/vim-mundo',
-  build = 'brew install uv && brew install python && python3 -m pip install --break-system-packages --user \'pynvim @ git+https://github.com/neovim/pynvim\'',
+  build = 'brew install uv && brew install python && brew install pipx && python3 -m pip install --break-system-packages --user \'pynvim @ git+https://github.com/neovim/pynvim\'',
   init = function()
     vim.g.mundo_header = 0
     vim.g.mundo_width = 70
